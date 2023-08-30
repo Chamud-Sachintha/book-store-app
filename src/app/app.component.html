@@ -1,3 +1,33 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+  
+  <ion-tabs>
+    <!-- Tab bar -->
+    <ion-tab-bar slot="bottom" style="padding-top: 10px;">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <p>Home</p>
+      </ion-tab-button>
+      <ion-tab-button tab="booking">
+        <ion-icon name="bookmark"></ion-icon>
+        <p>Booking</p>
+      </ion-tab-button>
+      <ion-tab-button tab="contact">
+        <ion-icon name="layers"></ion-icon>
+        <p>Orders</p>
+      </ion-tab-button>
+      <ion-tab-button tab="live-chat">
+        <ion-icon name="chatbubble-ellipses"></ion-icon>
+        <p>Support</p>
+      </ion-tab-button>
+      <ion-tab-button tab="privacy">
+        <ion-icon name="document-lock"></ion-icon>
+        <p>Privacy</p>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  
 </ion-app>

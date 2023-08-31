@@ -1,3 +1,43 @@
-<p>
-  signin works!
-</p>
+<ion-content>
+	<div class="container">
+		<!-- <div class="ion-text-center" *ngIf="isLoading && timer == 0">
+			<ion-spinner name="circular"></ion-spinner>
+		</div> -->
+		<div class="row" style="margin-top: 120px;">
+			<div class="col-12">
+				<h2 class="title">Welcome back! Glad to see you, Again!</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<form action="" class="form-group" (ngSubmit)="onSubmitClientLoginForm()">
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter your Email">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter your Password">
+						</div>
+					</div>
+					<div class="row mt-3 mb-5">
+						<div class="col-12">
+							<a href="" class="fgt-pass">Forgot Password ?</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<input type="submit" class="login-btn" value="Login">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-12">
+				<p class="create-acc-link">Don’t have an account? <a href="/auth/register" class="create-acc">Create Account</a> </p>
+			</div>
+		</div>
+	</div>
+</ion-content>

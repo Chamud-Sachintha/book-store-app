@@ -1,3 +1,50 @@
-<p>
-  signup works!
-</p>
+<ion-content>
+	<div class="container">
+		<div class="row" style="margin-top: 100px;">
+			<div class="col-12">
+				<h2 class="title">Hello, Register to Get Started.</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<form action="" class="form-group" (ngSubmit)="onSubmitCreateAccount()">
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter First Name">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter Last Name">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter Mobile Number">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter your Email">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter your Password">
+						</div>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12">
+							<input type="submit" class="login-btn" value="Create Account">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-12">
+				<p class="create-acc-link">Already have an account? <a href="/auth/login" class="create-acc">Login</a> </p>
+			</div>
+		</div>
+	</div>
+</ion-content>

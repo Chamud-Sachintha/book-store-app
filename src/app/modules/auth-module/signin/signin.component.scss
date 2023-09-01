@@ -61,3 +61,54 @@
 .create-acc {
     text-decoration: none;
 }
+
+.b2 {
+    /* Line 2 */
+    height: 0px;
+    left: 100%;
+    top: 524px;
+
+    /* Border */
+    border: 1px solid #E8ECF4;
+
+}
+
+.b1 {
+    /* Line 1 */
+    width: 100%;
+    height: 0px;
+    // left: 22px;
+    top: 524px;
+
+    /* Border */
+    border: 1px solid #E8ECF4;
+
+}
+
+.border-text {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    /* Dark Gray */
+    color: #6A707C;
+}
+
+.box {
+    
+    text-align: center;
+    // margin-left: 8px;
+    box-sizing: border-box;
+    // width: 105px;
+    height: 56px;
+    top: 554px;
+
+    /* White */
+    background: #FFFFFF;
+    /* Border */
+    border: 1px solid #E8ECF4;
+    border-radius: 8px;
+}

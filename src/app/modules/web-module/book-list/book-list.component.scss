@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
+.sub-title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #9D9D9D;
+}
+
+.title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 26px;
+    // line-height: 36px;
+    /* or 138% */
+
+    color: #19191B;
+}
+
+.text-input {
+    height: 50px;
+    background: rgba(196, 196, 196, 0.15);
+    border-radius: 10px;
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 125%;
+}
+
+.search-icon {
+    left: 90.8%;
+    right: 5.96%;
+    top: 30.61%;
+    bottom: 33.3%;
+
+    background: #C4C4C4;
+}
+
+.popular-text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 16px;
+    /* identical to box height, or 67% */
+
+    color: #06070D;
+}
+
+.book-title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+
+    color: #06070D;
+}
+
+.book-author {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 550;
+    font-size: 12px;
+    line-height: 18px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+
+    color: #06070D;
+}

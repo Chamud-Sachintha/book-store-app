@@ -1,0 +1,64 @@
+<ion-content style="background-color: #FDFDFD;">
+  <div class="row mt-3">
+    <div class="col-9" style="text-align: right; padding-top: 17px;">
+      <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle>
+    </div>
+    <div class="col-3" style="text-align: right;">
+      <img width="48" class="me-3" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1"/>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3">
+    <div class="col-12">
+      <p class="sub-title">Welcome Back , Bunny</p>
+    </div>
+    <div class="col-12">
+      <p class="title">What do you want to read today?</p>
+    </div>
+  </div>
+
+  <div class="row mt-2 ms-3 me-3">
+    <div class="col-12">
+      <input type="text" class="form-control text-input" placeholder="&#xF002; Search" formControlName="userName">
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3">
+    <div class="col-12">
+      <p class="popular-text">Popular Books</p>
+    </div>
+    <div class="col-12">
+      <swiper #swiper [config]="config">
+        <ng-template swiperSlide>
+          <div class="card" style="width: 10rem; height: auto;">
+            <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg"></ion-img>
+            <div class="row mt-2">
+              <div class="col-12">
+                <p class="book-title">Harry Porter Dethly Hollows</p>
+                <p class="book-author">J.K Rowlling</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template swiperSlide>
+          <div class="card" style="width: 10rem; height: auto;">
+            <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg"></ion-img>
+            <div class="row mt-2">
+              <div class="col-12">
+                <p class="book-title">Harry Porter Dethly Hollows</p>
+                <p class="book-author">J.K Rowlling</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3">
+    <div class="col-12">
+      <p class="popular-text">Newest Books</p>
+    </div>
+  </div>
+</ion-content>

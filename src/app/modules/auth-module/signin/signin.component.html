@@ -10,15 +10,15 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<form action="" class="form-group" (ngSubmit)="onSubmitClientLoginForm()">
+				<form action="" [formGroup]="clientLoginForm" class="form-group" (ngSubmit)="onSubmitClientLoginForm()">
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter your Email">
+							<input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="userName">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter your Password">
+							<input type="text" class="form-control text-input" placeholder="Enter your Password" formControlName="password">
 						</div>
 					</div>
 					<div class="row mt-3 mb-5">
@@ -35,6 +35,28 @@
 			</div>
 		</div>
 		<div class="row mt-3">
+			<div class="col-4">
+				<div class="b1 mt-2"></div>
+			</div>
+			<div class="col-4 text-center">
+				<div class="border-text">Or Login With</div>
+			</div>
+			<div class="col-4">
+				<div class="b1 mt-2"></div>
+			</div>
+		</div>
+		<div class="row d-flex justify-content-center mt-3">
+			<div class="col-5 box">
+				<img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>
+			</div>
+			<div class="col-5 box ms-5">
+				<img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
+			</div>
+			<!-- <div class="col-4 box">
+				<img width="48" height="48" src="https://img.icons8.com/color/48/facebook-new.png" alt="facebook-new"/>
+			</div> -->
+		</div>
+		<div class="row mt-5">
 			<div class="col-12">
 				<p class="create-acc-link">Don’t have an account? <a href="/auth/register" class="create-acc">Create Account</a> </p>
 			</div>

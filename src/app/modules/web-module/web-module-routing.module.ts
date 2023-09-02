@@ -5,6 +5,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { InsideBookComponent } from './inside-book/inside-book.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'book',
     component: InsideBookComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
     pathMatch: 'full'
   }
 ];

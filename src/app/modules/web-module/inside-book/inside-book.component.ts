@@ -19,4 +19,8 @@ export class InsideBookComponent  implements OnInit {
     this.router.navigate(['/profile']);
   }
 
+  onClickCartPage() {
+    this.router.navigate(['/cart']);
+  }
+
 }

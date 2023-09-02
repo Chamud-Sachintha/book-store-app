@@ -1,3 +1,102 @@
-<p>
-  cart works!
-</p>
+<ion-content>
+  <div class="row mt-3 me-3">
+    <div class="col-8" style="text-align: right; padding-top: 17px;">
+      <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle>
+    </div>
+    <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
+      <img width="48" height="48" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+    </div>
+    <div class="col-2" style="text-align: right;">
+      <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1"/>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3 me-3">
+    <div class="col-12">
+      <p class="cart-title">Books In My Cart</p>
+      <p class="items-quantity">2 Items</p>
+      <div style="border: 1px solid #000000;"></div>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3 me-3">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-5">
+          <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg" style="width: 100%"></ion-img>
+        </div>
+        <div class="col-7">
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Harry Potter Deathly Hollows Part 2</p>
+            </div>
+            <div class="col-12">
+              <p class="cart-items-sub-title">J.K. Rowwling</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Price</p>
+              <p class="cart-item-title">LKR.2000.00</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn btn-danger btn-sm">Remove Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="background-color: #000000;">
+    </div>
+
+    <!-- second book item-->
+
+    <div class="col-12">
+      <div class="row">
+        <div class="col-5">
+          <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg" style="width: 100%"></ion-img>
+        </div>
+        <div class="col-7">
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Harry Potter Deathly Hollows Part 2</p>
+            </div>
+            <div class="col-12">
+              <p class="cart-items-sub-title">J.K. Rowwling</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Price</p>
+              <p class="cart-item-title">LKR.2000.00</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn btn-danger btn-sm">Remove Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="background-color: #000000;">
+    </div>
+
+    <!--end second book item-->
+
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6">
+          <p class="cart-item-title">Sub Total</p>
+        </div>
+        <div class="col-6">
+          <p class="cart-item-title" style="text-align: right;">LKR.4000.00</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="bg_btn">Checkout Items</button>
+    </div>
+  </div>
+</ion-content>

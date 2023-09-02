@@ -19,4 +19,8 @@ export class ProfileComponent  implements OnInit {
     this.router.navigate(['/profile/edit']);
   }
 
+  onClickCartPage() {
+    this.router.navigate(['/cart']);
+  }
+
 }

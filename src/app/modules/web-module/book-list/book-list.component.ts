@@ -46,4 +46,8 @@ export class BookListComponent  implements OnInit {
     this.router.navigate(['/book']);
   }
 
+  onClickCartPage() {
+    this.router.navigate(['/cart']);
+  }
+
 }

@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
+.name {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 26px;
+    // line-height: 36px;
+    /* or 138% */
+
+    color: #19191B;
+}
+
+.email {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    // line-height: 36px;
+    /* or 138% */
+
+    color: #19191B;
+}
+
+.profile-edit-btn {
+    width: 90%;
+    height: 56px;
+    top: 75%;
+    
+    background: #121212;
+    border-radius: 5px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+    text-align: center;
+    letter-spacing: -0.408px;
+
+    color: #F2F2F2;
+    text-decoration: none;
+
+    // padding-top: 10px;
+}
+
+.sub-title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 24px;
+    /* or 175% */
+    text-align: center;
+    letter-spacing: -0.408px;
+    text-align: left;
+
+    color: #252525;
+}

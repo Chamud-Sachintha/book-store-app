@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
 
@@ -21,7 +22,7 @@ export class BookListComponent  implements OnInit {
     loop: true,
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.startAnimation();
@@ -35,6 +36,14 @@ export class BookListComponent  implements OnInit {
       this.animationInProgress = false;
       this.startAnimation();
     }, 5000);
+  }
+
+  onClickProfileSection() {
+    this.router.navigate(['/profile']);
+  }
+
+  onClickEachBook() {
+    this.router.navigate(['/book']);
   }
 
 }

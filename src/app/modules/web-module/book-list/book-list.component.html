@@ -4,7 +4,7 @@
       <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle>
     </div>
     <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
-      <img width="48" height="48" src="https://img.icons8.com/color/48/shopping-cart--v1.png" alt="shopping-cart--v1"/>
+      <img width="40" height="40" src="https://img.icons8.com/ultraviolet/40/shopping-cart.png" alt="shopping-cart"/>
     </div>
     <div class="col-2" style="text-align: right;">
       <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" (click)="onClickProfileSection()"/>
@@ -59,24 +59,64 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3">
+  <div class="row mt-3 ms-3 me-3">
     <div class="col-12">
       <p class="popular-text">Newest Books</p>
     </div>
-    <div class="col-12">
+    <div class="col-12 mb-3" style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
       <div class="row" (click)="onClickEachBook()">
         <div class="col-5">
           <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg"></ion-img>
         </div>
-        <div class="col-7">
+        <div class="col-7 pt-3">
           <div class="row">
             <div class="col-12">
-              <p>Harry Potter Deathly Hollows Part 2</p>
+              <p class="cart-item-title">Harry Potter Deathly Hollows Part 2</p>
             </div>
             <div class="col-12">
-              <p>J.K. Rowwling</p>
+              <p class="cart-items-sub-title">J.K. Rowwling</p>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Price</p>
+              <p class="cart-item-title">LKR.2000.00</p>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-12">
+              <button class="btn btn-danger btn-sm">Remove Book</button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12" style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+      <div class="row" (click)="onClickEachBook()">
+        <div class="col-5">
+          <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg"></ion-img>
+        </div>
+        <div class="col-7 pt-3">
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Harry Potter Deathly Hollows Part 2</p>
+            </div>
+            <div class="col-12">
+              <p class="cart-items-sub-title">J.K. Rowwling</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p class="cart-item-title">Price</p>
+              <p class="cart-item-title">LKR.2000.00</p>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-12">
+              <button class="btn btn-danger btn-sm">Remove Book</button>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>

@@ -3,17 +3,21 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+  selector: 'app-my-books',
+  templateUrl: './my-books.component.html',
+  styleUrls: ['./my-books.component.scss'],
   standalone: true,
   imports: [IonicModule]
 })
-export class CartComponent  implements OnInit {
+export class MyBooksComponent  implements OnInit {
 
   constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  onClickReadBook() {
+    this.router.navigate(['/read']);
+  }
 
   onClickCartPage() {
     this.router.navigate(['/cart']);
@@ -22,5 +26,4 @@ export class CartComponent  implements OnInit {
   onClickProfileSection() {
     this.router.navigate(['/profile']);
   }
-
 }

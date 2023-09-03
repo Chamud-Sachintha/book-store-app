@@ -13,9 +13,15 @@
 
   <div class="row mt-3 ms-3 me-3">
     <div class="col-12">
-      <p class="cart-title">Books In My Cart</p>
+      <p class="library-title">Books In My Library</p>
       <p class="items-quantity">2 Items</p>
       <div style="border: 1px solid #000000;"></div>
+    </div>
+  </div>
+
+  <div class="row mt-2 ms-3 me-3">
+    <div class="col-12">
+      <input type="text" class="form-control text-input" placeholder="&#xF002; Search" formControlName="userName">
     </div>
   </div>
 
@@ -34,15 +40,15 @@
               <p class="cart-items-sub-title">J.K. Rowwling</p>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-12">
               <p class="cart-item-title">Price</p>
               <p class="cart-item-title">LKR.2000.00</p>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-12">
-              <button class="btn btn-danger btn-sm">Remove Book</button>
+              <button class="btn btn-success btn-sm">Read Now</button>
             </div>
           </div>
         </div>
@@ -66,37 +72,22 @@
               <p class="cart-items-sub-title">J.K. Rowwling</p>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-12">
               <p class="cart-item-title">Price</p>
               <p class="cart-item-title">LKR.2000.00</p>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-12">
-              <button class="btn btn-danger btn-sm">Remove Book</button>
+              <button class="btn btn-success btn-sm" (click)="onClickReadBook()">Read Now</button>
             </div>
           </div>
         </div>
       </div>
       <hr style="background-color: #000000;">
     </div>
+  </div>
 
     <!--end second book item-->
-
-    <div class="col-12">
-      <div class="row">
-        <div class="col-6">
-          <p class="cart-item-title">Sub Total</p>
-        </div>
-        <div class="col-6">
-          <p class="cart-item-title" style="text-align: right;">LKR.4000.00</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12">
-      <button class="bg_btn">Checkout Items</button>
-    </div>
-  </div>
 </ion-content>

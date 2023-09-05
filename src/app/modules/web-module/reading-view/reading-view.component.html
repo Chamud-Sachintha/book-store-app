@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="row mt-3 me-3">
+  <div class="row mt-3 me-3" id="testRTY">
     <div class="col-8" style="text-align: right; padding-top: 17px;">
       <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle>
     </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3 me-3">
+  <div class="row mt-3 ms-3 me-3" id="testPPP">
     <div class="col-12">
       <p class="book-title">Harry Potter Deathly Hollows Part 2</p>
       <p class="book-author">J.K. Rowling</p>
@@ -26,28 +26,53 @@
     <div class="col-6" style="text-align: right;">
       <img width="30" height="30" src="https://img.icons8.com/color-glass/30/bookmark--v2.png" alt="bookmark--v2"/>
     </div>
-    <div class="col-2" style="text-align: right;">
+    <div class="col-2" style="text-align: right;" id="open-modal">
       <img width="30" height="30" src="https://img.icons8.com/emoji/30/bookmark-emoji.png" alt="bookmark-emoji"/>
     </div>
   </div>
 
-  <div class="pdf-container mt-2">
+  <div class="pdf-container mt-2" style="overflow-y: hidden;">
     <pdf-viewer
       [src]="src"
       [original-size]="false"
-      [show-all]="false"
+      [show-all]="true"
       [page]="pageNumberType"
       class="pdf-viewer"
     ></pdf-viewer>
     <!-- <ngx-extended-pdf-viewer [(src)]="src"> </ngx-extended-pdf-viewer> -->
   </div>
 
-  <div class="row ms-3">
+  <!-- <div>
+    <button (click)="test()">test</button>
+  </div> -->
+
+  <!-- <div class="row ms-3">
     <div class="col-6">
       <button class="previous-btn" (click)="onClickPreviousPage()">Previous</button>
     </div>
     <div class="col-6">
       <button class="next-btn" (click)="onClickNextPage()">Next</button>
     </div>
-  </div>
+  </div> -->
+
+  <!-- model will starts here -->
+
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="block">
+        <div class="row mt-5 ms-3 me-3">
+          <input type="text" class="form-control text-input" placeholder="Enter Page Number" #pageNumber (keyup)="changePageNumber(pageNumber.value)">
+        </div>
+        <div class="row mt-3 ms-3 me-3">
+          <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+        </div>
+        <div class="row mt-3 ms-3 me-3">
+          <button class="next-btn" (click)="onClickNextPage()">Save Bookmark</button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <!-- model will ends here -->
+
 </ion-content>

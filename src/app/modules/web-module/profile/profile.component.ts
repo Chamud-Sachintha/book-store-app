@@ -16,7 +16,7 @@ export class ProfileComponent  implements OnInit {
   ngOnInit() {}
 
   onClickEditProfileBtn() {
-    this.router.navigate(['/profile/edit']);
+    this.router.navigate(['/edit-profile']);
   }
 
   onClickCartPage() {

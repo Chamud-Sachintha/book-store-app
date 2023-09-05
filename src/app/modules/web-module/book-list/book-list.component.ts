@@ -16,8 +16,9 @@ export class BookListComponent  implements OnInit {
   animationInProgress = false;
 
   config = {
-    slidesPerView: 2,
+    slidesPerView: 1.8,
     spaceBetween: 0,
+    centeredSlides: true,
     pagination: true,
     loop: true,
   }

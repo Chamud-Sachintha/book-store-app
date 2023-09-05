@@ -33,13 +33,12 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    children: [
-      {
-        path: 'edit',
-        component: EditProfileComponent,
-        pathMatch: 'full'
-      }
-    ]
+    pathMatch: 'full'
+  },
+  {
+    path: 'edit-profile',
+    component: EditProfileComponent,
+    pathMatch: 'full'
   },
   {
     path: 'book',

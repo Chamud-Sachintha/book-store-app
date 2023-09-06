@@ -36,7 +36,7 @@
     padding: 25px;
 }
 
-.block {
+.block-md {
     width: 100%;
     height: 350px;
     // display: flex;
@@ -46,6 +46,11 @@
   
 ion-modal {
     --height: auto;
+}
+
+.block-lg {
+    width: 100%;
+    height: 100vh;
 }
 
 .previous-btn {

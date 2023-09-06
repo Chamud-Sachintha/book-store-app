@@ -16,27 +16,51 @@ export class ReadingViewComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   src: string = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
-  message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
-  name!: string;
   pageNumberType: number = 1;
+  isModalOpen = false;
+  isFullScreenModeOn = false;
 
   constructor(private router: Router) { }
 
   ngOnInit() {}
 
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
+  onClickApplyFullScreen() {
+    let elementImg: HTMLImageElement;
+    const g = document.getElementById("testRTY");
+    const e = document.getElementById("testPPP");
+    const i = document.getElementById("testYYU");
+    const pdf = document.getElementById("pdf");
+    const icon = document.getElementById("fullScreenIcon");
+    let iconImg = document.getElementById("iconImg");
 
-  confirm() {
-    this.modal.dismiss(this.name, 'confirm');
-  }
+    if (g !== null && e != null && i != null && pdf != null && icon != null) {
+      g.style.display = 'none';
+      e.style.display = 'none';
+      i.style.display = 'none';
+      pdf.style.height = "100vh";
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.message = `Hello, ${ev.detail.data}!`;
+      icon.innerHTML = ""
+      elementImg = document.createElement('img');
+      elementImg.setAttribute('src', "https://img.icons8.com/external-filled-color-icons-papa-vector/78/external-Exit-Full-Screen-interface-filled-color-icons-papa-vector-2.png")
+      elementImg.style.height = "30px";
+      elementImg.style.width = "30px";
+
+      icon.appendChild(elementImg);
+      this.isFullScreenModeOn = true;
     }
+  }
+
+  onClickOpenModal(value: boolean) {
+    this.isModalOpen = value;
+  }
+
+  onClickApplyBookmark(pageNumber: number) {
+    this.pageNumberType = pageNumber;
+    this.modalClose()
+  }
+
+  modalClose() {
+    this.isModalOpen = false;
   }
 
   onClickNextPage() {

@@ -23,12 +23,16 @@
     <div class="col-4">
       <input type="text" class="form-control text-input" placeholder="Page" #pageNumber (keyup)="changePageNumber(pageNumber.value)">
     </div>
-    <div class="col-6" style="text-align: right;">
+    <div class="col-4" style="text-align: right;" (click)="onClickOpenModal(true)">
       <img width="30" height="30" src="https://img.icons8.com/color-glass/30/bookmark--v2.png" alt="bookmark--v2"/>
     </div>
     <div class="col-2" style="text-align: right;" id="open-modal">
       <img width="30" height="30" src="https://img.icons8.com/emoji/30/bookmark-emoji.png" alt="bookmark-emoji"/>
     </div>
+    <div class="col-2" style="text-align: right;" (click)="onClickApplyFullScreen()" id="fullScreenIcon">
+      <img width="30" id="iconImg" height="30" src="https://img.icons8.com/color/48/full-screen.png" alt="full-screen"/>
+    </div>
+    <!-- <img width="48" height="48" src="https://img.icons8.com/color/48/full-screen.png" alt="full-screen"/> -->
   </div>
 
   <div class="pdf-container mt-2" style="overflow-y: hidden;">
@@ -38,6 +42,7 @@
       [show-all]="true"
       [page]="pageNumberType"
       class="pdf-viewer"
+      id="pdf"
     ></pdf-viewer>
     <!-- <ngx-extended-pdf-viewer [(src)]="src"> </ngx-extended-pdf-viewer> -->
   </div>
@@ -57,9 +62,9 @@
 
   <!-- model will starts here -->
 
-  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="md">
     <ng-template>
-      <div class="block">
+      <div class="block-md">
         <div class="row mt-5 ms-3 me-3">
           <input type="text" class="form-control text-input" placeholder="Enter Page Number" #pageNumber (keyup)="changePageNumber(pageNumber.value)">
         </div>
@@ -74,5 +79,37 @@
   </ion-modal>
 
   <!-- model will ends here -->
+
+  <!-- all bookmark list modal begin here -->
+
+  <ion-modal [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="lg" [isOpen]="isModalOpen">
+    <ng-template>
+      <div class="block-lg">
+        <div class="row mt-5 ms-2">
+          <div class="col-12">
+            <p class="book-title">My Bookmark List</p>
+            <hr style="background-color: #000000;">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Page No 3</ion-card-title>
+                <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+              </ion-card-header>
+            
+              <ion-card-content>
+                Here's a small text description for the card content. Nothing more, nothing less.
+              </ion-card-content>
+  
+              <ion-button expand="full" (click)="onClickApplyBookmark(2)">Apply Bookmark</ion-button>
+            </ion-card>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+  <!-- all bookmark list modal ends here -->
 
 </ion-content>

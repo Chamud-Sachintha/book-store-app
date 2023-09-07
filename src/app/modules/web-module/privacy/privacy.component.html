@@ -1,3 +1,33 @@
-<p>
-  privacy works!
-</p>
+<ion-content>
+  <div class="row mt-3 me-3" id="testRTY">
+    <div class="col-8" style="text-align: right; padding-top: 17px;">
+      <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle>
+    </div>
+    <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
+      <img width="40" height="40" src="https://img.icons8.com/ultraviolet/40/shopping-cart.png" alt="shopping-cart"/>
+    </div>
+    <div class="col-2" style="text-align: right;">
+      <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" (click)="onClickProfileSection()"/>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3 me-3" id="testPPP">
+    <div class="col-12">
+      <p class="book-title">Privacy Policy</p>
+      <p class="book-author">Put a Message to us as soon as possible we'll contact</p>
+      <div style="border: 1px solid #000000;"></div>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3 me-3">
+    <div class="col-12">
+      <p class="book-title">Online Booking Store</p>
+      <p class="book-author">Last Updated Date : 07/09/2023</p>
+    </div>
+    <div class="col-12">
+      <p class="book-title">1. Introduction</p>
+      <p class="book-author" style="text-align: justify;">Welcome to [Your Company/App Name] ("we," "us," or "our"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our website or mobile application (collectively, the "Service").</p>
+    </div>
+  </div>
+
+</ion-content>

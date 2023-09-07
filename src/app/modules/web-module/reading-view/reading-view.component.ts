@@ -31,22 +31,36 @@ export class ReadingViewComponent  implements OnInit {
     const i = document.getElementById("testYYU");
     const pdf = document.getElementById("pdf");
     const icon = document.getElementById("fullScreenIcon");
-    let iconImg = document.getElementById("iconImg");
+    let exitIcon = document.getElementById("exitIcon");
 
-    if (g !== null && e != null && i != null && pdf != null && icon != null) {
+    if (g !== null && e != null && i != null && pdf != null && icon != null && exitIcon != null) {
       g.style.display = 'none';
       e.style.display = 'none';
       i.style.display = 'none';
       pdf.style.height = "100vh";
 
-      icon.innerHTML = ""
-      elementImg = document.createElement('img');
-      elementImg.setAttribute('src', "https://img.icons8.com/external-filled-color-icons-papa-vector/78/external-Exit-Full-Screen-interface-filled-color-icons-papa-vector-2.png")
-      elementImg.style.height = "30px";
-      elementImg.style.width = "30px";
+      icon.style.display = "none";
+      exitIcon.style.display = "";
+    }
+  }
 
-      icon.appendChild(elementImg);
-      this.isFullScreenModeOn = true;
+  onClickExitFullScreen() {
+    let elementImg: HTMLImageElement;
+    const g = document.getElementById("testRTY");
+    const e = document.getElementById("testPPP");
+    const i = document.getElementById("testYYU");
+    const pdf = document.getElementById("pdf");
+    const icon = document.getElementById("fullScreenIcon");
+    let exitIcon = document.getElementById("exitIcon");
+
+    if (g !== null && e != null && i != null && pdf != null && icon != null && exitIcon != null) {
+      g.style.display = '';
+      e.style.display = '';
+      i.style.display = '';
+      pdf.style.height = "";
+
+      icon.style.display = "";
+      exitIcon.style.display = "none";
     }
   }
 
@@ -74,15 +88,6 @@ export class ReadingViewComponent  implements OnInit {
   changePageNumber(pageNumber: any) {
     this.pageNumberType = pageNumber
   }
-
-  // test() {
-  //   const g = document.getElementById("testRTY");
-  //   const e = document.getElementById("testPPP");
-  //   if (g !== null && e != null) {
-  //     g.style.display = 'none';
-  //     e.style.display = 'none';
-  //   }
-  // }
 
   onClickProfileSection() {
     this.router.navigate(['/profile'])

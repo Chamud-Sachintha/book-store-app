@@ -8,6 +8,8 @@ import { InsideBookComponent } from './inside-book/inside-book.component';
 import { CartComponent } from './cart/cart.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { ReadingViewComponent } from './reading-view/reading-view.component';
+import { SupportComponent } from './support/support.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   {
@@ -58,6 +60,15 @@ const routes: Routes = [
   {
     path: 'read',
     component: ReadingViewComponent,
+    pathMatch: 'full'
+  },{
+    path: 'support-page',
+    component: SupportComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent,
     pathMatch: 'full'
   }
 ];

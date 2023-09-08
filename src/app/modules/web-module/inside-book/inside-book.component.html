@@ -26,6 +26,39 @@
     </div>
   </div>
 
+  <div class="row ms-3 me-3">
+    <div class="col-12">
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Submit a Review For This Book</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <form [formGroup]="this.ratingForm">
+              <div class="row">
+                <div class="col-12">
+                  <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                </div>
+                <div class="col-12">
+                  <div>Rating: {{ratingForm.value.rating}}</div>
+                </div>
+                <div class="col-12 mt-3">
+                  <textarea name="" class="form-control text-inout" id="" cols="30" rows="5"></textarea>
+                </div>
+                <div class="col-12 mt-3">
+                  <button class="login-btn">Submit Review</button>
+                </div>
+              </div>
+              
+              <!-- <p>form is valid: {{ ratingForm.valid ? 'true' : 'false' }}</p> -->
+              
+            </form>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </div>
+
   <div class="row mt-3 ms-3">
     <div class="col-6">
       <button class="add-to-cart-btn">Add to Cart</button>

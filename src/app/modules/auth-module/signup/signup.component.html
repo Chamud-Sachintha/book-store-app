@@ -7,30 +7,30 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<form action="" class="form-group" (ngSubmit)="onSubmitCreateAccount()">
+				<form action="" [formGroup]="this.clientRegisterForm" class="form-group" (ngSubmit)="onSubmitCreateAccount()">
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter First Name">
+							<input type="text" class="form-control text-input" placeholder="Enter First Name" formControlName="firstName">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter Last Name">
+							<input type="text" class="form-control text-input" placeholder="Enter Last Name" formControlName="lastName">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter Mobile Number">
+							<input type="text" class="form-control text-input" placeholder="Enter Mobile Number" formControlName="mobileNumber">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter your Email">
+							<input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="emailAddress">
 						</div>
 					</div>
 					<div class="row mt-3">
 						<div class="col-12">
-							<input type="text" class="form-control text-input" placeholder="Enter your Password">
+							<input type="text" class="form-control text-input" placeholder="Enter your Password" formControlName="password">
 						</div>
 					</div>
 					<div class="row mt-3">

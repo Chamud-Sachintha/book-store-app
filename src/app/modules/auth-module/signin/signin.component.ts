@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
+import { Client } from 'src/app/models/Clinet/client';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -13,11 +15,26 @@ import { IonicModule } from '@ionic/angular';
 export class SigninComponent  implements OnInit {
 
   clientLoginForm!: FormGroup;
+  client = new Client();
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  isAlertOpen = false;
+  public alertButtons = ['OK'];
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService) { }
 
   ngOnInit() {
     this.createSigninForm();
+  }
+
+  async presentAlert(subHeader: string, alertMessage: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: subHeader,
+      message: alertMessage,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 
   createSigninForm() {
@@ -28,7 +45,25 @@ export class SigninComponent  implements OnInit {
   }
 
   onSubmitClientLoginForm() {
-    this.router.navigate(['/book-list']);
+
+    const userName = this.clientLoginForm.controls['userName'].value;
+    const password = this.clientLoginForm.controls['password'].value;
+
+    if (userName === "" || password === "") {
+      this.presentAlert("Empty Feilds Founded.", "Invalid Username or Password");
+    } else {
+      this.client.email = userName;
+      this.client.password = password;
+
+      this.authService.registerNewClient(this.client).subscribe((resp: any) => {
+        console.log(resp.code)
+        if (resp.code == "1") {
+          this.presentAlert("User Registation", "User Registration Successfully.");
+        }
+      }, (error) => {
+        this.presentAlert("User Registation", error);
+      })
+    }
   }
 
 }

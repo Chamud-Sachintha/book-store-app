@@ -52,16 +52,19 @@ export class SigninComponent  implements OnInit {
     if (userName === "" || password === "") {
       this.presentAlert("Empty Feilds Founded.", "Invalid Username or Password");
     } else {
-      this.client.email = userName;
+      this.client.userName = userName;
       this.client.password = password;
 
-      this.authService.registerNewClient(this.client).subscribe((resp: any) => {
+      this.authService.authenticateClientInfo(this.client).subscribe((resp: any) => {
         console.log(resp.code)
-        if (resp.code == "1") {
-          this.presentAlert("User Registation", "User Registration Successfully.");
+        if (resp.code === 1) {
+          sessionStorage.setItem("authToken", resp.token);
+          this.presentAlert("User Signin", "User Login Successfully.");
+        } else {
+          this.presentAlert("User Signin", resp.message);
         }
       }, (error) => {
-        this.presentAlert("User Registation", error);
+        this.presentAlert("User Signin", error);
       })
     }
   }

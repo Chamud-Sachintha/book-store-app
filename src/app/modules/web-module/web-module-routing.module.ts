@@ -43,7 +43,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'book',
+    path: 'book/:bookId',
     component: InsideBookComponent,
     pathMatch: 'full'
   },

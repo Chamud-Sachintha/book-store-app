@@ -15,4 +15,10 @@ export class AuthService {
     
     return this.http.post(path, clientInfo);
   }
+
+  authenticateClientInfo(clientInfo: Client) {
+    const path = environment.appUrl + "login";
+
+    return this.http.post(path, clientInfo);
+  }
 }

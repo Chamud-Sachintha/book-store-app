@@ -4,4 +4,7 @@ export class Client {
     mobileNumber!: string;
     email!: string;
     password!: string;
+
+    // for the auth perpose
+    userName!: string;
 }

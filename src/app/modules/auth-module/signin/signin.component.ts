@@ -60,6 +60,7 @@ export class SigninComponent  implements OnInit {
         if (resp.code === 1) {
           sessionStorage.setItem("authToken", resp.token);
           sessionStorage.setItem("clientId", resp.data[0].id);
+          sessionStorage.setItem("emailAddress", resp.data[0].email);
           
           this.presentAlert("User Signin", "User Login Successfully.");
         } else {

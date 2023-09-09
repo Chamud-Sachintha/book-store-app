@@ -16,27 +16,27 @@
       <img width="96" height="96" src="https://img.icons8.com/color/96/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1"/>
     </div>
     <div class="col-12 text-center">
-      <p class="name">Chamud Sachintha</p>
-      <p class="email">chamudsachintha999@gmail.com</p>
+      <p class="name">{{ this.profileInfo.firstName }} {{ this.profileInfo.lastName }}</p>
+      <p class="email">{{ this.profileInfo.email }}</p>
     </div>
   </div>
 
   <div class="row ms-3 me-3">
     <div class="col-12">
-      <form action="" class="form-group">
+      <form action="" [formGroup]="this.editprofileForm" class="form-group" (submit)="onSubmitEditProfileForm()">
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="userName">
+            <input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="firstName">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Password" formControlName="password">
+            <input type="text" class="form-control text-input" placeholder="Enter your Password" formControlName="lastName">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="userName">
+            <input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="mobileNumber">
           </div>
         </div>
         <div class="row mt-3">

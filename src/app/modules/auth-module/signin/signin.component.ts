@@ -59,6 +59,8 @@ export class SigninComponent  implements OnInit {
         console.log(resp.code)
         if (resp.code === 1) {
           sessionStorage.setItem("authToken", resp.token);
+          sessionStorage.setItem("clientId", resp.data[0].id);
+          
           this.presentAlert("User Signin", "User Login Successfully.");
         } else {
           this.presentAlert("User Signin", resp.message);

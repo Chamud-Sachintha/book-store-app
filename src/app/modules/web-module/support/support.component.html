@@ -21,20 +21,20 @@
 
   <div class="row ms-3 mt-3 me-3">
     <div class="col-12">
-      <form action="" class="form-group" >
+      <form action="" [formGroup]="this.clientSupportForm" class="form-group" (submit)="onSubmitClientSupportForm()">
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your First Name" formControlName="userName">
+            <input type="text" class="form-control text-input" placeholder="Enter your First Name" formControlName="firstName">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Last Name" formControlName="userName">
+            <input type="text" class="form-control text-input" placeholder="Enter your Last Name" formControlName="lastName">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
           </div>
         </div>
         <div class="row mt-3">

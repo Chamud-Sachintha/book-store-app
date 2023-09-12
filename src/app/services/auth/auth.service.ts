@@ -21,4 +21,8 @@ export class AuthService {
 
     return this.http.post(path, clientInfo);
   }
+
+  isClientLoggedIn() {
+    return sessionStorage.getItem("emailAddress") != null;
+  }
 }

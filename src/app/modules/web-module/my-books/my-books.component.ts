@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { Book } from 'src/app/models/Book/book';
+import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
@@ -8,9 +11,12 @@ import { BookService } from 'src/app/services/book/book.service';
   templateUrl: './my-books.component.html',
   styleUrls: ['./my-books.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, CommonModule]
 })
 export class MyBooksComponent  implements OnInit {
+
+  paidBookInfoList: Book[] = [];
+  requestModel = new Request();
 
   constructor(private router: Router, private bookService: BookService) { }
 
@@ -19,16 +25,24 @@ export class MyBooksComponent  implements OnInit {
   }
 
   getMyPaidBookList() {
-    const requestBody = {
-      token: sessionStorage.getItem("authToken"),
-      clientId: sessionStorage.getItem("clientId")
-    }
+    this.requestModel.cid = sessionStorage.getItem("clientId");
+    this.requestModel.token = sessionStorage.getItem("authToken");
 
-    this.bookService.getPaidBooksList(requestBody).subscribe((resp) => {
-      console.log(resp);
+    this.bookService.getPaidBooksList(this.requestModel).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        dataList.data[0].forEach((el: Book) => {
+          this.paidBookInfoList.push(el)
+        });
+      }
     }, (err) => {
 
     })
+  }
+
+  onClickVisitChapters(bookId: number) {
+    this.router.navigate(['/chapters', bookId])
   }
 
   onClickReadBook() {

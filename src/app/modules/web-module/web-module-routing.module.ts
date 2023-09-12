@@ -10,6 +10,8 @@ import { MyBooksComponent } from './my-books/my-books.component';
 import { ReadingViewComponent } from './reading-view/reading-view.component';
 import { SupportComponent } from './support/support.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { ChaptersComponent } from './chapters/chapters.component';
 
 const routes: Routes = [
   {
@@ -30,45 +32,61 @@ const routes: Routes = [
   {
     path: 'book-list',
     component: BookListComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'edit-profile',
     component: EditProfileComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'book/:bookId',
     component: InsideBookComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'cart',
     component: CartComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'my-books',
     component: MyBooksComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'read',
     component: ReadingViewComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
-  },{
+  },
+  {
+    path: 'chapters/:id',
+    component: ChaptersComponent,
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
     path: 'support-page',
     component: SupportComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'privacy',
     component: PrivacyComponent,
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   }
 ];

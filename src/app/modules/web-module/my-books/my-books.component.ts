@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
   selector: 'app-my-books',
@@ -11,9 +12,24 @@ import { IonicModule } from '@ionic/angular';
 })
 export class MyBooksComponent  implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private bookService: BookService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getMyPaidBookList();
+  }
+
+  getMyPaidBookList() {
+    const requestBody = {
+      token: sessionStorage.getItem("authToken"),
+      clientId: sessionStorage.getItem("clientId")
+    }
+
+    this.bookService.getPaidBooksList(requestBody).subscribe((resp) => {
+      console.log(resp);
+    }, (err) => {
+
+    })
+  }
 
   onClickReadBook() {
     this.router.navigate(['/read']);

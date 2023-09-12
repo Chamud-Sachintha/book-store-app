@@ -5,6 +5,8 @@ import { AlertController, IonicModule } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { CartItem } from 'src/app/models/Cart/cart-item';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { Order } from 'src/app/models/Order/order';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,12 +19,31 @@ export class CartComponent  implements OnInit {
 
   allCartItemsList: Book[] = [];
   cart = new CartItem();
+  orderInfo = new Order();
   cartId!: number;
+  cartAmount: number = 0;
 
-  constructor(private router: Router, private cartService: CartService, private alertController: AlertController) { }
+  constructor(private router: Router, private cartService: CartService, private alertController: AlertController
+            , private orderService: OrderService) { }
 
   ngOnInit() {
     this.getAllCartItems();
+  }
+
+  onClickCheckoutBtn() {
+    this.orderInfo.token = sessionStorage.getItem("authToken");
+    this.orderInfo.clientId = sessionStorage.getItem("clientId");
+    this.orderInfo.cartId = this.cartId;
+
+    this.orderService.placeOrderRequest(this.orderInfo).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.presentAlert("Place New Order", "Order is Placed Successfully.");
+      }
+    }, (err) => {
+      this.presentAlert("Place New Order", err.message);
+    })
   }
 
   getAllCartItems() {
@@ -38,6 +59,7 @@ export class CartComponent  implements OnInit {
         });
 
         this.cartId = dataList.data[0].cartId;
+        this.cartAmount = dataList.data[0].cartAmount;
       }
     }, (err) => {
 

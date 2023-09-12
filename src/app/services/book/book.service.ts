@@ -17,13 +17,18 @@ export class BookService {
     return this.http.post<Book[]>(path, requestBody);
   }
 
-  getBookDetailsByBookId($requestBody: any): Observable<Book> {
+  getBookDetailsByBookId(requestBody: any): Observable<Book> {
     const path = environment.appUrl + "book";
-    return this.http.post<Book>(path, $requestBody);
+    return this.http.post<Book>(path, requestBody);
   }
 
   submitClientReviewForBook(clientReviewInfo: Review) {
     const path = environment.appUrl + "create-feedback";
     return this.http.post(path, clientReviewInfo);
+  }
+
+  getPaidBooksList(requestBody: any) {
+    const path = environment.appUrl + "paidBookList";
+    return this.http.post(path, requestBody);
   }
 }

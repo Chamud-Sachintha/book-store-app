@@ -90,13 +90,13 @@
           <p class="cart-item-title">Sub Total</p>
         </div>
         <div class="col-6">
-          <p class="cart-item-title" style="text-align: right;">LKR.4000.00</p>
+          <p class="cart-item-title" style="text-align: right;">LKR. {{ this.cartAmount }} .00</p>
         </div>
       </div>
     </div>
 
     <div class="col-12">
-      <button class="bg_btn">Checkout Items</button>
+      <button class="bg_btn" (click)="onClickCheckoutBtn()">Checkout Items</button>
     </div>
   </div>
 </ion-content>

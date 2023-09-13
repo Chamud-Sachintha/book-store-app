@@ -41,7 +41,7 @@ export class MyBooksComponent  implements OnInit {
     })
   }
 
-  onClickVisitChapters(bookId: number) {
+  onClickVisitChapters(bookId: any) {
     this.router.navigate(['/chapters', bookId])
   }
 

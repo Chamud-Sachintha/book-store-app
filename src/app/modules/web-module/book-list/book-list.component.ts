@@ -24,8 +24,15 @@ export class BookListComponent  implements OnInit {
     slidesPerView: 1.8,
     spaceBetween: 0,
     centeredSlides: true,
-    pagination: true,
     loop: true,
+  }
+
+  coverFlowConfig = {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: true,
   }
 
   constructor(private router: Router, private bookService: BookService) { }

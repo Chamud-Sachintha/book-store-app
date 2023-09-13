@@ -66,13 +66,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'read',
+    path: 'read/:bookId',
     component: ReadingViewComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
-    path: 'chapters/:id',
+    path: 'chapters/:bookId',
     component: ChaptersComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'

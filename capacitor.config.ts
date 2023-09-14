@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'lk.dpuremaths.app',
   appName: 'book-store-app',
   webDir: 'www',
   server: {

@@ -62,7 +62,8 @@ export class SigninComponent  implements OnInit {
           sessionStorage.setItem("clientId", resp.data[0].id);
           sessionStorage.setItem("emailAddress", resp.data[0].email);
           
-          this.presentAlert("User Signin", "User Login Successfully.");
+          // this.presentAlert("User Signin", "User Login Successfully.");
+          this.router.navigate(['/book-list']);
         } else {
           this.presentAlert("User Signin", resp.message);
         }

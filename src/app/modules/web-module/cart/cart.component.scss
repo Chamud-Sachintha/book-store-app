@@ -65,3 +65,26 @@
 
     // padding-top: 10px;
 }
+
+.book-title {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    display: flex;
+    align-items: start;
+
+    color: #06070D;
+}
+
+.chapter-count {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 18px;
+
+    color: #06070D;
+}

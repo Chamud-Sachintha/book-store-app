@@ -23,41 +23,29 @@
     </div>
   </div>
 
-  <div class="row mt-2 ms-3 me-3">
+  <!-- <div class="row mt-2 ms-3 me-3">
     <div class="col-12">
       <input type="text" class="form-control text-input" placeholder="&#xF002; Search" formControlName="userName">
     </div>
-  </div>
+  </div> -->
 
   <div class="row mt-3 ms-3 me-3">
-    <div class="col-12" *ngFor="let eachBook of this.paidBookInfoList">
-      <div class="row">
-        <div class="col-5">
-          <ion-img src="../../../../assets/book-covers/English_Harry_Potter_7_Epub_9781781100264.jpg" style="width: 100%"></ion-img>
-        </div>
-        <div class="col-7">
-          <div class="row">
-            <div class="col-12">
-              <p class="cart-item-title">{{ eachBook.bookName }}</p>
-            </div>
-            <div class="col-12">
-              <p class="cart-items-sub-title">{{ eachBook.authorName }}</p>
-            </div>
+    <div class="col-12 mb-3" *ngFor="let eachBook of this.paidBookInfoList">
+      <div class="card" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
+        <div class="row">
+          <div class="col-5">
+            <img src="../../../../assets/book-covers/0 trig cover design-min.jpg" alt="">
           </div>
-          <!-- <div class="row">
-            <div class="col-12">
-              <p class="cart-item-title">Price</p>
-              <p class="cart-item-title">LKR.2000.00</p>
-            </div>
-          </div> -->
-          <div class="row">
-            <div class="col-12">
-              <button class="btn btn-success btn-sm" (click)="onClickVisitChapters(eachBook.bookId)">Read Now</button>
-            </div>
+          <div class="col-7">
+            <p class="book-title mt-4">{{ eachBook.bookName }}</p>
+            <p style="margin-top: -15px;">Dulith Perera</p>
+
+            <p class="chapter-count">5 Chapters</p>
+
+            <button type="button" class="btn btn-info btn-sm" style="width: 100px; border-radius: 20px; color: white; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" (click)="onClickVisitChapters(eachBook.bookId)">Info</button>
           </div>
         </div>
       </div>
-      <hr style="background-color: #000000;">
     </div>
   </div>
 

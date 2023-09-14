@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { BookService } from 'src/app/services/book/book.service';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
+import { ProfileService } from 'src/app/services/profile/profile.service';
+import { Profile } from 'src/app/models/Profile/profile';
 
 @Component({
   selector: 'app-book-list',
@@ -35,11 +37,31 @@ export class BookListComponent  implements OnInit {
     slideShadows: true,
   }
 
-  constructor(private router: Router, private bookService: BookService) { }
+  profileInfo = new Profile();
+
+  constructor(private router: Router, private bookService: BookService, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.startAnimation();
     this.getBookList();
+    this.getProfileInfo();
+  }
+
+  getProfileInfo() {
+    this.profileInfo.token = sessionStorage.getItem("authToken");
+    this.profileInfo.email = sessionStorage.getItem("emailAddress");
+
+    this.profileService.getProfileInformations(this.profileInfo).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.profileInfo.firstName = dataList.data[0].firstName;
+        this.profileInfo.lastName = dataList.data[0].lastName;
+        this.profileInfo.email = dataList.data[0].emailAddress;
+      }
+    }, (err) => {
+
+    })
   }
 
   getBookList() {

@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { IonModal, IonicModule } from '@ionic/angular';
 // import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { App as CapacitorApp } from '@capacitor/app';
 
 @Component({
   selector: 'app-reading-view',
@@ -15,14 +16,27 @@ import { OverlayEventDetail } from '@ionic/core/components';
 export class ReadingViewComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
-  src: string = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
+  src: string = "";
   pageNumberType: number = 1;
   isModalOpen = false;
   isFullScreenModeOn = false;
+  bookId!: number;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
+
+    if (this.bookId == 1) {
+      this.src = "../../../../assets/pdfs/1990.pdf";
+    } else {
+      this.src = "../../../../assets/pdfs/1992.pdf";
+    }
+
+    CapacitorApp.addListener('backButton', ({canGoBack}) => {
+      this.location.back();
+    })
+  }
 
   onClickApplyFullScreen() {
     let elementImg: HTMLImageElement;

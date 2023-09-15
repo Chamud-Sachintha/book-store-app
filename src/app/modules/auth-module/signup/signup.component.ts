@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, Platform } from '@ionic/angular';
 import { Client } from 'src/app/models/Clinet/client';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { App as CapacitorApp } from '@capacitor/app';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
@@ -16,10 +18,20 @@ export class SignupComponent  implements OnInit {
   clientRegisterForm!: FormGroup;
   client = new Client();
 
-  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private authService: AuthService
+              , private location: Location, private platform: Platform) { 
+
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.location.back();
+    });
+  }
 
   ngOnInit() {
     this.initClientRegisterForm();
+
+    // CapacitorApp.addListener('backButton', ({canGoBack}) => {
+    //   this.location.back();
+    // })
   }
 
   initClientRegisterForm() {

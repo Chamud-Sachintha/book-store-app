@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, Platform } from '@ionic/angular';
 import { Client } from 'src/app/models/Clinet/client';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +21,12 @@ export class SigninComponent  implements OnInit {
   isAlertOpen = false;
   public alertButtons = ['OK'];
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
+              , private platform: Platform, private location: Location) { 
+    this.platform.backButton.subscribeWithPriority(10, () => {
+      this.location.back();
+    });
+  }
 
   ngOnInit() {
     this.createSigninForm();

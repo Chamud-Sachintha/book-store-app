@@ -20,8 +20,8 @@ export class ChaptersComponent  implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
   }
 
-  onClickBookChapter() {
-    this.router.navigate(['/read', this.bookId]);
+  onClickBookChapter(bookId: number) {
+    this.router.navigate(['/read', bookId]);
   }
 
   onClickCartPage() {

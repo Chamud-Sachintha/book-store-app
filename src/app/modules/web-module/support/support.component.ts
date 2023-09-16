@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SupportMessage } from 'src/app/models/Support/support-message';
 import { SupportService } from 'src/app/services/support/support.service';
@@ -18,10 +18,14 @@ export class SupportComponent  implements OnInit {
   clientSupportForm!: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private alertController: AlertController
-            , private supportService: SupportService) { }
+            , private supportService: SupportService, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.initClientSupportForm();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   onSubmitClientSupportForm() {

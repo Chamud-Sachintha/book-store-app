@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { Profile } from 'src/app/models/Profile/profile';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -15,10 +15,14 @@ export class ProfileComponent  implements OnInit {
 
   profileInfo = new Profile();
 
-  constructor(private router: Router, private profileService: ProfileService) { }
+  constructor(private router: Router, private profileService: ProfileService, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.getProfileInformations();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   getProfileInformations() {

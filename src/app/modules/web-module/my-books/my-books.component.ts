@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController, Platform, ToastController } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
@@ -18,10 +18,15 @@ export class MyBooksComponent  implements OnInit {
   paidBookInfoList: Book[] = [];
   requestModel = new Request();
 
-  constructor(private router: Router, private bookService: BookService) { }
+  constructor(private router: Router, private bookService: BookService, private platform: Platform, private navCtrl: NavController
+            , private toastController: ToastController) { }
 
   ngOnInit() {
     this.getMyPaidBookList();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   getMyPaidBookList() {

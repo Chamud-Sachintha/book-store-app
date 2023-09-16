@@ -1,7 +1,7 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IonicModule, Platform } from '@ionic/angular';
+import { IonicModule, NavController, Platform } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { Chapter } from 'src/app/models/Chapter/chapter';
 import { Request } from 'src/app/models/Request/request';
@@ -21,14 +21,17 @@ export class ChaptersComponent  implements OnInit {
   bookId!: number;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bookService: BookService, 
-    private platform: Platform, private location: Location) { 
-
+    private platform: Platform, private navCtrl: NavController) { 
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
 
     this.getAllChaptersOfBook();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   getAllChaptersOfBook() {

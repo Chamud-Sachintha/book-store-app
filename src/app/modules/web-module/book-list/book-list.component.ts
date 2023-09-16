@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonicModule, Platform } from '@ionic/angular';
+import { IonicModule, NavController, Platform } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { BookService } from 'src/app/services/book/book.service';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
@@ -40,7 +40,7 @@ export class BookListComponent  implements OnInit {
   profileInfo = new Profile();
 
   constructor(private router: Router, private bookService: BookService, private profileService: ProfileService, 
-    private platform: Platform, private location: Location) { 
+    private platform: Platform, private navCtrl: NavController) { 
 
   }
 
@@ -48,6 +48,10 @@ export class BookListComponent  implements OnInit {
     this.startAnimation();
     this.getBookList();
     this.getProfileInfo();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   getProfileInfo() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { Profile } from 'src/app/models/Profile/profile';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -18,11 +18,15 @@ export class EditProfileComponent  implements OnInit {
   profileInfo = new Profile();
 
   constructor(private router: Router,private formBuilder: FormBuilder, private profileService: ProfileService
-              , private alertController: AlertController) { }
+              , private alertController: AlertController, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.initEditProfileForm();
     this.getProfileInformations();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   onSubmitEditProfileForm() {

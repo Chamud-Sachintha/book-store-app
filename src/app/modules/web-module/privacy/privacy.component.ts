@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-privacy',
@@ -12,9 +12,13 @@ import { IonicModule } from '@ionic/angular';
 export class PrivacyComponent  implements OnInit {
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private navCtrl: NavController) { }
 
   ngOnInit() {}
+
+  onClickBackBtn() {
+    this.navCtrl.back();
+  }
 
   onClickProfileSection() {
     this.router.navigate(['/profile'])

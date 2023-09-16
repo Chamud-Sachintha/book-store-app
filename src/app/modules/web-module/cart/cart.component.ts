@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule, Platform } from '@ionic/angular';
+import { AlertController, IonicModule, NavController, Platform } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { CartItem } from 'src/app/models/Cart/cart-item';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -24,12 +24,16 @@ export class CartComponent  implements OnInit {
   cartAmount: number = 0;
 
   constructor(private router: Router, private cartService: CartService, private alertController: AlertController
-            , private orderService: OrderService, private platform: Platform, private location: Location) { 
+            , private orderService: OrderService, private platform: Platform, private navCtrl: NavController) { 
 
   }
 
   ngOnInit() {
     this.getAllCartItems();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   onClickCheckoutBtn() {

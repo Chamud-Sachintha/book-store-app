@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AlertController, IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookService } from 'src/app/services/book/book.service';
@@ -28,12 +28,16 @@ export class InsideBookComponent  implements OnInit {
   public ratingForm!: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private bookService: BookService
-              , private alertController: AlertController, private cartService: CartService) { }
+              , private alertController: AlertController, private cartService: CartService, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
     this.initRatingForm();
     this.getBookdetailsByBookId();
+  }
+
+  onClickBackBtn() {
+    this.navCtrl.back();
   }
 
   onClickAddItemsToCart() {

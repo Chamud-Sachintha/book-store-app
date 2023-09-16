@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, Platform } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { BookService } from 'src/app/services/book/book.service';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
@@ -39,7 +39,10 @@ export class BookListComponent  implements OnInit {
 
   profileInfo = new Profile();
 
-  constructor(private router: Router, private bookService: BookService, private profileService: ProfileService) { }
+  constructor(private router: Router, private bookService: BookService, private profileService: ProfileService, 
+    private platform: Platform, private location: Location) { 
+
+  }
 
   ngOnInit() {
     this.startAnimation();

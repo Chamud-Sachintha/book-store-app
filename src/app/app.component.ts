@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { Location } from '@angular/common'; 
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private platform: Platform, private location: Location) {
+    // this.platform.backButton.subscribeWithPriority(10, () => {
+    //   this.location.back();
+    // });
+  }
 }

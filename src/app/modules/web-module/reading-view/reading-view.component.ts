@@ -5,6 +5,10 @@ import { IonModal, IonicModule } from '@ionic/angular';
 // import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { App as CapacitorApp } from '@capacitor/app';
+import { Chapter } from 'src/app/models/Chapter/chapter';
+import { Request } from 'src/app/models/Request/request';
+import { BookService } from 'src/app/services/book/book.service';
+import { Book } from 'src/app/models/Book/book';
 
 @Component({
   selector: 'app-reading-view',
@@ -16,25 +20,43 @@ import { App as CapacitorApp } from '@capacitor/app';
 export class ReadingViewComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
+  chapterInfo = new Chapter();
+  requestBody = new Request();
+  bookInfo = new Book();
   src: string = "";
   pageNumberType: number = 1;
   isModalOpen = false;
   isFullScreenModeOn = false;
   bookId!: number;
 
-  constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location) { }
+  constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
+              , private bookService: BookService) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
-
+  
     if (this.bookId == 1) {
       this.src = "../../../../assets/pdfs/1990.pdf";
     } else {
       this.src = "../../../../assets/pdfs/1992.pdf";
     }
 
-    CapacitorApp.addListener('backButton', ({canGoBack}) => {
-      this.location.back();
+    this.getChapterInfoById();
+  }
+
+  getChapterInfoById() {
+    this.requestBody.token = sessionStorage.getItem("authToken");
+    this.requestBody.chapterId = this.bookId;
+
+    this.bookService.getChapterInfoById(this.requestBody).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.bookInfo.bookName = dataList.data[0].bookName;
+        this.chapterInfo.chapter = dataList.data[0].chapterName;
+      }
+    }, (err) => {
+
     })
   }
 
@@ -47,8 +69,8 @@ export class ReadingViewComponent  implements OnInit {
     const icon = document.getElementById("fullScreenIcon");
     let exitIcon = document.getElementById("exitIcon");
 
-    if (g !== null && e != null && i != null && pdf != null && icon != null && exitIcon != null) {
-      g.style.display = 'none';
+    if (e != null && i != null && pdf != null && icon != null && exitIcon != null) {
+      // g.style.display = 'none';
       e.style.display = 'none';
       i.style.display = 'none';
       pdf.style.height = "100vh";
@@ -67,8 +89,8 @@ export class ReadingViewComponent  implements OnInit {
     const icon = document.getElementById("fullScreenIcon");
     let exitIcon = document.getElementById("exitIcon");
 
-    if (g !== null && e != null && i != null && pdf != null && icon != null && exitIcon != null) {
-      g.style.display = '';
+    if (e != null && i != null && pdf != null && icon != null && exitIcon != null) {
+      // g.style.display = '';
       e.style.display = '';
       i.style.display = '';
       pdf.style.height = "";

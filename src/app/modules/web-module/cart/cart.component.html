@@ -64,7 +64,7 @@
 
             <p class="chapter-count">LKR . {{ eachCartItem.bookPrice }}</p>
 
-            <button type="button" class="btn btn-danger btn-sm" style="width: 100px; border-radius: 20px; color: white; border: none; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" >Remove</button>
+            <button type="button" class="btn btn-danger btn-sm" style="width: 100px; border-radius: 20px; color: white; border: none; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" (click)="onClickRemoveItemFromCart(eachCartItem.bookId)">Remove</button>
           </div>
         </div>
       </div>

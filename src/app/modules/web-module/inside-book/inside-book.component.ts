@@ -9,6 +9,7 @@ import { Book } from 'src/app/models/Book/book';
 import { Review } from 'src/app/models/ClientReview/review';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartItem } from 'src/app/models/Cart/cart-item';
+import { Request } from 'src/app/models/Request/request';
 
 @Component({
   selector: 'app-inside-book',
@@ -24,6 +25,8 @@ export class InsideBookComponent  implements OnInit {
   bookInfo =  new Book();
   clientReview = new Review();
   cartItem = new CartItem();
+  requestModel = new Request();
+  bookBuyStatus = false;
 
   public ratingForm!: FormGroup;
 
@@ -34,6 +37,21 @@ export class InsideBookComponent  implements OnInit {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
     this.initRatingForm();
     this.getBookdetailsByBookId();
+    this.checkBookAlreadyBuyOrNot();
+  }
+
+  checkBookAlreadyBuyOrNot() {
+    this.requestModel.token = sessionStorage.getItem("authToken");
+    this.requestModel.clientId = sessionStorage.getItem("clientId");
+    this.requestModel.bookId = this.bookId;
+
+    this.bookService.checkBookPaidOrNot(this.requestModel).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.bookBuyStatus = dataList.data[0].buyStatus
+      }
+    })
   }
 
   onClickBackBtn() {

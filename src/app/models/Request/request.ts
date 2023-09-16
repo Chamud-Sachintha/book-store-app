@@ -3,4 +3,5 @@ export class Request {
     token!: any;
     bookId!: any;
     chapterId!: any;
+    clientId!: any;
 }

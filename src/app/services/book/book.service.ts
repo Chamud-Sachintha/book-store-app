@@ -43,4 +43,9 @@ export class BookService {
     const path = environment.appUrl + "getChapterById";
     return this.http.post(path, requestBody);
   }
+
+  checkBookPaidOrNot(bookInfo: Request) {
+    const path = environment.appUrl + "verify-paid-book";
+    return this.http.post(path, bookInfo);
+  }
 }

@@ -25,6 +25,10 @@ export class EditProfileComponent  implements OnInit {
     this.getProfileInformations();
   }
 
+  onClickProfileSection() {
+    this.router.navigate(['/profile']);
+  }
+
   onClickBackBtn() {
     this.navCtrl.back();
   }

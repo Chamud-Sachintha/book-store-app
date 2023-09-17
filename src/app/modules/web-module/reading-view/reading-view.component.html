@@ -1,20 +1,14 @@
 <ion-content>
-  <!-- <div class="row mt-3 me-3">
-    <div class="col-6"></div>
-    <div class="col-2" style="text-align: right;">
-      <ion-icon name="moon" size="large"></ion-icon>
-    </div>
-    <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
-      <ion-icon name="cart" size="large"></ion-icon>
-    </div>
-    <div class="col-2" style="text-align: right;">
-      <ion-icon name="person-circle" size="large"></ion-icon>
-    </div>
-  </div> -->
-
   <div class="row mt-3 ms-3 me-3" id="testPPP">
     <div class="col-12">
-      <p class="book-title">{{ this.bookInfo.bookName }} > {{ this.chapterInfo.chapter }}</p>
+      <div class="row">
+        <div class="col-9">
+          <p class="book-title">{{ this.bookInfo.bookName }} > {{ this.chapterInfo.chapter }}</p>
+        </div>
+        <div class="col-3" style="text-align: right;" (click)="onClickBackBtn()">
+          <p style="font-weight: bold;"> < Back </p>
+        </div>
+      </div>
       <!-- <p class="book-author">J.K. Rowling</p> -->
       <div style="border: 1px solid #000000;"></div>
     </div>

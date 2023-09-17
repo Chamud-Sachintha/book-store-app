@@ -44,6 +44,10 @@ export class ReadingViewComponent  implements OnInit {
     this.getChapterInfoById();
   }
 
+  onClickBackBtn() {
+    this.router.navigate(['chapters', this.bookId]);
+  }
+
   getChapterInfoById() {
     this.requestBody.token = sessionStorage.getItem("authToken");
     this.requestBody.chapterId = this.bookId;

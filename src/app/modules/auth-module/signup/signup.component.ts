@@ -38,7 +38,6 @@ export class SignupComponent  implements OnInit {
     this.clientRegisterForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
       emailAddress: ['', Validators.required],
       password: ['', Validators.required]
     })
@@ -47,7 +46,6 @@ export class SignupComponent  implements OnInit {
   onSubmitCreateAccount() {
     const firstName = this.clientRegisterForm.controls['firstName'].value;
     const lastName = this.clientRegisterForm.controls['lastName'].value;
-    const mobileNumber = this.clientRegisterForm.controls['mobileNumber'].value;
     const emailAddress = this.clientRegisterForm.controls['emailAddress'].value;
     const password = this.clientRegisterForm.controls['password'].value;
 
@@ -55,8 +53,6 @@ export class SignupComponent  implements OnInit {
       this.presentAlert("Empty Feilds Founded.", "First Name is Required.")
     } else if (lastName === "") {
       this.presentAlert("Empty Feilds Founded.", "Last Name is Required.")
-    } else if (mobileNumber === "") {
-      this.presentAlert("Empty Feilds Founded.", "Mobile Number is Required.")
     } else if (emailAddress === "") {
       this.presentAlert("Empty Feilds Founded.", "Email Address is Required.")
     } else if (password === "") {
@@ -64,7 +60,6 @@ export class SignupComponent  implements OnInit {
     } else {
       this.client.firstName = firstName;
       this.client.lastName = lastName;
-      this.client.mobileNumber = mobileNumber;
       this.client.email = emailAddress;
       this.client.password = password;
 

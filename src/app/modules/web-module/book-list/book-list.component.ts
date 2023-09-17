@@ -7,6 +7,7 @@ import { BookService } from 'src/app/services/book/book.service';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Profile } from 'src/app/models/Profile/profile';
+import { Request } from 'src/app/models/Request/request';
 
 @Component({
   selector: 'app-book-list',
@@ -20,6 +21,7 @@ export class BookListComponent  implements OnInit {
   @ViewChild('swiper') swiper!: SwiperComponent;
   animationInProgress = false;
 
+  requestBody = new Request();
   bookInfoList: Book[] = [];
 
   config = {
@@ -48,6 +50,22 @@ export class BookListComponent  implements OnInit {
     this.startAnimation();
     this.getBookList();
     this.getProfileInfo();
+    // this.checkProfileIsFilled();
+  }
+
+  checkProfileIsFilled() {
+    this.requestBody.clientId = sessionStorage.getItem("clientId");
+    this.requestBody.token = sessionStorage.getItem("authToken");
+
+    this.profileService.checkProfileInfo(this.requestBody).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+      console.log(dataList.data[0].isProfileOk)
+      if (resp.code === 1) {
+        if (!dataList.data[0].isProfileOk) {
+          this.router.navigate(['edit-profile']);
+        }
+      }
+    })
   }
 
   onClickBackBtn() {

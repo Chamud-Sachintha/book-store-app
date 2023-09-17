@@ -4,6 +4,8 @@ import { AlertController, IonicModule, NavController } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SupportMessage } from 'src/app/models/Support/support-message';
 import { SupportService } from 'src/app/services/support/support.service';
+import { Request } from 'src/app/models/Request/request';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-support',
@@ -16,12 +18,29 @@ export class SupportComponent  implements OnInit {
 
   supportMessage = new SupportMessage();
   clientSupportForm!: FormGroup;
+  requestBody = new Request();
 
   constructor(private router: Router, private formBuilder: FormBuilder, private alertController: AlertController
-            , private supportService: SupportService, private navCtrl: NavController) { }
+            , private supportService: SupportService, private navCtrl: NavController, private profileService: ProfileService) { }
 
   ngOnInit() {
     this.initClientSupportForm();
+    this.checkProfileIsFilled();
+  }
+
+  checkProfileIsFilled() {
+    this.requestBody.clientId = sessionStorage.getItem("clientId");
+    this.requestBody.token = sessionStorage.getItem("authToken");
+
+    this.profileService.checkProfileInfo(this.requestBody).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+      console.log(resp.code)
+      if (resp.code === 1) {
+        if (!dataList.data[0].isProfileOk) {
+          this.router.navigate(['edit-profile']);
+        }
+      }
+    })
   }
 
   onClickBackBtn() {
@@ -29,20 +48,16 @@ export class SupportComponent  implements OnInit {
   }
 
   onSubmitClientSupportForm() {
-    const firstName = this.clientSupportForm.controls['firstName'].value;
-    const lastName = this.clientSupportForm.controls['lastName'].value;
+    const title = this.clientSupportForm.controls['title'].value;
     const message = this.clientSupportForm.controls['message'].value;
 
-    if (firstName == "") {
+    if (title == "") {
       this.presentAlert("Empty Feilds Founded.", "First name is required.");
-    } else if (lastName == "") {
-      this.presentAlert("Empty Feilds Founded.", "Last name is required.");
     } else if (message == "") {
       this.presentAlert("Empty Feilds Founded.", "Message is required.");
     } else {
       this.supportMessage.emailAddress = sessionStorage.getItem("emailAddress");
-      this.supportMessage.firstName = firstName;
-      this.supportMessage.lastName = lastName;
+      this.supportMessage.title = title;
       this.supportMessage.message = message;
       this.supportMessage.token = sessionStorage.getItem("authToken");
 
@@ -69,8 +84,7 @@ export class SupportComponent  implements OnInit {
 
   initClientSupportForm() {
     this.clientSupportForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName:  ['', Validators.required],
+      title: ['', Validators.required],
       message: ['', Validators.required]
     })
   }

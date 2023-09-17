@@ -1,27 +1,26 @@
 <ion-content>
   <div class="row mt-3 ms-3 me-3">
-    <div class="row mt-3 ms-3 me-3">
-      <div class="col-6">
-        <ion-icon name="arrow-back-outline" size="large" (click)="onClickBackBtn()"></ion-icon>
-      </div>
-      <div class="col-2" style="text-align: right;">
-        <!-- <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle> -->
-        <ion-icon name="moon" size="large"></ion-icon>
-      </div>
-      <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
-        <!-- <img width="40" height="40" src="https://img.icons8.com/ultraviolet/40/shopping-cart.png" alt="shopping-cart"/> -->
-        <ion-icon name="cart" size="large"></ion-icon>
-      </div>
-      <div class="col-2" style="text-align: right;" (click)="onClickProfileSection()">
-        <!-- <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" (click)="onClickProfileSection()"/> -->
-        <ion-icon name="person-circle" size="large"></ion-icon>
-      </div>
+    <div class="col-6">
+      <ion-icon name="arrow-back-outline" size="large" (click)="onClickBackBtn()"></ion-icon>
+    </div>
+    <div class="col-2" style="text-align: right;">
+      <!-- <ion-toggle aria-label="Dark toggle" color="dark" [checked]="true"></ion-toggle> -->
+      <ion-icon name="moon" size="large"></ion-icon>
+    </div>
+    <div class="col-2" style="text-align: right;" (click)="onClickCartPage()">
+      <!-- <img width="40" height="40" src="https://img.icons8.com/ultraviolet/40/shopping-cart.png" alt="shopping-cart"/> -->
+      <ion-icon name="cart" size="large"></ion-icon>
+    </div>
+    <div class="col-2" style="text-align: right;" (click)="onClickProfileSection()">
+      <!-- <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" (click)="onClickProfileSection()"/> -->
+      <ion-icon name="person-circle" size="large"></ion-icon>
     </div>
   </div>
 
   <div class="row mt-4 ms-3 me-3">
     <div class="col-12 d-flex justify-content-center">
-      <ion-img src="../../../../assets/book-covers/0 trig cover design-min.jpg" style="width: 80%; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"></ion-img>
+      <ion-img src="../../../../assets/book-covers/0 trig cover design-min.jpg"
+        style="width: 80%; box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"></ion-img>
     </div>
     <div class="col-12 mt-3">
       <p class="book-title text-center">{{ this.bookInfo.bookName }}</p>
@@ -31,36 +30,6 @@
       <p style="text-align: center;">
         {{ this.bookInfo.bookDescription }}
       </p>
-    </div>
-  </div>
-
-  <div class="row ms-3 me-3">
-    <div class="col-12">
-      <ion-accordion-group>
-        <ion-accordion value="first">
-          <ion-item slot="header" color="light">
-            <ion-label>Submit a Review For This Book</ion-label>
-          </ion-item>
-          <div class="ion-padding" slot="content">
-            <form [formGroup]="this.ratingForm" (submit)="onSubmitClientReview()">
-              <div class="row">
-                <div class="col-12">
-                  <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
-                </div>
-                <div class="col-12 mt-3">
-                  <textarea name="" class="form-control text-inout" id="" cols="30" rows="5" formControlName="feedback"></textarea>
-                </div>
-                <div class="col-12 mt-3">
-                  <button class="login-btn">Submit Review</button>
-                </div>
-              </div>
-              
-              <!-- <p>form is valid: {{ ratingForm.valid ? 'true' : 'false' }}</p> -->
-              
-            </form>
-          </div>
-        </ion-accordion>
-      </ion-accordion-group>
     </div>
   </div>
 
@@ -75,7 +44,84 @@
 
   <div class="row mt-3 ms-3" *ngIf="this.bookBuyStatus">
     <div class="col-12">
-      <button class="buy-now-btn" (click)="onClickAddItemsToCart()">Read Book</button>
+      <button class="buy-now-btn" (click)="readBook()">Read Book</button>
     </div>
   </div>
+
+  <div class="row mt-3 ms-3 me-3">
+    <div class="col-12">
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Submit a Review For This Book</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <form [formGroup]="this.ratingForm" (submit)="onSubmitClientReview()">
+              <div class="row">
+                <div class="col-12">
+                  <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                </div>
+                <div class="col-12 mt-3">
+                  <textarea name="" class="form-control text-inout" placeholder="Type Your Feedback" cols="30" rows="5"
+                    formControlName="feedback"></textarea>
+                </div>
+                <div class="col-12 mt-3">
+                  <button class="login-btn">Submit Review</button>
+                </div>
+              </div>
+
+              <!-- <p>form is valid: {{ ratingForm.valid ? 'true' : 'false' }}</p> -->
+
+            </form>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </div>
+  </div>
+
+  <div class="row mt-3 ms-3 me-3">
+    <div class="col-12">
+      <p>Client Reviews</p>
+    </div>
+    <div *ngFor="let eachFeedback of this.feedBackList" class="card"
+      style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
+      <div class="row">
+        <div class="col-12">
+          <p class="book-title mt-2">{{ eachFeedback.feedback }}</p>
+          <p style="margin-top: -10px;">{{ eachFeedback.firstName }} {{ eachFeedback.lastName }}</p>
+
+          <div class="row">
+            <div class="col-6" *ngIf="eachFeedback.rating == 1">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+            </div>
+            <div class="col-6" *ngIf="eachFeedback.rating == 2">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+            </div>
+            <div class="col-6" *ngIf="eachFeedback.rating == 3">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+            </div>
+            <div class="col-6" *ngIf="eachFeedback.rating == 4">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+            </div>
+            <div class="col-6" *ngIf="eachFeedback.rating == 5">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+              <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
+            </div>
+            <div class="col-6">
+              <p class="chapter-count">{{ eachFeedback.time }}</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </ion-content>

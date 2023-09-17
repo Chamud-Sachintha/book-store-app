@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Profile } from 'src/app/models/Profile/profile';
+import { Request } from 'src/app/models/Request/request';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -19,4 +20,10 @@ export class ProfileService {
     const path = environment.appUrl + "update-profile";
     return this.http.post(path, profileInfo);
   }
+
+  checkProfileInfo(requestBody: Request) {
+    const path = environment.appUrl + "check-profile";
+    return this.http.post(path, requestBody);
+  }
+
 }

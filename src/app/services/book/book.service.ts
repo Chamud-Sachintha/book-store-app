@@ -48,4 +48,9 @@ export class BookService {
     const path = environment.appUrl + "verify-paid-book";
     return this.http.post(path, bookInfo);
   }
+
+  getAllClientReviews(requestBody: Request) {
+    const path = environment.appUrl + "feedback-list";
+    return this.http.post(path, requestBody);
+  }
 }

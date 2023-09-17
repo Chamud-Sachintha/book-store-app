@@ -28,6 +28,8 @@ export class InsideBookComponent  implements OnInit {
   requestModel = new Request();
   bookBuyStatus = false;
 
+  feedBackList: Review[] = [];
+
   public ratingForm!: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private bookService: BookService
@@ -38,6 +40,24 @@ export class InsideBookComponent  implements OnInit {
     this.initRatingForm();
     this.getBookdetailsByBookId();
     this.checkBookAlreadyBuyOrNot();
+    this.getAllClientReviews();
+  }
+
+  getAllClientReviews() {
+    this.requestModel.bookId = this.bookId;
+    this.requestModel.token = sessionStorage.getItem("authToken");
+
+    this.bookService.getAllClientReviews(this.requestModel).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        dataList.data[0].forEach((eachFeedback: Review) => {
+          this.feedBackList.push(eachFeedback);
+        })
+      }
+    }, (err) => {
+
+    })
   }
 
   checkBookAlreadyBuyOrNot() {
@@ -52,6 +72,10 @@ export class InsideBookComponent  implements OnInit {
         this.bookBuyStatus = dataList.data[0].buyStatus
       }
     })
+  }
+
+  readBook() {
+    this.router.navigate(['/chapters', this.bookId])
   }
 
   onClickBackBtn() {

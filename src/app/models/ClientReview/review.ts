@@ -4,4 +4,7 @@ export class Review {
     clientId!: any;
     rating!: number;
     feedback!: string;
+    firstName!: string;
+    lastName!: string;
+    time!: string;
 }

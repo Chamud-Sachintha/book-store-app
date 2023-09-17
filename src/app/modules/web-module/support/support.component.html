@@ -30,17 +30,12 @@
       <form action="" [formGroup]="this.clientSupportForm" class="form-group" (submit)="onSubmitClientSupportForm()">
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your First Name" formControlName="firstName">
+            <input type="text" class="form-control text-input" placeholder="Enter your Title" formControlName="title">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Last Name" formControlName="lastName">
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-12">
-            <textarea name="" id="" cols="30" rows="10" class="form-control" formControlName="message"></textarea>
+            <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Type your Message" formControlName="message"></textarea>
           </div>
         </div>
         <div class="row mt-3">

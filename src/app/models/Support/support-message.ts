@@ -1,7 +1,6 @@
 export class SupportMessage {
     token!: any;
-    firstName!: string;
-    lastName!: string;
+    title!: string;
     message!: string;
     emailAddress!: any;
 }

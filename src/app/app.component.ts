@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Platform, ToastController } from '@ionic/angular';
 import { Location } from '@angular/common'; 
+import { ProfileService } from './services/profile/profile.service';
+import { Request } from './models/Request/request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +11,9 @@ import { Location } from '@angular/common';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+  requestBody = new Request();
+
   constructor(private platform: Platform, private location: Location, private toastController: ToastController) {
     this.initializeApp();
   }

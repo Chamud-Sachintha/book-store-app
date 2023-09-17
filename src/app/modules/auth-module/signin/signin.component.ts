@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, IonicModule, Platform } from '@ionic/angular';
+import { AlertController, IonicModule, Platform, isPlatform } from '@ionic/angular';
 import { Client } from 'src/app/models/Clinet/client';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Location } from '@angular/common';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-signin',
@@ -20,16 +21,31 @@ export class SigninComponent  implements OnInit {
 
   isAlertOpen = false;
   public alertButtons = ['OK'];
+  user !: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
               , private platform: Platform, private location: Location) { 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.location.back();
     });
+
+    if (!isPlatform('capacitor')) {
+      GoogleAuth.initialize();
+    }
   }
 
   ngOnInit() {
     this.createSigninForm();
+  }
+
+  async signIn() {
+    this.user = await GoogleAuth.signIn();
+    console.log(this.user);
+  }
+
+  async refresh() {
+    const authCode = GoogleAuth.refresh();
+    console.log(authCode);
   }
 
   async presentAlert(subHeader: string, alertMessage: string) {

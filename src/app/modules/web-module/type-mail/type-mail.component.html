@@ -1,0 +1,29 @@
+<ion-content>
+	<div class="container">
+		<!-- <div class="ion-text-center" *ngIf="isLoading && timer == 0">
+			<ion-spinner name="circular"></ion-spinner>
+		</div> -->
+		<div class="row" style="margin-top: 120px;">
+			<div class="col-12">
+				<h2 class="title">Type Your Email to send OTP</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<form [formGroup]="sendOTPForm" (ngSubmit)="sendOTP()">
+          <div class="row mt-3">
+						<div class="col-12">
+							<input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="emailAddress">
+						</div>
+					</div>
+          <div class="row mt-3">
+						<div class="col-12">
+							<input type="submit" class="login-btn" value="Send OTP">
+						</div>
+					</div>
+        </form>
+			</div>
+		</div>
+		
+	</div>
+</ion-content>

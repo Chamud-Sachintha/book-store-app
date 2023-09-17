@@ -12,6 +12,9 @@ import { SupportComponent } from './support/support.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ChaptersComponent } from './chapters/chapters.component';
+import { TypeMailComponent } from './type-mail/type-mail.component';
+import { ValidateOtpComponent } from './validate-otp/validate-otp.component';
+import { ChangePwComponent } from './change-pw/change-pw.component';
 
 const routes: Routes = [
   {
@@ -87,6 +90,21 @@ const routes: Routes = [
     path: 'privacy',
     component: PrivacyComponent,
     canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
+  {
+    path: 'forgot-pw',
+    component: TypeMailComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'validate-otp',
+    component: ValidateOtpComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'change-pw',
+    component: ChangePwComponent,
     pathMatch: 'full'
   }
 ];

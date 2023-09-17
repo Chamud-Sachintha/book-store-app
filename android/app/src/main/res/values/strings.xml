@@ -4,4 +4,5 @@
     <string name="title_activity_main">book-store-app</string>
     <string name="package_name">lk.dpuremaths.app</string>
     <string name="custom_url_scheme">lk.dpuremaths.app</string>
+    <string name="server_client_id">350318496277-4949cv9612r4pk6ethuuit2hbr8poj1v.apps.googleusercontent.com</string>
 </resources>

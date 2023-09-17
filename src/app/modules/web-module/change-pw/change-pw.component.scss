@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@700&display=swap');
+
+.title {
+    /* Text */
+    width: 280px;
+    height: 78px;
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 130%;
+    /* or 39px */
+    letter-spacing: -0.01em;
+
+    /* Dark */
+    color: #1E232C;
+}
+
+.text-input {
+    height: 50px;
+    background-color: #F7F8F9;
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 125%;
+}
+
+.fgt-pass {
+    float: right;
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    text-decoration: none;
+    color: #6A707C;
+}
+
+.login-btn {
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background: #1E232C;
+    border-radius: 8px;
+    width: 100%;
+    height: 56px;
+}
+
+.create-acc-link {
+    font-family: 'Urbanist', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 140%;
+    color: #24282C;
+    letter-spacing: 0.01em;
+}
+
+.create-acc {
+    text-decoration: none;
+}
+
+.b2 {
+    /* Line 2 */
+    height: 0px;
+    left: 100%;
+    top: 524px;
+
+    /* Border */
+    border: 1px solid #E8ECF4;
+
+}
+
+.b1 {
+    /* Line 1 */
+    width: 100%;
+    height: 0px;
+    // left: 22px;
+    top: 524px;
+
+    /* Border */
+    border: 1px solid #E8ECF4;
+
+}
+
+.border-text {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    /* Dark Gray */
+    color: #6A707C;
+}
+
+.box {
+    
+    text-align: center;
+    // margin-left: 8px;
+    box-sizing: border-box;
+    // width: 105px;
+    height: 56px;
+    top: 554px;
+
+    /* White */
+    background: #FFFFFF;
+    /* Border */
+    border: 1px solid #E8ECF4;
+    border-radius: 8px;
+}

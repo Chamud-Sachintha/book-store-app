@@ -4,4 +4,6 @@ export class Request {
     bookId!: any;
     chapterId!: any;
     clientId!: any;
+    emailAddress!: any;
+    authCode!: any;
 }

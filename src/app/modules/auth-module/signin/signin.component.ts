@@ -57,7 +57,9 @@ export class SigninComponent  implements OnInit {
           sessionStorage.setItem("clientId", resp.data[0].id);
           sessionStorage.setItem("emailAddress", resp.data[0].email);
           
-          this.router.navigate(['book-list'])
+          setTimeout(() => {
+            this.router.navigate(['book-list'])
+          }, 1000);
         }
       })
     }

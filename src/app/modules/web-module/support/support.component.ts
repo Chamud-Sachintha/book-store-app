@@ -21,11 +21,12 @@ export class SupportComponent  implements OnInit {
   requestBody = new Request();
 
   constructor(private router: Router, private formBuilder: FormBuilder, private alertController: AlertController
-            , private supportService: SupportService, private navCtrl: NavController, private profileService: ProfileService) { }
+            , private supportService: SupportService, private navCtrl: NavController, private profileService: ProfileService) { 
+    this.checkProfileIsFilled();
+  }
 
   ngOnInit() {
     this.initClientSupportForm();
-    this.checkProfileIsFilled();
   }
 
   checkProfileIsFilled() {

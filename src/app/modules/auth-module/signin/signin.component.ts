@@ -6,6 +6,7 @@ import { Client } from 'src/app/models/Clinet/client';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Location } from '@angular/common';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth';
 
 @Component({
   selector: 'app-signin',
@@ -18,6 +19,7 @@ export class SigninComponent  implements OnInit {
 
   clientLoginForm!: FormGroup;
   client = new Client();
+  googleAuthInfo = new gAuthModel();
 
   isAlertOpen = false;
   public alertButtons = ['OK'];
@@ -40,7 +42,25 @@ export class SigninComponent  implements OnInit {
 
   async signIn() {
     this.user = await GoogleAuth.signIn();
-    console.log(this.user);
+    
+    if (this.user) {
+      this.googleAuthInfo.emailAddress = this.user.email;
+      this.googleAuthInfo.firstName = this.user.givenName;
+      this.googleAuthInfo.lastName = this.user.familyName;
+
+      this.authService.googleAuth(this.googleAuthInfo).subscribe((resp: any) => {
+        
+        const dataList = JSON.parse(JSON.stringify(resp));
+
+        if (resp.code === 1) {
+          sessionStorage.setItem("authToken", resp.token);
+          sessionStorage.setItem("clientId", resp.data[0].id);
+          sessionStorage.setItem("emailAddress", resp.data[0].email);
+          
+          this.router.navigate(['book-list'])
+        }
+      })
+    }
   }
 
   async refresh() {

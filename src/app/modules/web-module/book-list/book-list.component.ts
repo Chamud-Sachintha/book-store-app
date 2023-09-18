@@ -50,22 +50,6 @@ export class BookListComponent  implements OnInit {
     this.startAnimation();
     this.getBookList();
     this.getProfileInfo();
-    this.checkProfileIsFilled();
-  }
-
-  checkProfileIsFilled() {
-    this.requestBody.clientId = sessionStorage.getItem("clientId");
-    this.requestBody.token = sessionStorage.getItem("authToken");
-
-    this.profileService.checkProfileInfo(this.requestBody).subscribe((resp: any) => {
-      const dataList = JSON.parse(JSON.stringify(resp));
-      console.log(dataList.data[0].isProfileOk)
-      if (resp.code === 1) {
-        if (!dataList.data[0].isProfileOk) {
-          this.router.navigate(['edit-profile']);
-        }
-      }
-    })
   }
 
   onClickBackBtn() {

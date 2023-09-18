@@ -50,7 +50,7 @@ export class BookListComponent  implements OnInit {
     this.startAnimation();
     this.getBookList();
     this.getProfileInfo();
-    // this.checkProfileIsFilled();
+    this.checkProfileIsFilled();
   }
 
   checkProfileIsFilled() {

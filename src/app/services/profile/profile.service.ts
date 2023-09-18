@@ -26,4 +26,14 @@ export class ProfileService {
     return this.http.post(path, requestBody);
   }
 
+  saveProfileAditionalInfo(profileInfo: Profile) {
+    const path = environment.appUrl + "save-profile-info";
+    return this.http.post(path, profileInfo);
+  }
+
+  getAditionalProfileInfo(requestBody: Request) {
+    const path = environment.appUrl + "get-profile-info";
+    return this.http.post(path, requestBody);
+  }
+
 }

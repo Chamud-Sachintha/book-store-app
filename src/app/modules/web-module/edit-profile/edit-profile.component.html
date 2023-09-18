@@ -42,41 +42,41 @@
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Email" formControlName="mobileNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your Mobile Number" formControlName="mobileNumber">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Age" formControlName="mobileNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your Age" formControlName="age">
           </div>
         </div>
         <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your NIC Number" formControlName="mobileNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your NIC Number" formControlName="nicNumber">
           </div>
         </div>
-        <ion-radio-group value="strawberries">
+        <ion-radio-group value="gender" formControlName="sex">
           <div class="row">
             <div class="col-6">
-              <ion-radio value="grapes">Male</ion-radio><br />
+              <ion-radio value="male">Male</ion-radio><br />
             </div>
             <div class="col-6">
-              <ion-radio value="strawberries">Female</ion-radio><br />
+              <ion-radio value="female">Female</ion-radio><br />
             </div>
           </div>
         </ion-radio-group>
         <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your School Name" formControlName="mobileNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your School Name" formControlName="schoolName">
           </div>
         </div>
         <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Grade" formControlName="mobileNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your Grade" formControlName="grade">
           </div>
         </div>
         <ion-item>
-          <ion-select label="Choose District" label-placement="floating">
+          <ion-select label="Choose District" label-placement="floating" formControlName="district">
             <ion-select-option value="colombo">Colombo</ion-select-option>
             <ion-select-option value="gampaha">Gampaha</ion-select-option>
             <ion-select-option value="kaluthara">Kaluthara</ion-select-option>

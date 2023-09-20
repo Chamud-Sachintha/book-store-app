@@ -42,6 +42,12 @@ export class ProfileComponent  implements OnInit {
     })
   }
 
+  onClickSignOutBtn() {
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("emailAddress");
+    location.reload();
+  }
+
   onClickEditProfileBtn() {
     this.router.navigate(['/edit-profile']);
   }

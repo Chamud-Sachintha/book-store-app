@@ -25,7 +25,8 @@ export class ChaptersComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
+    this.activatedRoute.params.subscribe((params: Params) => this.bookId = params['chapterId']);
+    localStorage.setItem("mainBookId", this.bookId.toString());
 
     this.getAllChaptersOfBook();
   }

@@ -45,7 +45,7 @@ export class ReadingViewComponent  implements OnInit {
   }
 
   onClickBackBtn() {
-    this.router.navigate(['chapters', this.bookId]);
+    this.router.navigate(['chapters', localStorage.getItem("mainBookId")]);
   }
 
   getChapterInfoById() {

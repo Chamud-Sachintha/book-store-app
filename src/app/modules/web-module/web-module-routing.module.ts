@@ -75,7 +75,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'chapters/:bookId',
+    path: 'chapters/:chapterId',
     component: ChaptersComponent,
     canActivate: [AuthGuard],
     pathMatch: 'full'

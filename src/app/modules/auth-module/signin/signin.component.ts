@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { Location } from '@angular/common';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth';
+import { Request } from 'src/app/models/Request/request';
 
 @Component({
   selector: 'app-signin',
@@ -20,6 +21,7 @@ export class SigninComponent  implements OnInit {
   clientLoginForm!: FormGroup;
   client = new Client();
   googleAuthInfo = new gAuthModel();
+  requestModel = new Request();
 
   isAlertOpen = false;
   public alertButtons = ['OK'];
@@ -42,27 +44,24 @@ export class SigninComponent  implements OnInit {
 
   async signIn() {
     this.user = await GoogleAuth.signIn();
-    
-    if (this.user) {
-      this.googleAuthInfo.emailAddress = this.user.email;
-      this.googleAuthInfo.firstName = this.user.givenName;
-      this.googleAuthInfo.lastName = this.user.familyName;
+    this.callGoogleAuthServiceApi(this.user);
+  }
 
-      this.authService.googleAuth(this.googleAuthInfo).subscribe((resp: any) => {
-        
-        const dataList = JSON.parse(JSON.stringify(resp));
+  callGoogleAuthServiceApi(user: any) {
+    this.googleAuthInfo.emailAddress = this.user.email;
+    this.googleAuthInfo.firstName = this.user.givenName;
+    this.googleAuthInfo.lastName = this.user.familyName;
 
-        if (resp.code === 1) {
-          sessionStorage.setItem("authToken", resp.token);
-          sessionStorage.setItem("clientId", resp.data[0].id);
-          sessionStorage.setItem("emailAddress", resp.data[0].email);
-          
-          setTimeout(() => {
-            this.router.navigate(['book-list'])
-          }, 1000);
-        }
-      })
-    }
+    this.authService.googleAuth(this.googleAuthInfo).subscribe((resp: any) => {
+      
+      const dataList = JSON.parse(JSON.stringify(resp));
+      
+      if (resp.code === 1) {
+        sessionStorage.setItem("authToken", resp.token);
+        sessionStorage.setItem("clientId", resp.data[0].id);
+        sessionStorage.setItem("emailAddress", resp.data[0].email);
+      }
+    })
   }
 
   async refresh() {
@@ -107,7 +106,13 @@ export class SigninComponent  implements OnInit {
           sessionStorage.setItem("emailAddress", resp.data[0].email);
           
           // this.presentAlert("User Signin", "User Login Successfully.");
-          this.router.navigate(['/book-list']);
+          this.requestModel.clientId = resp.data[0].id;
+
+          this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
+            if (resp.code === 1) {
+              this.router.navigate(['book-list'])
+            }
+          })
         } else {
           this.presentAlert("User Signin", resp.message);
         }

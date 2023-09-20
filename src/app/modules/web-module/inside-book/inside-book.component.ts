@@ -91,6 +91,8 @@ export class InsideBookComponent  implements OnInit {
     this.cartService.addItemsToCart(this.cartItem).subscribe((resp: any) => {
       if (resp.code === 1) {
         this.presentAlert("Add Item to Cart", "Book Successfully Added to Cart.");
+      } else {
+        this.presentAlert("Add Item to Cart", resp.message);
       }
     }, (err) => {
       this.presentAlert("Add to Cart", err.message);

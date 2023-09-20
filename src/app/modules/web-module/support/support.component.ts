@@ -53,7 +53,7 @@ export class SupportComponent  implements OnInit {
     const message = this.clientSupportForm.controls['message'].value;
 
     if (title == "") {
-      this.presentAlert("Empty Feilds Founded.", "First name is required.");
+      this.presentAlert("Empty Feilds Founded.", "Title is required.");
     } else if (message == "") {
       this.presentAlert("Empty Feilds Founded.", "Message is required.");
     } else {

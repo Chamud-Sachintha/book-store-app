@@ -33,8 +33,6 @@ export class AuthService {
     return sessionStorage.getItem("emailAddress") != null;
   }
 
-  
-
   sendOTP(requestBody: Request) {
     const path = environment.appUrl + "send-otp";
     return this.http.post(path, requestBody);
@@ -42,6 +40,16 @@ export class AuthService {
 
   validateOTP(requestBody: Request) {
     const path = environment.appUrl + "validate-otp";
+    return this.http.post(path, requestBody);
+  }
+
+  addLoginTimeLog(requestBody: Request) {
+    const path = environment.appUrl + "login-time";
+    return this.http.post(path, requestBody);
+  }
+
+  updateLogOutTime(requestBody: Request) {
+    const path = environment.appUrl + "update-logout-time";
     return this.http.post(path, requestBody);
   }
 }

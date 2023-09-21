@@ -3,11 +3,11 @@
 .title {
     /* Text */
     width: 280px;
-    height: 78px;
+    margin-top: -30px;
     font-family: 'Urbanist', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
+    font-size: 35px;
     line-height: 130%;
     /* or 39px */
     letter-spacing: -0.01em;
@@ -33,18 +33,19 @@
     font-weight: 600;
     text-decoration: none;
     color: #6A707C;
+    font-size: 20px;
 }
 
 .login-btn {
     font-family: 'Urbanist', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
     line-height: 18px;
     color: #FFFFFF;
     background: #1E232C;
-    border-radius: 8px;
-    width: 100%;
+    border-radius: 50px;
+    width: 40%;
     height: 56px;
 }
 
@@ -89,7 +90,7 @@
     font-family: 'Urbanist';
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 17px;
     /* identical to box height */
 
@@ -111,4 +112,5 @@
     /* Border */
     border: 1px solid #E8ECF4;
     border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

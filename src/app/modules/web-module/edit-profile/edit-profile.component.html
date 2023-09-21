@@ -45,14 +45,14 @@
             <input type="text" class="form-control text-input" placeholder="Enter your Mobile Number" formControlName="mobileNumber">
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Age" formControlName="age">
+            <input type="text" class="form-control text-input" placeholder="Enter your NIC Number" formControlName="nicNumber">
           </div>
         </div>
         <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your NIC Number" formControlName="nicNumber">
+            <input type="text" class="form-control text-input" placeholder="Enter your Age" formControlName="age">
           </div>
         </div>
         <ion-radio-group value="gender" formControlName="sex">
@@ -72,7 +72,14 @@
         </div>
         <div class="row mt-3 mb-3">
           <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Grade" formControlName="grade">
+            <!-- <input type="text" class="form-control text-input" placeholder="Enter your Grade" formControlName="grade"> -->
+            <ion-item>
+              <ion-select label="Choose Grade" label-placement="floating" formControlName="grade">
+                <ion-select-option value="colombo">Grade 6</ion-select-option>
+                <ion-select-option value="gampaha">Grade 11</ion-select-option>
+                <ion-select-option value="kaluthara">Grade 13</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
         </div>
         <ion-item>

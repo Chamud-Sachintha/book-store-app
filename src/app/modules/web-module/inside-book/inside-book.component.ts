@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AlertController, IonicModule, NavController } from '@ionic/angular';
+import { AlertController, IonicModule, LoadingController, NavController } from '@ionic/angular';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BookService } from 'src/app/services/book/book.service';
@@ -33,7 +33,8 @@ export class InsideBookComponent  implements OnInit {
   public ratingForm!: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private bookService: BookService
-              , private alertController: AlertController, private cartService: CartService, private navCtrl: NavController) { }
+              , private alertController: AlertController, private cartService: CartService, private navCtrl: NavController
+              , private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
@@ -43,9 +44,16 @@ export class InsideBookComponent  implements OnInit {
     this.getAllClientReviews();
   }
 
-  getAllClientReviews() {
+  async getAllClientReviews() {
     this.requestModel.bookId = this.bookId;
     this.requestModel.token = sessionStorage.getItem("authToken");
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Dismissing after 3 seconds...',
+      translucent: true
+    });
+
+    loading.present();
 
     this.bookService.getAllClientReviews(this.requestModel).subscribe((resp: any) => {
       const dataList = JSON.parse(JSON.stringify(resp));
@@ -55,6 +63,8 @@ export class InsideBookComponent  implements OnInit {
           this.feedBackList.push(eachFeedback);
         })
       }
+
+      loading.dismiss();
     }, (err) => {
 
     })

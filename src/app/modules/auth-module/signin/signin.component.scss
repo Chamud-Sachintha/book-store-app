@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
+.common-text {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+}
 
 .title {
     /* Text */
     width: 280px;
     margin-top: -30px;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 35px;
@@ -19,16 +24,16 @@
 .text-input {
     height: 50px;
     background-color: #F7F8F9;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: bolder;
     font-size: 15px;
     line-height: 125%;
 }
 
 .fgt-pass {
     float: right;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     text-decoration: none;
@@ -37,7 +42,7 @@
 }
 
 .login-btn {
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -50,9 +55,9 @@
 }
 
 .create-acc-link {
-    font-family: 'Urbanist', sans-serif;
+    font-family: "Open Sans";
     font-style: normal;
-    font-weight: 500;
+    font-weight: bolder;
     font-size: 15px;
     line-height: 140%;
     color: #24282C;
@@ -60,9 +65,19 @@
 }
 
 .create-acc {
+    font-family: "Open Sans";
     text-decoration: none;
     color: #6A707C;
+    font-weight: 800px;
 }
+
+.field-icon {
+    float: right;
+    margin-right: 20px;
+    margin-top: -34px;
+    position: relative;
+    z-index: 2;
+  }
 
 .b2 {
     /* Line 2 */
@@ -88,7 +103,7 @@
 }
 
 .border-text {
-    font-family: 'Urbanist';
+    font-family: "Open Sans";
     font-style: normal;
     font-weight: 600;
     font-size: 16px;

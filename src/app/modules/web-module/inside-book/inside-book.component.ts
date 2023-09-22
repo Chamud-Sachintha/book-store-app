@@ -10,6 +10,7 @@ import { Review } from 'src/app/models/ClientReview/review';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { CartItem } from 'src/app/models/Cart/cart-item';
 import { Request } from 'src/app/models/Request/request';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-inside-book',
@@ -34,7 +35,8 @@ export class InsideBookComponent  implements OnInit {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private bookService: BookService
               , private alertController: AlertController, private cartService: CartService, private navCtrl: NavController
-              , private loadingCtrl: LoadingController) { }
+              , private loadingCtrl: LoadingController
+              , private orderService: OrderService) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
@@ -42,6 +44,24 @@ export class InsideBookComponent  implements OnInit {
     this.getBookdetailsByBookId();
     this.checkBookAlreadyBuyOrNot();
     this.getAllClientReviews();
+  }
+
+  onClickBuyBookBtn() {
+    this.requestModel.clientId = sessionStorage.getItem("clientId");
+    this.requestModel.token = sessionStorage.getItem("authToken");
+    this.requestModel.bookId = this.bookId;
+
+    this.orderService.buyEachBook(this.requestModel).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.presentAlert("Buy Book", "Successfully Baught Book.");
+
+        this.router.navigate(['/my-books']);
+      }
+    }, (err) => {
+      this.presentAlert("Buy Book", err.message);
+    })
   }
 
   async getAllClientReviews() {

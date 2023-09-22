@@ -22,6 +22,7 @@ export class SigninComponent  implements OnInit {
   client = new Client();
   googleAuthInfo = new gAuthModel();
   requestModel = new Request();
+  isShowPassword = false;
 
   isAlertOpen = false;
   public alertButtons = ['OK'];
@@ -48,6 +49,27 @@ export class SigninComponent  implements OnInit {
   ngOnInit() {
     this.checkSession();
     this.createSigninForm();
+  }
+
+  onClickViewPassword() {
+    const eyeOnIcon = document.getElementById("eyeOn");
+    const eyeOffIcon = document.getElementById("eyeOff");
+
+    if (this.isShowPassword) {
+      this.isShowPassword = false;
+      
+      if (eyeOnIcon != null && eyeOffIcon != null) {
+        eyeOnIcon.style.display = "";
+        eyeOffIcon.style.display = "none";
+      }
+    } else {
+      this.isShowPassword = true;
+      
+      if (eyeOnIcon != null && eyeOffIcon != null) {
+        eyeOnIcon.style.display = "none";
+        eyeOffIcon.style.display = "";
+      }
+    }
   }
 
   checkSession() {

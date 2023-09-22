@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
 
 @font-face {
     font-family: 'FMAbhaya';
@@ -13,10 +15,10 @@
 .bg_text {
 
     // margin-top: 30px;
-    font-family: 'Open Sans';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
+    font-weight: bold;
+    font-size: 16px;
     line-height: 24px;
     /* or 175% */
     text-align: center;
@@ -33,7 +35,7 @@
     background: #121212;
     border-radius: 50px;
 
-    font-family: 'Open Sans';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -49,7 +51,7 @@
 }
 
 .sub-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -60,7 +62,7 @@
 }
 
 .title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 26px;
@@ -71,10 +73,10 @@
 }
 
 .book-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 900;
-    font-size: 25px;
+    font-size: 35px;
     line-height: 24px;
     /* identical to box height */
 
@@ -85,7 +87,7 @@
     height: 50px;
     background: rgba(196, 196, 196, 0.15);
     border-radius: 10px;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -102,7 +104,7 @@
 }
 
 .popular-text {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -113,7 +115,7 @@
 }
 
 .book-author {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 550;
     font-size: 12px;
@@ -126,7 +128,7 @@
 }
 
 .cart-item-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 15px;
@@ -136,7 +138,7 @@
 }
 
 .cart-items-sub-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
@@ -195,7 +197,7 @@ div,
 input,
 p,
 a {
-    font-family: "Open Sans";
+    font-family: 'Noto Sans Sinhala', sans-serif;
     margin: 0px;
 }
 

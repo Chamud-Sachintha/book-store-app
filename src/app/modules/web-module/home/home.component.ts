@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
+import {  SlideToConfirmModule } from 'ngx-slide-to-confirm';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [IonicModule, SwiperModule],
+  imports: [IonicModule, SwiperModule, SlideToConfirmModule],
   standalone: true
 })
 export class HomeComponent  implements OnInit {
@@ -29,7 +30,13 @@ export class HomeComponent  implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
+
+  onConfirm() {
+    alert("ok")
+  }
 
   onClickSeeMoreLink() {
     const getId = document.getElementById("moreText");

@@ -43,7 +43,6 @@ export class BookListComponent  implements OnInit {
 
   constructor(private router: Router, private bookService: BookService, private profileService: ProfileService, 
     private platform: Platform, private navCtrl: NavController) { 
-
   }
 
   ngOnInit() {

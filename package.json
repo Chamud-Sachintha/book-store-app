@@ -14,6 +14,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.0.0",
+    "@angular/cdk": "^16.2.5",
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
     "@angular/core": "^16.0.0",
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "^16.0.0",
     "@angular/platform-browser-dynamic": "^16.0.0",
     "@angular/router": "^16.0.0",
+    "@capacitor-community/facebook-login": "^5.0.3",
     "@capacitor-community/privacy-screen": "^4.1.1",
     "@capacitor-community/stripe": "^5.2.0",
     "@capacitor/android": "^5.3.0",
@@ -37,6 +39,7 @@
     "jquery.flipster": "^1.1.5",
     "ng2-pdf-viewer": "^10.0.0",
     "ngx-extended-pdf-viewer": "^18.0.0-beta.6",
+    "ngx-slide-to-confirm": "^1.0.3",
     "ngx-star-rating": "^2.1.0",
     "rxjs": "~7.8.0",
     "swiper": "^8.4.7",

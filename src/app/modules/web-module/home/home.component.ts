@@ -35,7 +35,7 @@ export class HomeComponent  implements OnInit {
   }
 
   onConfirm() {
-    alert("ok")
+    this.router.navigate(['/auth/login']);
   }
 
   onClickSeeMoreLink() {

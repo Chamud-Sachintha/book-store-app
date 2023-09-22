@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   appUrl: "https://api.dpuremaths.lk/api/",
+  fileServer: "https://admin.dpuremaths.lk/public/public/PDFs/"
   // appUrl: "http://localhost:8000/api/"
 };
 

@@ -29,6 +29,13 @@ export class SigninComponent  implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
               , private platform: Platform, private location: Location) { 
+
+    const getTabBar = document.getElementById("testYYU");
+
+    if (getTabBar != null) {
+      getTabBar.style.display = "";
+    }
+    
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.location.back();
     });
@@ -39,7 +46,16 @@ export class SigninComponent  implements OnInit {
   }
 
   ngOnInit() {
+    this.checkSession();
     this.createSigninForm();
+  }
+
+  checkSession() {
+    const authToken = sessionStorage.getItem("authToken");
+
+    if (authToken != null) {
+      this.router.navigate(['/book-list']);
+    }
   }
 
   async signIn() {

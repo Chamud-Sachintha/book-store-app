@@ -9,6 +9,7 @@ import { Chapter } from 'src/app/models/Chapter/chapter';
 import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
 import { Book } from 'src/app/models/Book/book';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reading-view',
@@ -34,13 +35,6 @@ export class ReadingViewComponent  implements OnInit {
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
-  
-    if (this.bookId == 1) {
-      this.src = "../../../../assets/pdfs/1990.pdf";
-    } else {
-      this.src = "../../../../assets/pdfs/1992.pdf";
-    }
-
     this.getChapterInfoById();
   }
 
@@ -58,6 +52,7 @@ export class ReadingViewComponent  implements OnInit {
       if (resp.code === 1) {
         this.bookInfo.bookName = dataList.data[0].bookName;
         this.chapterInfo.chapter = dataList.data[0].chapterName;
+        this.src = environment.fileServer + dataList.data[0].pdfPath;
       }
     }, (err) => {
 

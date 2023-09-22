@@ -17,33 +17,112 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3 me-3" id="testPPP">
+  <div class="row ms-3 me-3 text-center">
     <div class="col-12">
-      <p class="book-title">Contact With Us</p>
-      <p class="book-author">Put a Message to us as soon as possible we'll contact</p>
-      <div style="border: 1px solid #000000;"></div>
+      <p class="book-title mt-3 mb-3">#ගණිතාවබෝදය</p>
+      <p style="text-align: justify;">ගණිත ගැටල විසඳීමේ කුසලතා වර්ධනය
+        කරගැනීම සඳහා ක්‍රියාශීලී නියැලීම සහ
+        පුහුණුව අතයවශ්‍ය මේ.
+        මමහි ඇතුළත් වන ඊ-මොත් මෙළ 1980 සිට
+        2019 දක්වා සේමත උසස් මෙළ ෙරශ්න
+        ෙතරවලින් ෙමණක් උකහා ගත් පුළුල්
+        ෙරාසයක විහිදී තිබූ විවිධ ගණමේ ගැටල
+        විසඳීමට සිසුන්ට ඉඩ සලසයි
+        තමා උගත් විෂය කරැණු මගින් සිසුන්ට
+        තම දැනුේ මට්ටමට සරිලන ආකාරමේ
+        උසස් මෙළ ගැටල ෙහසුමවන් මසවීම
+        සඳහා, ොඩේ අනුව වර්ීකරණය මකාට
+        ඇති මමම ගැටල සියල්ල 2017 සංයුක්ත
+        ගණිතය විෂය නිර්මේශ්‍මේ අඩංගු වන
+        අන්තර්ගතයන් භාවිතමයන් විසඳන අයුරැද
+        අනුකිමිකව සාරාංශ්‍ගත මකාට ඇත.
+        ගැටල විසඳීම සඳහා ” ඔබ ගත යුතු පියවර
+        මමානවාද ?” නැතමහාත් ” ඔබ මමම
+        ෙරමේශ්‍ය මතෝරාගත යුත්මත් ඇයි ?” යන්න
+        ෙැහැදිලි ක්‍රරීම මගින් සිසුන්ට ගැටල
+        විසඳීමේ ක්‍රියාවලිය ගැන මමමනහි ක්‍රරීමට
+        මමන්ම ඔවුන්මේ චින්තනය පිළිබඳ ගැඹුරැ
+        අවමබෝධයක් වර්ධනය කරගැනීමට සිසුන්
+        මොළඹවා, ඔවුන්මේ සාර්ථකත්වයන්මගන්
+        මමන්ම ඔවුන්මේ අසාර්ථකත්වයන්මගන්ද
+        ඔවුන්ට ඉමගනීමට අවස්ථාව සලසා ඇත.</p>
     </div>
   </div>
 
-  <div class="row ms-3 mt-3 me-3">
+  <div class="row ms-3 me-3">
     <div class="col-12">
-      <form action="" [formGroup]="this.clientSupportForm" class="form-group" (submit)="onSubmitClientSupportForm()">
-        <div class="row mt-3">
-          <div class="col-12">
-            <input type="text" class="form-control text-input" placeholder="Enter your Title" formControlName="title">
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>About Us</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            At DPuremaths, we are dedicated
+            towards elevating A/L mathematics
+            education, via Efficient content
+            delivery to simplify learning and
+            enhance problem solving skills of
+            the next generation of Sri Lankan
+            Mathematicians.
+
+            <p style="font-weight: bolder; margin-top: 5px; margin-bottom: 5px;">Our Mission </p>
+
+            Ensure quality study resources for
+            Sinhalese medium mathematics
+            students are made easily & widely
+            accessible, despite their language
+            & economic barriers
+            Encourage & excite young students
+            to engage in mathematics and
+            facilitate their learning by reducing
+            the effort required to understand
+            and excel A/L mathematics
           </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-12">
-            <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Type your Message" formControlName="message"></textarea>
+        </ion-accordion>
+        <ion-accordion value="second" class="mt-2">
+          <ion-item slot="header" color="light">
+            <ion-label>Contact Us</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <p style="font-size: 18px;">Welcome to DPuremaths Support!</p>
+            We are here to support your learning journey. For app related questions, issues, or assistance, reach out to
+            us on WhatsApp. We will get to you as soon as possible.
+
+            <div class="mt-2" style="border: 1px solid #000000;"></div>
+
+            <div class="row">
+              <div class="col-12">
+                <form action="" [formGroup]="this.clientSupportForm" class="form-group"
+                  (submit)="onSubmitClientSupportForm()">
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <input type="text" class="form-control text-input" placeholder="Enter your Title"
+                        formControlName="title">
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Type your Message"
+                        formControlName="message"></textarea>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-12">
+                      <input type="submit" class="login-btn" value="Submit Message">
+                    </div>
+                  </div>
+                </form>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <button class="login-btn" (click)="onClickWaBtn()" role="button"><i
+                      class="fa fa-whatsapp me-2"></i>Whatsapp</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-12">
-            <input type="submit" class="login-btn" value="Submit Message">
-          </div>
-        </div>
-      </form>
+        </ion-accordion>
+      </ion-accordion-group>
     </div>
   </div>
 

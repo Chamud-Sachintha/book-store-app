@@ -29,6 +29,10 @@ export class SupportComponent  implements OnInit {
     this.initClientSupportForm();
   }
 
+  onClickWaBtn() {
+    window.open('https://faq.whatsapp.com/5913398998672934');
+  }
+
   checkProfileIsFilled() {
     this.requestBody.clientId = sessionStorage.getItem("clientId");
     this.requestBody.token = sessionStorage.getItem("authToken");

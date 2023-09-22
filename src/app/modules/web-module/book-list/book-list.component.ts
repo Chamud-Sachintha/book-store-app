@@ -25,7 +25,7 @@ export class BookListComponent  implements OnInit {
   bookInfoList: Book[] = [];
 
   config = {
-    slidesPerView: 1.2,
+    slidesPerView: 1,
     spaceBetween: 5,
     centeredSlides: true,
     loop: true,

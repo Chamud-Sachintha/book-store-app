@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
 
 .text-input {
     height: 50px;
@@ -8,6 +10,17 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 125%;
+}
+
+.book-title {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 24px;
+    /* identical to box height */
+
+    color: #06070D;
 }
 
 .login-btn {
@@ -23,14 +36,13 @@
     height: 56px;
 }
 
-.book-title {
+.book-title-con {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 900;
     font-size: 20px;
     line-height: 24px;
     /* identical to box height */
-    display: flex;
     align-items: center;
 
     color: #06070D;

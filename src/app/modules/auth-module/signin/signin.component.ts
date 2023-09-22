@@ -60,6 +60,14 @@ export class SigninComponent  implements OnInit {
         sessionStorage.setItem("authToken", resp.token);
         sessionStorage.setItem("clientId", resp.data[0].id);
         sessionStorage.setItem("emailAddress", resp.data[0].email);
+
+        this.requestModel.clientId = resp.data[0].id;
+
+        this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
+          if (resp.code === 1) {
+            this.router.navigate(['book-list'])
+          }
+        })
       }
     })
   }

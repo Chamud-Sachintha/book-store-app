@@ -83,7 +83,8 @@
     <div class="col-12">
       <p>Client Reviews</p>
     </div>
-    <div *ngFor="let eachFeedback of this.feedBackList" class="card"
+    <div class="col-12" style="max-height: 200px;">
+      <div *ngFor="let eachFeedback of this.feedBackList" class="card mb-3"
       style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
       <div class="row">
         <div class="col-12">
@@ -119,9 +120,10 @@
             <div class="col-6">
               <p class="chapter-count">{{ eachFeedback.time }}</p>
             </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
+  </div>
 </ion-content>

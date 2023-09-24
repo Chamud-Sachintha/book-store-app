@@ -42,8 +42,8 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3" *ngIf="this.bookBuyStatus">
-    <div class="col-12">
+  <div class="row mt-3" *ngIf="this.bookBuyStatus">
+    <div class="col-12 text-center">
       <button class="buy-now-btn" (click)="readBook()">Read Book</button>
     </div>
   </div>
@@ -58,15 +58,15 @@
           <div class="ion-padding" slot="content">
             <form [formGroup]="this.ratingForm" (submit)="onSubmitClientReview()">
               <div class="row">
-                <div class="col-12">
-                  <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
+                <div class="col-12 text-center">
+                  <ngx-star-rating formControlName="rating" [id]="'rating'" ></ngx-star-rating>
                 </div>
                 <div class="col-12 mt-3">
                   <textarea name="" class="form-control text-inout" placeholder="Type Your Feedback" cols="30" rows="5"
                     formControlName="feedback"></textarea>
                 </div>
-                <div class="col-12 mt-3">
-                  <button class="login-btn">Submit Review</button>
+                <div class="col-12 mt-3 text-center">
+                  <button class="rv-btn">Submit Review</button>
                 </div>
               </div>
 
@@ -87,7 +87,7 @@
       <div *ngFor="let eachFeedback of this.feedBackList" class="card mb-3"
       style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 ms-2">
           <p class="book-title mt-2">{{ eachFeedback.feedback }}</p>
           <p style="margin-top: -10px;">{{ eachFeedback.firstName }} {{ eachFeedback.lastName }}</p>
 
@@ -118,7 +118,7 @@
               <img src="../../../../assets/icon/star.png" style="width: 30px; height: 30px;" alt="">
             </div>
             <div class="col-6">
-              <p class="chapter-count">{{ eachFeedback.time }}</p>
+              <p class="chapter-count" style="float: right;">{{ eachFeedback.time | date: "MMM dd, yyyy" }}</p>
             </div>
           </div>
         </div>

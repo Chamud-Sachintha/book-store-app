@@ -35,7 +35,13 @@ export class HomeComponent  implements OnInit {
   }
 
   onConfirm() {
-    this.router.navigate(['/auth/login']);
+    const authToken = sessionStorage.getItem("authToken");
+
+    if (authToken != null) {
+      this.router.navigate(['/book-list']);
+    } else {
+      this.router.navigate(['/auth/login']);
+    }
   }
 
   onClickSeeMoreLink() {

@@ -8,6 +8,7 @@ import { SwiperComponent, SwiperModule } from 'swiper/angular';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Profile } from 'src/app/models/Profile/profile';
 import { Request } from 'src/app/models/Request/request';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-book-list',
@@ -42,10 +43,21 @@ export class BookListComponent  implements OnInit {
   profileInfo = new Profile();
 
   constructor(private router: Router, private bookService: BookService, private profileService: ProfileService, 
-    private platform: Platform, private navCtrl: NavController) { 
+    private platform: Platform, private navCtrl: NavController) {
+
+    const getTabBar = document.getElementById("testYYU");
+
+    if (getTabBar != null) {
+      getTabBar.style.display = "";
+    }
   }
 
   ngOnInit() {
+    var btn = $('a.back-button'),
+    text = btn.text();
+
+    btn.attr('data-text', text);
+    
     this.startAnimation();
     this.getBookList();
     this.getProfileInfo();

@@ -1,18 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
 
 .name {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 26px;
+    font-size: 24px;
     // line-height: 36px;
     /* or 138% */
 
     color: #19191B;
 }
 
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }
+
 .email {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -23,30 +28,20 @@
 }
 
 .profile-edit-btn {
-    width: 90%;
-    height: 56px;
-    top: 75%;
-    
-    background: #121212;
-    border-radius: 5px;
-
-    font-family: 'Open Sans';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
-    /* or 157% */
-    text-align: center;
-    letter-spacing: -0.408px;
-
-    color: #F2F2F2;
-    text-decoration: none;
-
-    // padding-top: 10px;
+    // font-weight: 600;
+    font-size: 20px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background: #1E232C;
+    border-radius: 50px;
+    width: 60%;
+    height: 56px;
 }
 
 .sub-title {
-    font-family: 'Open Sans';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 20px;

@@ -82,7 +82,7 @@ export class EditProfileComponent implements OnInit {
         const dataList = JSON.parse(JSON.stringify(resp));
 
         if (resp.code === 1) {
-          this.presentAlert("Update Profile Informatioms", "Profile Informations Updated Successfully.");
+          this.presentAlert("Update Profile Informatioms", "user data are safe in our DB and will not be shared with any third parties.");
         }
       }, (err) => {
 

@@ -5,6 +5,7 @@ import { Client } from 'src/app/models/Clinet/client';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { App as CapacitorApp } from '@capacitor/app';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,9 +18,10 @@ export class SignupComponent  implements OnInit {
 
   clientRegisterForm!: FormGroup;
   client = new Client();
+  userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
 
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private authService: AuthService
-              , private location: Location, private platform: Platform) { 
+              , private location: Location, private platform: Platform, private router: Router) { 
 
     this.platform.backButton.subscribeWithPriority(10, () => {
       this.location.back();
@@ -39,7 +41,8 @@ export class SignupComponent  implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       emailAddress: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      confPassword: ['', Validators.required]
     })
   }
 
@@ -48,15 +51,20 @@ export class SignupComponent  implements OnInit {
     const lastName = this.clientRegisterForm.controls['lastName'].value;
     const emailAddress = this.clientRegisterForm.controls['emailAddress'].value;
     const password = this.clientRegisterForm.controls['password'].value;
+    const confPassword = this.clientRegisterForm.controls['confPassword'].value;
 
-    if (firstName === "") {
+    if (!this.userEmailRegEx.test(emailAddress)) {
+      this.presentAlert("Invalid Input Format", "Invalid Email Format.");
+    } else if (firstName === "") {
       this.presentAlert("Empty Feilds Founded.", "First Name is Required.")
     } else if (lastName === "") {
       this.presentAlert("Empty Feilds Founded.", "Last Name is Required.")
     } else if (emailAddress === "") {
       this.presentAlert("Empty Feilds Founded.", "Email Address is Required.")
     } else if (password === "") {
-      this.presentAlert("Empty Feilds Founded.", "Password is Required.")
+      this.presentAlert("Empty Feilds Founded.", "Password is Required.");
+    } else if (password !== confPassword) {
+      this.presentAlert("Password Confirmation Error", "Password is Not Matched.");
     } else {
       this.client.firstName = firstName;
       this.client.lastName = lastName;
@@ -67,6 +75,8 @@ export class SignupComponent  implements OnInit {
         console.log(resp.code)
         if (resp.code === 1) {
           this.presentAlert("User Registation", "User Registration Successfully.");
+
+          this.router.navigate(['/auth/login']);
         } else {
           this.presentAlert("User Registation", resp.message);
         }

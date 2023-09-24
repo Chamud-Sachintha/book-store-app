@@ -28,9 +28,12 @@ export class SigninComponent  implements OnInit {
   public alertButtons = ['OK'];
   user !: any;
 
+  userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
+
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
               , private platform: Platform, private location: Location) { 
-
+    
+    this.checkSession();
     const getTabBar = document.getElementById("testYYU");
 
     if (getTabBar != null) {
@@ -47,7 +50,6 @@ export class SigninComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.checkSession();
     this.createSigninForm();
   }
 
@@ -134,12 +136,13 @@ export class SigninComponent  implements OnInit {
   }
 
   onSubmitClientLoginForm() {
-
     const userName = this.clientLoginForm.controls['userName'].value;
     const password = this.clientLoginForm.controls['password'].value;
 
     if (userName === "" || password === "") {
       this.presentAlert("Empty Feilds Founded.", "Invalid Username or Password");
+    } else if (!this.userEmailRegEx.test(userName)) {
+      this.presentAlert("Invalid Input Format", "Invalid Email Format.");
     } else {
       this.client.userName = userName;
       this.client.password = password;

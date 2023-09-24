@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
 
 .sub-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 16px;
     line-height: 24px;
     /* identical to box height */
 
-    color: #9D9D9D;
+    color: #4e4e4e;
 }
 
 .title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: bolder;
     font-size: 20px;
@@ -23,7 +24,7 @@
 }
 
 .title-sec {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: bolder;
     font-size: 18px;
@@ -37,7 +38,7 @@
     height: 50px;
     background: rgba(196, 196, 196, 0.15);
     border-radius: 10px;
-    font-family: 'Urbanist', sans-serif;
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
@@ -54,7 +55,7 @@
 }
 
 .popular-text {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
@@ -65,7 +66,7 @@
 }
 
 .book-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -78,7 +79,7 @@
 }
 
 .book-author {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 550;
     font-size: 12px;
@@ -91,7 +92,7 @@
 }
 
 .cart-item-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 15px;
@@ -101,7 +102,7 @@
 }
 
 .cart-items-sub-title {
-    font-family: 'Poppins';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
@@ -118,35 +119,35 @@
     - Header -
 *****************/
 header {
-	position:relative;
-	left:0;
-	top:0;
-	width:100%;
-	min-height:120px;
-	padding:50px 0;
-	color:#fff;
-	    background: #383838 url(https://www.athenadesignstudio.com/plugins/switch/images/bg.jpg) no-repeat center center;
-	margin-bottom:30px
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 120px;
+    padding: 50px 0;
+    color: #fff;
+    background: #383838 url(https://www.athenadesignstudio.com/plugins/switch/images/bg.jpg) no-repeat center center;
+    margin-bottom: 30px
 }
 
 /* Logo */
 header .logo {
-	clear:both;
-    display:block;
-	text-align:center;
-    padding-bottom:10px;
+    clear: both;
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 /* Title */
 header h1 {
-    font-weight:300;
-    font-size:24px;
-    color:#eee;	
-	letter-spacing:2px;
-	text-align:center;
-	text-transform:uppercase;
-	margin:0 !important;
-	padding-bottom:25px;
+    font-weight: 300;
+    font-size: 24px;
+    color: #eee;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 !important;
+    padding-bottom: 25px;
 }
 
 
@@ -160,7 +161,7 @@ div,
 input,
 p,
 a {
-    font-family: "Open Sans";
+    font-family: 'Noto Sans Sinhala', sans-serif;
     margin: 0px;
 }
 
@@ -791,4 +792,53 @@ body {
 
 .profile-card-10:hover img {
     transform: scale(1.1);
+}
+
+// back button css 
+
+a {
+    text-decoration: none;
+}
+
+a.back-button {
+    position: relative;
+    height: 29px;
+    width: 45px;
+    display: inline-block;
+    padding: 0 7px 0 5px;
+    background: -webkit-radial-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 60%) center 19px no-repeat, -webkit-linear-gradient(#3b3b3b 44%, #070707 56%);
+    color: white;
+    border-top: 1px solid #4c2f1a;
+    border-bottom: 1px solid #522301;
+    box-shadow: inset 0 1px 0 #975d32;
+    text-shadow: 0 -1px 0 black;
+    font-family: sans-serif;
+    line-height: 29px;
+    font-size: 12px;
+    font-weight: bold;
+    text-indent: -9999px;
+    border-radius: 5px;
+}
+
+a.back-button:after {
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 8px;
+    position: absolute;
+    text-indent: 0;
+    content: attr(data-text);
+}
+
+a.back-button:before {
+    position: absolute;
+    top: 4px;
+    left: -7.6px;
+    display: block;
+    width: 19px;
+    height: 19px;
+    background: -webkit-linear-gradient(-135deg, #3b3b3b 44%, #070707 56%);
+    box-shadow: inset 1px 0 0 #3b3b3b, inset 0 1px 0 #070707;
+    content: "";
+    -webkit-transform: rotate(-45deg);
 }

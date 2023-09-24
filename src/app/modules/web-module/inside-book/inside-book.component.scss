@@ -11,6 +11,10 @@
     color: #06070D;
 }
 
+.chapter-count {
+    margin-right: 15px;
+}
+
 .book-author {
     font-family: 'Poppins';
     font-style: normal;
@@ -24,12 +28,24 @@
     font-family: 'Urbanist', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
     line-height: 18px;
     color: #FFFFFF;
     background: #1E232C;
-    border-radius: 8px;
-    width: 100%;
+    border-radius: 50px;
+    width: 40%;
+    height: 56px;
+}
+
+.rv-btn {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background: #1E232C;
+    border-radius: 50px;
+    width: 60%;
     height: 56px;
 }
 
@@ -58,24 +74,15 @@
 }
 
 .buy-now-btn {
-    width: 90%;
-    height: 56px;
-    top: 75%;
-    
-    background: #121212;
-    border-radius: 5px;
-
-    font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
-    /* or 157% */
-    text-align: center;
-    letter-spacing: -0.408px;
-
-    color: #F2F2F2;
-    text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background: #1E232C;
+    border-radius: 50px;
+    width: 45%;
+    height: 56px;
 
     // padding-top: 10px;
 }

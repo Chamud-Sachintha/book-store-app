@@ -1,17 +1,19 @@
 <ion-content>
-  <div class="row mt-3 ms-3">
-    <div class="col-6">
-      <ion-icon name="arrow-back-outline" size="medium" (click)="onClickBackBtn()" style="font-size: 30px;"></ion-icon>
+  <div class="row mt-3 ms-2">
+    <div class="col-6 d-flex align-items-center">
+      <!-- <ion-icon name="arrow-back-outline" size="medium" (click)="onClickBackBtn()" style="font-size: 30px;"></ion-icon> -->
+      <!-- <a href="#" class="back-button" (click)="onClickBackBtn()">Back</a> -->
+      <ion-icon name="arrow-back-circle" style="font-size: 30px;" (click)="onClickBackBtn()"></ion-icon>
     </div>
     <div class="col-2"></div>
     <!-- <div class="col-2" style="text-align: right;">
       <ion-icon name="moon" style="font-size: 30px;"></ion-icon>
     </div> -->
-    <div class="col-2" style="text-align: right;" (click)="onClickCartPage()" style="font-size: 30px;">
+    <div class="col-2 d-flex align-items-center" style="text-align: right;" (click)="onClickCartPage()" style="font-size: 30px;">
       <!-- <img width="40" height="40" src="https://img.icons8.com/ultraviolet/40/shopping-cart.png" alt="shopping-cart"/> -->
       <ion-icon name="cart" size="medium"></ion-icon>
     </div>
-    <div class="col-2" style="text-align: right;" (click)="onClickProfileSection()" style="font-size: 30px;">
+    <div class="col-2 d-flex align-items-center" style="text-align: right;" (click)="onClickProfileSection()" style="font-size: 30px;">
       <!-- <img width="48" height="48" src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1" (click)="onClickProfileSection()"/> -->
       <ion-icon name="person-circle" size="large"></ion-icon>
     </div>

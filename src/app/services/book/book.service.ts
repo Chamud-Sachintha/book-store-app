@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Book } from 'src/app/models/Book/book';
 import { environment } from 'src/environments/environment';
@@ -52,5 +52,10 @@ export class BookService {
   getAllClientReviews(requestBody: Request) {
     const path = environment.appUrl + "feedback-list";
     return this.http.post(path, requestBody);
+  }
+
+  getPDFContent(requestBody: any) {
+    const path = environment.fileServer + "getPdf" + "?pdfName=" + requestBody.pdfName;
+    return this.http.get(path, {responseType: 'arraybuffer'});
   }
 }

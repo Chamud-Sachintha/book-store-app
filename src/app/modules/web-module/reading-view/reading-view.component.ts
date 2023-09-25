@@ -24,7 +24,8 @@ export class ReadingViewComponent  implements OnInit {
   chapterInfo = new Chapter();
   requestBody = new Request();
   bookInfo = new Book();
-  src: string = "";
+  src!: any;
+  pdfByteArr: string = "";
   pageNumberType: number = 1;
   isModalOpen = false;
   isFullScreenModeOn = false;
@@ -52,10 +53,20 @@ export class ReadingViewComponent  implements OnInit {
       if (resp.code === 1) {
         this.bookInfo.bookName = dataList.data[0].bookName;
         this.chapterInfo.chapter = dataList.data[0].chapterName;
-        this.src = environment.fileServer + dataList.data[0].pdfPath;
+        this.pdfByteArr = dataList.data[0].pdfPath;
+
+        const requestBody = {
+          pdfName: this.pdfByteArr
+        }
+
+        this.bookService.getPDFContent(requestBody).subscribe((pdf) => {
+          this.src = pdf;
+        }, (err) => {
+          console.log(err.message)
+        })
       }
     }, (err) => {
-
+      console.log('ffff' + err.message)
     })
   }
 

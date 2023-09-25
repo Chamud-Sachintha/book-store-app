@@ -5,6 +5,7 @@ import { ProfileService } from './services/profile/profile.service';
 import { Request } from './models/Request/request';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
+import { BackgroundTask } from '@capawesome/capacitor-background-task';
 import { AuthService } from './services/auth/auth.service';
 
 @Component({
@@ -12,29 +13,42 @@ import { AuthService } from './services/auth/auth.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
 export class AppComponent implements OnInit {
 
   requestBody = new Request();
 
   constructor(private platform: Platform, private location: Location, private toastController: ToastController, private authService: AuthService) {
     this.initializeApp();
-  }
 
-  ngOnInit(): void {
-    App.addListener('appStateChange', (state) => {
+    App.addListener('appStateChange', async (state) => {
+      console.log(state.isActive)
       if (state.isActive) {
         // The app is in the foreground (active)
         console.log('App is active');
       } else {
         // The app is in the background or closed
 
-        this.requestBody.clientId = sessionStorage.getItem("clientId");
+        console.log('close una');
 
-        this.authService.updateLogOutTime(this.requestBody).subscribe((resp) => {
-          console.log(resp);
-        })
+        const taskId = await BackgroundTask.beforeExit(async () => {
+          // Run your code...
+          // Finish the background task as soon as everything is done.
+
+          this.requestBody.clientId = sessionStorage.getItem("clientId");
+
+          this.authService.updateLogOutTime(this.requestBody).subscribe((resp) => {
+            console.log('nnm' + resp);
+          })
+
+          BackgroundTask.finish({ taskId });
+        });
       }
     });
+  }
+
+  ngOnInit(): void {
+    
   }
 
   initializeApp() {

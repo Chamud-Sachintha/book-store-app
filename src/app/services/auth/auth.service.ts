@@ -49,6 +49,7 @@ export class AuthService {
   }
 
   updateLogOutTime(requestBody: Request) {
+    console.log('kk ' + requestBody.clientId);
     const path = environment.appUrl + "update-logout-time";
     return this.http.post(path, requestBody);
   }

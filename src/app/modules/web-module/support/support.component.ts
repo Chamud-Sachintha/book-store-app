@@ -30,7 +30,7 @@ export class SupportComponent  implements OnInit {
   }
 
   onClickWaBtn() {
-    window.open('https://faq.whatsapp.com/5913398998672934');
+    window.open('https://wa.link/jist50');
   }
 
   checkProfileIsFilled() {

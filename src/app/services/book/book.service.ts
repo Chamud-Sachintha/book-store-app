@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Review } from 'src/app/models/ClientReview/review';
 import { Request } from 'src/app/models/Request/request';
 import { Chapter } from 'src/app/models/Chapter/chapter';
+import { BookMark } from 'src/app/models/BookMarks/book-mark';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,15 @@ export class BookService {
   getPDFContent(requestBody: any) {
     const path = environment.fileServer + "getPdf" + "?pdfName=" + requestBody.pdfName;
     return this.http.get(path, {responseType: 'arraybuffer'});
+  }
+
+  createBookMarkInfo(bookMarkInfo: BookMark) {
+    const path = environment.appUrl + "add-bookmark";
+    return this.http.post(path, bookMarkInfo);
+  }
+
+  getBookMarkListByBookIdAndClinetId(bookmarkInfo: BookMark) {
+    const path = environment.appUrl + "bookmark-list";
+    return this.http.post(path, bookmarkInfo);
   }
 }

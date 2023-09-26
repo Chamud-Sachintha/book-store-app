@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { IonModal, IonicModule } from '@ionic/angular';
+import { AlertController, IonModal, IonicModule } from '@ionic/angular';
 // import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { App as CapacitorApp } from '@capacitor/app';
@@ -10,19 +10,22 @@ import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
 import { Book } from 'src/app/models/Book/book';
 import { environment } from 'src/environments/environment';
+import { BookMark } from 'src/app/models/BookMarks/book-mark';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reading-view',
   templateUrl: './reading-view.component.html',
   styleUrls: ['./reading-view.component.scss'],
   standalone: true,
-  imports: [IonicModule, PdfViewerModule]
+  imports: [IonicModule, PdfViewerModule, FormsModule, ReactiveFormsModule, CommonModule]
 })
 export class ReadingViewComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   chapterInfo = new Chapter();
   requestBody = new Request();
+  bookMarkInfo = new BookMark();
   bookInfo = new Book();
   src!: any;
   pdfByteArr: string = "";
@@ -30,13 +33,52 @@ export class ReadingViewComponent  implements OnInit {
   isModalOpen = false;
   isFullScreenModeOn = false;
   bookId!: number;
+  createBookMarkForm!: FormGroup;
+  bookMarkList: BookMark[] = [];
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
-              , private bookService: BookService) { }
+              , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
+    this.initCreateBookMarksInfoForm();
+    this.getBookMarkListByBookIdAndClientId();
     this.getChapterInfoById();
+  }
+
+  onClickApplyBookmarkBtn(pageNumber: number) {
+    this.pageNumberType =  pageNumber;
+    this.isModalOpen = false;
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  getBookMarkListByBookIdAndClientId() {
+    this.bookMarkInfo.token = sessionStorage.getItem("authToken");
+    this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
+    this.bookMarkInfo.bookId = localStorage.getItem("mainBookId");
+
+    this.bookService.getBookMarkListByBookIdAndClinetId(this.bookMarkInfo).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+      console.log(dataList.data[0])
+      if (resp.code === 1) {
+        dataList.data[0].body.forEach((eachBookmark: BookMark) => {
+          console.log(eachBookmark)
+          this.bookMarkList.push(eachBookmark);
+        })
+      }
+    }, (err) => {
+      console.log(err.message)
+    })
+  }
+
+  initCreateBookMarksInfoForm() {
+    this.createBookMarkForm = this.formBuilder.group({
+      pageNumber: ['', Validators.required],
+      pageDescription: ['', Validators.required]
+    })
   }
 
   onClickBackBtn() {
@@ -110,10 +152,6 @@ export class ReadingViewComponent  implements OnInit {
     }
   }
 
-  onClickOpenModal(value: boolean) {
-    this.isModalOpen = value;
-  }
-
   onClickApplyBookmark(pageNumber: number) {
     this.pageNumberType = pageNumber;
     this.modalClose()
@@ -123,8 +161,41 @@ export class ReadingViewComponent  implements OnInit {
     this.isModalOpen = false;
   }
 
-  onClickNextPage() {
-    this.pageNumberType += 1;
+  onSubmitSaveBookMarkInfo() {
+    
+    const pageNumber = this.createBookMarkForm.controls['pageNumber'].value;
+    const pageDescription = this.createBookMarkForm.controls['pageDescription'].value;
+
+    if (pageNumber == "") {
+      this.presentAlert("Empty Feild found", "Page Number is required.");
+    } else if (pageDescription == "") {
+      this.presentAlert("Empty Feilds Found.", "Page Description is required.");
+    } else {
+      this.bookMarkInfo.token = sessionStorage.getItem("authToken");
+      this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
+      this.bookMarkInfo.bookId = localStorage.getItem("mainBookId");
+      this.bookMarkInfo.pageNumber = pageNumber;
+      this.bookMarkInfo.pageDescription = pageDescription;
+
+      this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe((resp: any) => {
+        if (resp.code === 1) {
+          this.presentAlert("Add Bookmark", "Bookmartk Adding Successsfully.");
+        }
+      }, (err) => {
+          this.presentAlert("Add Bookmark", err.message);
+      })
+    }
+  }
+
+  async presentAlert(subHeader: string, alertMessage: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: subHeader,
+      message: alertMessage,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 
   onClickPreviousPage() {

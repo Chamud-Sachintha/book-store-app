@@ -15,12 +15,12 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3 me-3" >
+  <div class="row mt-3 ms-3 me-3">
     <div class="col-4"></div>
     <!-- <div class="col-4">
       <input type="text" class="form-control text-input" placeholder="Page" #pageNumber (keyup)="changePageNumber(pageNumber.value)">
     </div> -->
-    <div class="col-4" style="text-align: right;" (click)="onClickOpenModal(true)">
+    <div class="col-4" style="text-align: right;" (click)="setOpen(true)">
       <!-- <img width="30" height="30" src="https://img.icons8.com/color-glass/30/bookmark--v2.png" alt="bookmark--v2"/> -->
       <ion-icon name="bookmarks" style="font-size: 25px;"></ion-icon>
     </div>
@@ -28,11 +28,13 @@
       <!-- <img width="30" height="30" src="https://img.icons8.com/emoji/30/bookmark-emoji.png" alt="bookmark-emoji"/> -->
       <ion-icon name="bookmark" style="font-size: 25px;"></ion-icon>
     </div>
-    <div class="col-2" style="text-align: right;" (click)="onClickApplyFullScreen()" id="fullScreenIcon" style="display: block;">
+    <div class="col-2" style="text-align: right;" (click)="onClickApplyFullScreen()" id="fullScreenIcon"
+      style="display: block;">
       <!-- <img width="30" id="iconImg" height="30" src="https://img.icons8.com/color/48/full-screen.png" alt="full-screen"/> -->
       <ion-icon name="expand" style="font-size: 25px;"></ion-icon>
     </div>
-    <div class="col-2" style="text-align: right;" (click)="onClickExitFullScreen()" id="exitIcon" style="display: none;">
+    <div class="col-2" style="text-align: right;" (click)="onClickExitFullScreen()" id="exitIcon"
+      style="display: none;">
       <!-- <img width="30" height="30" src="https://img.icons8.com/external-filled-color-icons-papa-vector/78/external-Exit-Full-Screen-interface-filled-color-icons-papa-vector-2.png" alt="full-screen"/> -->
       <ion-icon name="contract" style="font-size: 25px;"></ion-icon>
     </div>
@@ -40,16 +42,8 @@
   </div>
 
   <div class="pdf-container mt-2" style="overflow-y: hidden;">
-    <pdf-viewer
-      [src]="src"
-      [original-size]="false"
-      [show-all]="true"
-      [page]="pageNumberType"
-      [zoom-scale]="'page-fit'"
-      [zoom]="1"
-      class="pdf-viewer"
-      id="pdf"
-    ></pdf-viewer>
+    <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [page]="pageNumberType" [zoom-scale]="'page-fit'"
+      [zoom]="1" class="pdf-viewer" id="pdf"></pdf-viewer>
     <!-- <ngx-extended-pdf-viewer [(src)]="src"> </ngx-extended-pdf-viewer> -->
   </div>
 
@@ -70,17 +64,21 @@
 
   <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="md">
     <ng-template>
-      <div class="block-md">
-        <div class="row mt-5 ms-3 me-3">
-          <input type="text" class="form-control text-input" placeholder="Enter Page Number" #pageNumber (keyup)="changePageNumber(pageNumber.value)">
+      <form action="" [formGroup]="this.createBookMarkForm" (ngSubmit)="onSubmitSaveBookMarkInfo()">
+        <div class="block-md">
+          <div class="row mt-5 ms-3 me-3">
+            <input type="text" class="form-control text-input" placeholder="Enter Page Number"
+              formControlName="pageNumber">
+          </div>
+          <div class="row mt-3 ms-3 me-3">
+            <textarea name="" id="" cols="30" rows="5" class="form-control"
+              formControlName="pageDescription"></textarea>
+          </div>
+          <div class="row mt-3 ms-3 me-3" style="align-items: center;">
+            <button class="next-btn" type="submit">Save Bookmark</button>
+          </div>
         </div>
-        <div class="row mt-3 ms-3 me-3">
-          <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
-        </div>
-        <div class="row mt-3 ms-3 me-3" style="align-items: center;">
-          <button class="next-btn" (click)="onClickNextPage()">Save Bookmark</button>
-        </div>
-      </div>
+      </form>
     </ng-template>
   </ion-modal>
 
@@ -88,7 +86,7 @@
 
   <!-- all bookmark list modal begin here -->
 
-  <ion-modal [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="lg" [isOpen]="isModalOpen">
+  <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <div class="block-lg">
         <div class="row mt-5 ms-2">
@@ -99,18 +97,24 @@
         </div>
         <div class="row mt-3">
           <div class="col-12">
-            <ion-card>
-              <ion-card-header>
-                <ion-card-title>Page No 3</ion-card-title>
-                <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
-              </ion-card-header>
-            
-              <ion-card-content>
-                Here's a small text description for the card content. Nothing more, nothing less.
-              </ion-card-content>
-  
-              <ion-button expand="full" (click)="onClickApplyBookmark(2)">Apply Bookmark</ion-button>
-            </ion-card>
+            <div *ngFor="let eachBookMark of this.bookMarkList" class="card mb-3 ms-3 me-3"
+              style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
+              <div class="row">
+                <div class="col-12 ms-2">
+                  <p class="book-title mt-2">Page No: {{ eachBookMark.pageNumber }}</p>
+                  <p style="margin-top: -10px;">{{ eachBookMark.pageDescription }}</p>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="next-btn mb-3" (click)="onClickApplyBookmarkBtn(eachBookMark.pageNumber)">Apply Bookmark</button>
+                    </div>
+                    <div class="col-6 d-flex align-items-center">
+                      <p class="chapter-count" style="float: center;">Sep 17 on 2033</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

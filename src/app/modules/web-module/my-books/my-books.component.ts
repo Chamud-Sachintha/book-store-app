@@ -44,7 +44,7 @@ export class MyBooksComponent  implements OnInit {
   }
 
   onClickBackBtn() {
-    this.navCtrl.back();
+    this.router.navigate(['book-list']);
   }
 
   getMyPaidBookList() {

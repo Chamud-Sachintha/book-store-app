@@ -77,23 +77,14 @@ ion-modal {
 }
 
 .next-btn {
-    height: 56px;
-    top: 75%;
-    
-    background: #121212;
-    border-radius: 5px;
-
-    font-family: 'Open Sans';
+    font-family: 'Noto Sans Sinhala', sans-serif;
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
-    /* or 157% */
-    text-align: center;
-    letter-spacing: -0.408px;
-
-    color: #F2F2F2;
-    text-decoration: none;
-
-    // padding-top: 10px;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 18px;
+    color: #FFFFFF;
+    background: #000000;
+    border-radius: 50px;
+    width: 100%;
+    height: 56px;
 }

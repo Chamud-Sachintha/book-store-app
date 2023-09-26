@@ -6,7 +6,8 @@
           <p class="book-title">{{ this.bookInfo.bookName }} > {{ this.chapterInfo.chapter }}</p>
         </div>
         <div class="col-3" style="text-align: right;" (click)="onClickBackBtn()">
-          <p style="font-weight: bold;"> < Back </p>
+          <!-- <p style="font-weight: bold;"> < Back </p> -->
+          <ion-icon name="arrow-back-circle" style="font-size: 30px;"></ion-icon>
         </div>
       </div>
       <!-- <p class="book-author">J.K. Rowling</p> -->
@@ -21,19 +22,19 @@
     </div> -->
     <div class="col-4" style="text-align: right;" (click)="onClickOpenModal(true)">
       <!-- <img width="30" height="30" src="https://img.icons8.com/color-glass/30/bookmark--v2.png" alt="bookmark--v2"/> -->
-      <ion-icon name="bookmarks" style="font-size: 28px;"></ion-icon>
+      <ion-icon name="bookmarks" style="font-size: 25px;"></ion-icon>
     </div>
     <div class="col-2" style="text-align: right;" id="open-modal">
       <!-- <img width="30" height="30" src="https://img.icons8.com/emoji/30/bookmark-emoji.png" alt="bookmark-emoji"/> -->
-      <ion-icon name="bookmark" style="font-size: 28px;"></ion-icon>
+      <ion-icon name="bookmark" style="font-size: 25px;"></ion-icon>
     </div>
     <div class="col-2" style="text-align: right;" (click)="onClickApplyFullScreen()" id="fullScreenIcon" style="display: block;">
       <!-- <img width="30" id="iconImg" height="30" src="https://img.icons8.com/color/48/full-screen.png" alt="full-screen"/> -->
-      <ion-icon name="expand" style="font-size: 28px;"></ion-icon>
+      <ion-icon name="expand" style="font-size: 25px;"></ion-icon>
     </div>
     <div class="col-2" style="text-align: right;" (click)="onClickExitFullScreen()" id="exitIcon" style="display: none;">
       <!-- <img width="30" height="30" src="https://img.icons8.com/external-filled-color-icons-papa-vector/78/external-Exit-Full-Screen-interface-filled-color-icons-papa-vector-2.png" alt="full-screen"/> -->
-      <ion-icon name="contract" style="font-size: 28px;"></ion-icon>
+      <ion-icon name="contract" style="font-size: 25px;"></ion-icon>
     </div>
     <!-- <img width="48" height="48" src="https://img.icons8.com/color/48/full-screen.png" alt="full-screen"/> -->
   </div>
@@ -44,6 +45,8 @@
       [original-size]="false"
       [show-all]="true"
       [page]="pageNumberType"
+      [zoom-scale]="'page-fit'"
+      [zoom]="1"
       class="pdf-viewer"
       id="pdf"
     ></pdf-viewer>
@@ -74,7 +77,7 @@
         <div class="row mt-3 ms-3 me-3">
           <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
         </div>
-        <div class="row mt-3 ms-3 me-3">
+        <div class="row mt-3 ms-3 me-3" style="align-items: center;">
           <button class="next-btn" (click)="onClickNextPage()">Save Bookmark</button>
         </div>
       </div>

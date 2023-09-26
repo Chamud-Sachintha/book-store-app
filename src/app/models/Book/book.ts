@@ -8,4 +8,6 @@ export class Book {
     rating!: number;
     year!: number;
     bookDescription!: string;
+    chapterCount!: string;
+    categoryName!: string;
 }

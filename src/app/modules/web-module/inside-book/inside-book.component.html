@@ -19,6 +19,12 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12 text-center">
+      <p class="book-title mt-3 mb-2">{{ this.bookInfo.categoryName }}</p>
+    </div>
+  </div>
+
   <div class="row mt-4 ms-3 me-3">
     <div class="col-12 d-flex justify-content-center">
       <ion-img src="../../../../assets/book-covers/1.png"
@@ -53,9 +59,9 @@
   <div class="row mt-3 ms-3 me-3">
     <div class="col-12">
       <ion-accordion-group>
-        <ion-accordion value="first">
+        <ion-accordion value="first" style="border-radius: 10px;">
           <ion-item slot="header" color="light">
-            <ion-label>Submit a Review For This Book</ion-label>
+            <ion-label>Submit a review for this book</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
             <form [formGroup]="this.ratingForm" (submit)="onSubmitClientReview()">
@@ -83,7 +89,7 @@
 
   <div class="row mt-3 ms-3 me-3">
     <div class="col-12">
-      <p>Client Reviews</p>
+      <p>User Reviews…</p>
     </div>
     <div class="col-12" style="max-height: 200px;">
       <div *ngFor="let eachFeedback of this.feedBackList" class="card mb-3"

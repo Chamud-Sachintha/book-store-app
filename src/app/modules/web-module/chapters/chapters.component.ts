@@ -19,6 +19,7 @@ export class ChaptersComponent  implements OnInit {
   requestModel = new Request();
   chapterList: Chapter[] = [];
   bookId!: number;
+  bookInfo = new Book();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bookService: BookService, 
     private platform: Platform, private navCtrl: NavController) { 
@@ -29,10 +30,29 @@ export class ChaptersComponent  implements OnInit {
     localStorage.setItem("mainBookId", this.bookId.toString());
 
     this.getAllChaptersOfBook();
+    this.getBookInfoById();
+  }
+
+  getBookInfoById() {
+    this.requestModel.bookId = this.bookId;
+    this.requestModel.token = sessionStorage.getItem("authToken");
+
+    this.bookService.getBookDetailsByBookId(this.requestModel).subscribe((resp: any) => {
+      const dataList = JSON.parse(JSON.stringify(resp));
+
+      if (resp.code === 1) {
+        this.bookInfo.bookName = dataList.data[0].bookName;
+        this.bookInfo.authorName = dataList.data[0].authorName;
+        this.bookInfo.bookDescription = dataList.data[0].bookDescription;
+      }
+
+    }, (err) => {
+
+    })
   }
 
   onClickBackBtn() {
-    this.navCtrl.back();
+    this.router.navigate(['my-books']);
   }
 
   getAllChaptersOfBook() {

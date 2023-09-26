@@ -30,7 +30,7 @@ export class SupportComponent  implements OnInit {
   }
 
   onClickWaBtn() {
-    window.open('https://wa.link/jist50');
+    window.open('https://wa.me/+94742873712?text=Welcome%20to%20dpuremaths%20Support!%20We%20are%20here%20to%20support%20your%20learning%20journey.%20For%20app%20related%20questions,%20issues,%20or%20assistance,%20Please%20reach%20out%20to%20us,%20we%20will%20get%20to%20you%20as%20soon%20as%20possible.%20');
   }
 
   checkProfileIsFilled() {

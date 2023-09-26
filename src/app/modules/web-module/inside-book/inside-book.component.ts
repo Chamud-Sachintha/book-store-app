@@ -173,6 +173,7 @@ export class InsideBookComponent  implements OnInit {
         this.bookInfo.bookName = dataList.data[0].bookName;
         this.bookInfo.authorName = dataList.data[0].authorName;
         this.bookInfo.bookDescription = dataList.data[0].bookDescription;
+        this.bookInfo.categoryName = dataList.data[0].categoryName;
       }
 
     }, (err) => {

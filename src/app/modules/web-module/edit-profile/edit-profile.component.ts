@@ -147,9 +147,9 @@ export class EditProfileComponent implements OnInit {
         this.editprofileForm.controls['age'].setValue(dataList.data[0].age)
         this.editprofileForm.controls['sex'].setValue(dataList.data[0].gender)
         this.editprofileForm.controls['mobileNumber'].setValue(dataList.data[0].mobileNumber)
-        this.editprofileForm.controls['nicNumber'].setValue(this.profileInfo.firstName)
-        this.editprofileForm.controls['schoolName'].setValue(this.profileInfo.lastName)
-        this.editprofileForm.controls['grade'].setValue(dataList.data[0].mobileNumber)
+        this.editprofileForm.controls['nicNumber'].setValue(dataList.data[0].nicNumber)
+        this.editprofileForm.controls['schoolName'].setValue(dataList.data[0].schoolName)
+        this.editprofileForm.controls['grade'].setValue(dataList.data[0].grade)
         this.editprofileForm.controls['district'].setValue(dataList.data[0].district)
       }
     }, (err) => {

@@ -80,7 +80,7 @@ export class BookListComponent  implements OnInit {
   }
 
   onClickBackBtn() {
-    this.navCtrl.back();
+    this.router.navigate(['/']);
   }
 
   getProfileInfo() {

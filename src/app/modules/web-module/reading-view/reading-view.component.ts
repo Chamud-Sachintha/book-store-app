@@ -42,12 +42,14 @@ export class ReadingViewComponent  implements OnInit {
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
     this.initCreateBookMarksInfoForm();
-    this.getBookMarkListByBookIdAndClientId();
     this.getChapterInfoById();
+    this.getBookMarkListByBookIdAndClientId();
   }
 
   onClickApplyBookmarkBtn(pageNumber: number) {
     this.pageNumberType =  pageNumber;
+    
+    console.log(this.pageNumberType);
     this.isModalOpen = false;
   }
 
@@ -119,9 +121,12 @@ export class ReadingViewComponent  implements OnInit {
     const i = document.getElementById("testYYU");
     const pdf = document.getElementById("pdf");
     const icon = document.getElementById("fullScreenIcon");
+    const goUpBtn = document.getElementById("goUp");
     let exitIcon = document.getElementById("exitIcon");
 
-    if (e != null && i != null && pdf != null && icon != null && exitIcon != null) {
+    const spaceDivSection = document.getElementById("spaceDiv");
+
+    if (e != null && i != null && pdf != null && icon != null && exitIcon != null && goUpBtn != null && spaceDivSection != null) {
       // g.style.display = 'none';
       e.style.display = 'none';
       i.style.display = 'none';
@@ -129,6 +134,30 @@ export class ReadingViewComponent  implements OnInit {
 
       icon.style.display = "none";
       exitIcon.style.display = "";
+
+      goUpBtn.style.display = "";
+      spaceDivSection.classList.remove("col-4");
+      spaceDivSection.classList.add("col-2");
+    }
+  }
+
+  onClickHideBookMarkSection() {
+    const getBookMarkSection = document.getElementById("bookmarkSection");
+    const getBookmarkDownSection = document.getElementById("bookmarkSectionDown");
+
+    if (getBookMarkSection != null && getBookmarkDownSection != null) {
+      getBookMarkSection.style.display = "none";
+      getBookmarkDownSection.style.display = "";
+    }
+  }
+
+  onClickDownBookmarkSection() {
+    const getBookMarkSection = document.getElementById("bookmarkSection");
+    const getBookmarkDownSection = document.getElementById("bookmarkSectionDown");
+
+    if (getBookMarkSection != null && getBookmarkDownSection != null) {
+      getBookMarkSection.style.display = "";
+      getBookmarkDownSection.style.display = "none";
     }
   }
 

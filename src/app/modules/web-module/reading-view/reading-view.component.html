@@ -43,7 +43,7 @@
   </div>
 
   <div class="pdf-container mt-2" style="overflow-y: hidden;">
-    <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [page]="pageNumberType"
+    <pdf-viewer [src]="src" [original-size]="false" [show-all]="true" [(page)]="pageNumberType"
       class="pdf-viewer" id="pdf"></pdf-viewer>
     <!-- <ngx-extended-pdf-viewer [(src)]="src"> </ngx-extended-pdf-viewer> -->
   </div>
@@ -90,11 +90,14 @@
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <div class="block-lg">
-        <div class="row mt-5 ms-2">
-          <div class="col-12">
-            <p class="book-title">My Bookmark List</p>
-            <hr style="background-color: #000000;">
+        <div class="row mt-2 ms-2 me-2">
+          <div class="col-6">
+            <p class="book-title mt-2">My Bookmark List</p>
           </div>
+          <div class="col-6 mt-1" style="text-align: right;">
+            <ion-icon name="arrow-back-circle" style="font-size: 30px;" (click)="onClickCancelBookmarkListModal()"></ion-icon>
+          </div>
+          <hr style="background-color: #000000;">
         </div>
         <div class="row mt-3">
           <div class="col-12">

@@ -149,7 +149,18 @@ export class EditProfileComponent implements OnInit {
         this.editprofileForm.controls['mobileNumber'].setValue(dataList.data[0].mobileNumber)
         this.editprofileForm.controls['nicNumber'].setValue(dataList.data[0].nicNumber)
         this.editprofileForm.controls['schoolName'].setValue(dataList.data[0].schoolName)
-        this.editprofileForm.controls['grade'].setValue(dataList.data[0].grade)
+        // console.log((dataList.data[0].grade == 1));
+        if (dataList.data[0].grade == 11) {
+          this.editprofileForm.controls['grade'].setValue("11")
+        } else if (dataList.data[0].grade == 12) {
+          this.editprofileForm.controls['grade'].setValue("12")
+        } else if (dataList.data[0].grade == 13) {
+          this.editprofileForm.controls['grade'].setValue("13")
+        } else {
+          this.editprofileForm.controls['grade'].setValue("1")
+        }
+
+        //this.editprofileForm.controls['grade'].setValue(dataList.data[0].grade)
         this.editprofileForm.controls['district'].setValue(dataList.data[0].district)
       }
     }, (err) => {

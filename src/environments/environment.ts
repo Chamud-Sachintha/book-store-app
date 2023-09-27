@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // appUrl: "https://api.dpuremaths.lk/api/",
+  appUrl: "https://api.dpuremaths.lk/api/",
   fileServer: "https://admin.dpuremaths.lk/api/",
-  appUrl: "http://localhost:8000/api/"
+  // appUrl: "http://localhost:8000/api/"
 };
 
 /*

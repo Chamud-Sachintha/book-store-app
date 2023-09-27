@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "169973751650",
+    "project_id": "dpuremathslk-b9358",
+    "storage_bucket": "dpuremathslk-b9358.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169973751650:android:089625b2c29cf4cde8163b",
+        "android_client_info": {
+          "package_name": "lk.dpuremaths.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBlNTIDYQEmKLxhW6BNcrgjMYHbOaoRQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

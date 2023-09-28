@@ -105,13 +105,20 @@ export class SigninComponent  implements OnInit {
         sessionStorage.setItem("clientId", resp.data[0].id);
         sessionStorage.setItem("emailAddress", resp.data[0].email);
 
-        this.requestModel.clientId = resp.data[0].id;
+        this.userEmail = resp.data[0].email;
 
-        this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
-          if (resp.code === 1) {
-            this.router.navigate(['book-list'])
-          }
-        })
+        //this.requestModel.clientId = resp.data[0].id;
+
+        // this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
+        //   if (resp.code === 1) {
+        //     this.router.navigate(['book-list'])
+        //   }
+        // })
+
+        this.analyticsService.logEvent();
+        this.analyticsService.setUser(this.userEmail);
+
+        this.router.navigate(['book-list'])
       }
     })
   }

@@ -9,6 +9,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Profile } from 'src/app/models/Profile/profile';
 import { Request } from 'src/app/models/Request/request';
 import * as $ from 'jquery';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-book-list',
@@ -43,13 +44,15 @@ export class BookListComponent  implements OnInit {
   profileInfo = new Profile();
 
   constructor(private router: Router, private bookService: BookService, private profileService: ProfileService, 
-    private platform: Platform, private navCtrl: NavController) {
+    private platform: Platform, private navCtrl: NavController, private analyticService: AnalyticsService) {
 
     const getTabBar = document.getElementById("testYYU");
 
     if (getTabBar != null) {
       getTabBar.style.display = "";
     }
+
+    this.analyticService.setScreenName(this.router.url);
   }
 
   ngOnInit() {

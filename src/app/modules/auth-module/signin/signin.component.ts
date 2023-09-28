@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth';
 import { Request } from 'src/app/models/Request/request';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-signin',
@@ -31,7 +32,7 @@ export class SigninComponent  implements OnInit {
   userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
 
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
-              , private platform: Platform, private location: Location) { 
+              , private platform: Platform, private location: Location, private analyticsService: AnalyticsService) { 
     
     this.checkSession();
     const getTabBar = document.getElementById("testYYU");
@@ -47,6 +48,8 @@ export class SigninComponent  implements OnInit {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
     }
+
+    // this.analyticsService.initFB();
   }
 
   ngOnInit() {
@@ -159,6 +162,8 @@ export class SigninComponent  implements OnInit {
 
           this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
             if (resp.code === 1) {
+              this.analyticsService.logEvent();
+              this.analyticsService.setUser("1");
               this.router.navigate(['book-list'])
             }
           })

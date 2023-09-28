@@ -8,6 +8,8 @@ import { Location } from '@angular/common';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth';
 import { Request } from 'src/app/models/Request/request';
+import { FacebookLogin, FacebookLoginPlugin } from '@capacitor-community/facebook-login';
+import { Plugins, registerWebPlugin } from '@capacitor/core';
 
 @Component({
   selector: 'app-signin',
@@ -28,11 +30,16 @@ export class SigninComponent  implements OnInit {
   public alertButtons = ['OK'];
   user !: any;
 
+  fbLogin!: FacebookLoginPlugin;
+  fbUser = null;
+  token!: any;
+
   userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
 
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
               , private platform: Platform, private location: Location) { 
     
+    this.setupFbLogin();
     this.checkSession();
     const getTabBar = document.getElementById("testYYU");
 
@@ -51,6 +58,45 @@ export class SigninComponent  implements OnInit {
 
   ngOnInit() {
     this.createSigninForm();
+  }
+
+  async setupFbLogin() {
+    if (isPlatform('desktop')) {
+      this.fbLogin = FacebookLogin;
+    } else {
+      // const { FacebookLogin } = Plugins;
+      await FacebookLogin.initialize({ appId: '997371431487868' });
+      this.fbLogin = FacebookLogin;
+    }
+  }
+
+  async facebookAuth() {
+    const FACEBOOK_PERMISSIONS = ['email', 'user_birthday', 'user_photos','user_gender',];
+    const result = await this.fbLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+
+    console.log(this.fbLogin);
+
+    if (result.accessToken && result.accessToken.userId) {
+      this.token = result.accessToken;
+      // this.loadUserData();
+    } else if (result.accessToken && !result.accessToken.userId) {
+      // Web only gets the token but not the user ID
+      // Directly call get token to retrieve it now
+      this.getCurrentToken();
+    } else {
+      // Login failed
+    }
+  }
+
+  async getCurrentToken() {
+    const result = await this.fbLogin.getCurrentAccessToken();
+
+    if (result.accessToken) {
+      this.token = result.accessToken;
+      // this.loadUserData();
+    } else {
+      // Not logged in.
+    }
   }
 
   onClickViewPassword() {

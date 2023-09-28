@@ -22,7 +22,7 @@
   <div class="row mt-3 ms-3 me-3">
     <div class="col-12">
       <p class="cart-title">{{ this.bookInfo.bookName }}</p>
-      <p class="items-quantity">{{ this.chapterList.length }} Items</p>
+      <p class="items-quantity">{{ this.chapterList.length }} Chapters</p>
       <div style="border: 1px solid #000000;"></div>
     </div>
   </div>
@@ -30,16 +30,16 @@
   <div class="row mt-3 ms-4 me-4" *ngFor="let eachChapter of this.chapterList; ">
     <div class="col-12" (click)="onClickBookChapter(eachChapter.id)">
       <div class="row">
-        <div class="col-12" style="height: 65px; border-radius: 30px; border: 1px solid rgb(172, 172, 240); box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+        <div class="col-12" style="height: auto; border-radius: 30px; border: 1px solid rgb(172, 172, 240); box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
           <div class="row mt-1">
             <div class="col-1" style="margin-left: -24px;"></div>
-            <div class="col-7" style="background-color: #d9d9d9; height: 55px; border-radius: 30px;">
-              <p style="font-size: 25px; margin-top: 10px; margin-left: 10px; font-weight: 800px;">{{ eachChapter.chapter }}</p>
+            <div class="col-7" style="background-color: #d9d9d9; height: auto; border-radius: 30px; margin-bottom: 0.3rem;">
+              <p style="font-size: 20px; margin-top: 10px; margin-left: 10px; font-weight: 800px;">{{ eachChapter.chapter }}</p>
             </div>
-            <div class="col-4" style="text-align: right;">
+            <div class="col-4 d-grid align-items-center" style="text-align: right;">
               <!-- <p class="ms-3 mt-3">{{ eachChapter.chapter }}</p> -->
               <!-- <ion-icon name="arrow-forward-outline" style="margin-top: 12px;" size="large"></ion-icon> -->
-              <ion-icon name="arrow-forward-circle" style="margin-top: -5px; margin-left: 4rem; font-size: 65px; color: #d9d9d9;" (click)="onClickBackBtn()"></ion-icon>
+              <ion-icon name="arrow-forward-circle" style="margin-left: 4rem; font-size: 65px; color: #d9d9d9;" (click)="onClickBackBtn()"></ion-icon>
             </div>
           </div>
         </div>

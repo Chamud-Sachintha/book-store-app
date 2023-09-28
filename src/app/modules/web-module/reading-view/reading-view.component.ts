@@ -58,6 +58,10 @@ export class ReadingViewComponent  implements OnInit {
     this.isModalOpen = false;
   }
 
+  onClickCancelBookmarkListModal() {
+    this.isModalOpen = false;
+  }
+
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }

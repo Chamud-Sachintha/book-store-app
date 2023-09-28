@@ -69,7 +69,7 @@ export class InsideBookComponent  implements OnInit {
     this.requestModel.token = sessionStorage.getItem("authToken");
 
     const loading = await this.loadingCtrl.create({
-      message: 'Dismissing after 3 seconds...',
+      message: 'Wait for the loading details...',
       translucent: true
     });
 

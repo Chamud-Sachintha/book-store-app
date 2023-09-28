@@ -12,6 +12,7 @@ import { Book } from 'src/app/models/Book/book';
 import { environment } from 'src/environments/environment';
 import { BookMark } from 'src/app/models/BookMarks/book-mark';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-reading-view',
@@ -37,7 +38,11 @@ export class ReadingViewComponent  implements OnInit {
   bookMarkList: BookMark[] = [];
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
-              , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController) { }
+              , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
+              , private analyticService: AnalyticsService) { 
+
+    this.analyticService.setScreenName(this.router.url);
+  }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);

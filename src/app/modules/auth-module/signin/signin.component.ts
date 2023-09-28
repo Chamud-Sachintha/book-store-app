@@ -28,6 +28,7 @@ export class SigninComponent  implements OnInit {
   isAlertOpen = false;
   public alertButtons = ['OK'];
   user !: any;
+  userEmail!: string;
 
   userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
 
@@ -156,17 +157,22 @@ export class SigninComponent  implements OnInit {
           sessionStorage.setItem("authToken", resp.token);
           sessionStorage.setItem("clientId", resp.data[0].id);
           sessionStorage.setItem("emailAddress", resp.data[0].email);
+
+          this.userEmail = resp.data[0].email;
           
           // this.presentAlert("User Signin", "User Login Successfully.");
-          this.requestModel.clientId = resp.data[0].id;
+          //this.requestModel.clientId = resp.data[0].id;
 
-          this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
-            if (resp.code === 1) {
-              this.analyticsService.logEvent();
-              this.analyticsService.setUser("1");
-              this.router.navigate(['book-list'])
-            }
-          })
+          // this.authService.addLoginTimeLog(this.requestModel).subscribe((resp: any) => {
+          //   if (resp.code === 1) {
+              
+          //   }
+          // })
+
+          this.analyticsService.logEvent();
+          this.analyticsService.setUser(this.userEmail);
+
+          this.router.navigate(['book-list'])
         } else {
           this.presentAlert("User Signin", resp.message);
         }

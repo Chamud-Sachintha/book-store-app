@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
           event.preventDefault();
           event.stopPropagation();
           
-          _this.presentToast('bottom', "Please go Back through App.")
+          _this.presentToast('bottom', "Please Go Back Through App.")
         }, false);
       });
     });
@@ -70,6 +70,7 @@ export class AppComponent implements OnInit {
       message: message,
       duration: 1500,
       position: position,
+      cssClass: 'custom-toast'
     });
 
     await toast.present();

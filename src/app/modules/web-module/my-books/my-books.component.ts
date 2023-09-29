@@ -6,6 +6,7 @@ import { Book } from 'src/app/models/Book/book';
 import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-books',
@@ -56,6 +57,8 @@ export class MyBooksComponent  implements OnInit {
 
       if (resp.code === 1) {
         dataList.data[0].forEach((el: Book) => {
+          const coverImage = environment.imageServer + "public/public/CoverImages/" + el.bookCover;
+          el.bookCover = coverImage;
           this.paidBookInfoList.push(el)
         });
       }

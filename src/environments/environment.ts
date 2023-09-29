@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   appUrl: "https://api.dpuremaths.lk/api/",
   fileServer: "https://admin.dpuremaths.lk/api/",
+  imageServer: "https://admin.dpuremaths.lk/",
   // appUrl: "http://localhost:8000/api/",
 
   firebaseConfig: {

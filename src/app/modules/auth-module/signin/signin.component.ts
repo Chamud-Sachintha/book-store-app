@@ -110,6 +110,11 @@ export class SigninComponent  implements OnInit {
             sessionStorage.setItem("clientId", resp.data[0].id);
             sessionStorage.setItem("emailAddress", resp.data[0].email);
 
+            this.userEmail = resp.data[0].email;
+
+            this.analyticsService.logEvent();
+            this.analyticsService.setUser(this.userEmail);
+
             this.router.navigate(['book-list']);
           }
         }, (err) => {

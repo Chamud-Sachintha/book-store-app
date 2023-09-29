@@ -93,8 +93,9 @@
   </div>
   <div class="row mt-3">
     <div class="col-12">
+      <audio src="../../../../assets/sounds/unlock_notification.mp3" #ref></audio>
       <!-- <button class="bg_btn" (click)="onClickSigninBtn()">Let's Start</button> -->
-      <ngx-slide-to-confirm placeHolder="UNLOCK YOUR PATH" (confirm)="onConfirm()"  color="black"></ngx-slide-to-confirm>
+      <ngx-slide-to-confirm placeHolder="UNLOCK YOUR PATH" (confirm)="onConfirm(); ref.play()"  color="black"></ngx-slide-to-confirm>
     </div>
   </div>
 </ion-content>

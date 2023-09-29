@@ -43,7 +43,6 @@ export class ReadingViewComponent  implements OnInit {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
     this.initCreateBookMarksInfoForm();
     this.getChapterInfoById();
-    this.getBookMarkListByBookIdAndClientId();
   }
 
   onClickApplyBookmarkBtn(pageNumber: number) {
@@ -58,6 +57,7 @@ export class ReadingViewComponent  implements OnInit {
   }
 
   setOpen(isOpen: boolean) {
+    this.getBookMarkListByBookIdAndClientId();
     this.isModalOpen = isOpen;
   }
 
@@ -71,7 +71,7 @@ export class ReadingViewComponent  implements OnInit {
       console.log(dataList.data[0])
       if (resp.code === 1) {
         dataList.data[0].body.forEach((eachBookmark: BookMark) => {
-          console.log(eachBookmark)
+          this.bookMarkList = [];
           this.bookMarkList.push(eachBookmark);
         })
       }

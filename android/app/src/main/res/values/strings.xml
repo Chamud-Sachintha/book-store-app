@@ -5,4 +5,6 @@
     <string name="package_name">lk.dpuremaths.app</string>
     <string name="custom_url_scheme">lk.dpuremaths.app</string>
     <string name="server_client_id">350318496277-4949cv9612r4pk6ethuuit2hbr8poj1v.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">997371431487868</string>
+    <string name="fb_login_protocol_scheme">997371431487868</string>
 </resources>

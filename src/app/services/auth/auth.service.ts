@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from 'src/app/models/Clinet/client';
+import { FacebookAuthInfo } from 'src/app/models/FacebookAuthInfo/facebook-auth-info';
 import { GoogleAuth } from 'src/app/models/GoogleAuth/google-auth';
 import { Request } from 'src/app/models/Request/request';
 import { environment } from 'src/environments/environment';
@@ -29,6 +30,11 @@ export class AuthService {
     return this.http.post(path, gAuthModel);
   }
 
+  facebookAuth(facebookAuthModel: FacebookAuthInfo) {
+    const path = environment.appUrl + "facebookAuth";
+    return this.http.post(path, facebookAuthModel);
+  }
+
   isClientLoggedIn() {
     return sessionStorage.getItem("emailAddress") != null;
   }
@@ -52,5 +58,10 @@ export class AuthService {
     console.log('kk ' + requestBody.clientId);
     const path = environment.appUrl + "update-logout-time";
     return this.http.post(path, requestBody);
+  }
+
+  loadUserData(token: any) {
+    const url = `https://graph.facebook.com/${token.userId}?fields=id,name,picture.width(720),birthday,email&access_token=${token.token}`;
+    return this.http.get(url);
   }
 }

@@ -9,6 +9,9 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth';
 import { Request } from 'src/app/models/Request/request';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { FacebookLogin, FacebookLoginPlugin } from '@capacitor-community/facebook-login';
+import { Plugins, registerWebPlugin } from '@capacitor/core';
+import { FacebookAuthInfo } from 'src/app/models/FacebookAuthInfo/facebook-auth-info';
 
 @Component({
   selector: 'app-signin',
@@ -22,6 +25,7 @@ export class SigninComponent  implements OnInit {
   clientLoginForm!: FormGroup;
   client = new Client();
   googleAuthInfo = new gAuthModel();
+  facebookAuthInfo = new FacebookAuthInfo();
   requestModel = new Request();
   isShowPassword = false;
 
@@ -30,11 +34,16 @@ export class SigninComponent  implements OnInit {
   user !: any;
   userEmail!: string;
 
+  fbLogin!: FacebookLoginPlugin;
+  fbUser = null;
+  token!: any;
+
   userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
 
   constructor(private formBuilder: FormBuilder, private router: Router, private alertController: AlertController, private authService: AuthService
               , private platform: Platform, private location: Location, private analyticsService: AnalyticsService) { 
     
+    this.setupFbLogin();
     this.checkSession();
     const getTabBar = document.getElementById("testYYU");
 
@@ -55,6 +64,70 @@ export class SigninComponent  implements OnInit {
 
   ngOnInit() {
     this.createSigninForm();
+  }
+
+  async setupFbLogin() {
+    if (isPlatform('desktop')) {
+      this.fbLogin = FacebookLogin;
+    } else {
+      // const { FacebookLogin } = Plugins;
+      await FacebookLogin.initialize({ appId: '997371431487868' });
+      this.fbLogin = FacebookLogin;
+    }
+  }
+
+  async facebookAuth() {
+    const FACEBOOK_PERMISSIONS = ['email', 'public_profile',];
+    const result = await this.fbLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+
+    console.log(result);
+
+    if (result.accessToken && result.accessToken.userId) {
+      this.token = result.accessToken;
+      this.loadUserData(this.token);
+    } else if (result.accessToken && !result.accessToken.userId) {
+      // Web only gets the token but not the user ID
+      // Directly call get token to retrieve it now
+      this.getCurrentToken();
+    } else {
+      // Login failed
+    }
+  }
+
+  loadUserData(token: any) {
+    this.authService.loadUserData(token).subscribe((resp: any) => {
+      if (resp) {
+        const nameInfo = resp.name.split(" ");
+
+        this.facebookAuthInfo.firstName = nameInfo[0];
+        this.facebookAuthInfo.lastName = nameInfo[1];
+        this.facebookAuthInfo.emailAddress = resp.email;
+
+        this.authService.facebookAuth(this.facebookAuthInfo).subscribe((resp: any) => {
+
+          if (resp.code === 1) {
+            sessionStorage.setItem("authToken", resp.token);
+            sessionStorage.setItem("clientId", resp.data[0].id);
+            sessionStorage.setItem("emailAddress", resp.data[0].email);
+
+            this.router.navigate(['book-list']);
+          }
+        }, (err) => {
+          this.presentAlert("Facebook Authentication", err.message);
+        })
+      }
+    })
+  }
+
+  async getCurrentToken() {
+    const result = await this.fbLogin.getCurrentAccessToken();
+
+    if (result.accessToken) {
+      this.token = result.accessToken;
+      this.loadUserData(this.token);
+    } else {
+      // Not logged in.
+    }
   }
 
   onClickViewPassword() {

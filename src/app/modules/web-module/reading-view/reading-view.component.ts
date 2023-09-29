@@ -36,11 +36,14 @@ export class ReadingViewComponent  implements OnInit {
   bookId!: number;
   createBookMarkForm!: FormGroup;
   bookMarkList: BookMark[] = [];
+  userEmail!: any;
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
               , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
               , private analyticService: AnalyticsService) { 
 
+    this.userEmail = sessionStorage.getItem("emailAddress");
+    this.analyticService.setUser(this.userEmail);
     this.analyticService.setScreenName(this.router.url);
   }
 

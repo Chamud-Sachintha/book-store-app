@@ -10,6 +10,7 @@ import { GoogleAuth as gAuthModel } from '../../../models/GoogleAuth/google-auth
 import { Request } from 'src/app/models/Request/request';
 import { FacebookLogin, FacebookLoginPlugin } from '@capacitor-community/facebook-login';
 import { Plugins, registerWebPlugin } from '@capacitor/core';
+import { FacebookAuthInfo } from 'src/app/models/FacebookAuthInfo/facebook-auth-info';
 
 @Component({
   selector: 'app-signin',
@@ -23,6 +24,7 @@ export class SigninComponent  implements OnInit {
   clientLoginForm!: FormGroup;
   client = new Client();
   googleAuthInfo = new gAuthModel();
+  facebookAuthInfo = new FacebookAuthInfo();
   requestModel = new Request();
   isShowPassword = false;
 
@@ -71,14 +73,14 @@ export class SigninComponent  implements OnInit {
   }
 
   async facebookAuth() {
-    const FACEBOOK_PERMISSIONS = ['email', 'user_birthday', 'user_photos','user_gender',];
+    const FACEBOOK_PERMISSIONS = ['email', 'public_profile',];
     const result = await this.fbLogin.login({ permissions: FACEBOOK_PERMISSIONS });
 
-    console.log(this.fbLogin);
+    console.log(result);
 
     if (result.accessToken && result.accessToken.userId) {
       this.token = result.accessToken;
-      // this.loadUserData();
+      this.loadUserData(this.token);
     } else if (result.accessToken && !result.accessToken.userId) {
       // Web only gets the token but not the user ID
       // Directly call get token to retrieve it now
@@ -88,12 +90,37 @@ export class SigninComponent  implements OnInit {
     }
   }
 
+  loadUserData(token: any) {
+    this.authService.loadUserData(token).subscribe((resp: any) => {
+      if (resp) {
+        const nameInfo = resp.name.split(" ");
+
+        this.facebookAuthInfo.firstName = nameInfo[0];
+        this.facebookAuthInfo.lastName = nameInfo[1];
+        this.facebookAuthInfo.emailAddress = resp.email;
+
+        this.authService.facebookAuth(this.facebookAuthInfo).subscribe((resp: any) => {
+
+          if (resp.code === 1) {
+            sessionStorage.setItem("authToken", resp.token);
+            sessionStorage.setItem("clientId", resp.data[0].id);
+            sessionStorage.setItem("emailAddress", resp.data[0].email);
+
+            this.router.navigate(['book-list']);
+          }
+        }, (err) => {
+          this.presentAlert("Facebook Authentication", err.message);
+        })
+      }
+    })
+  }
+
   async getCurrentToken() {
     const result = await this.fbLogin.getCurrentAccessToken();
 
     if (result.accessToken) {
       this.token = result.accessToken;
-      // this.loadUserData();
+      this.loadUserData(this.token);
     } else {
       // Not logged in.
     }

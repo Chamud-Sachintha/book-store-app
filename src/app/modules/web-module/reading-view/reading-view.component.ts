@@ -53,11 +53,16 @@ export class ReadingViewComponent  implements OnInit {
     this.getChapterInfoById();
   }
 
+  openCreateBookmarkModal() {
+    this.createBookMarkForm.controls['pageNumber'].setValue(this.chapterInfo.chapter);
+  }
+
   onClickApplyBookmarkBtn(pageNumber: number) {
-    this.pageNumberType =  pageNumber;
-    
-    console.log(this.pageNumberType);
+    // this.pageNumberType =  pageNumber;
     this.isModalOpen = false;
+    setTimeout(() => {
+      this.router.navigate(['read', pageNumber]);
+    }, 1000);
   }
 
   onClickCancelBookmarkListModal() {
@@ -204,10 +209,11 @@ export class ReadingViewComponent  implements OnInit {
 
   onSubmitSaveBookMarkInfo() {
     
-    const pageNumber = this.createBookMarkForm.controls['pageNumber'].value;
+    // const pageNumber = this.createBookMarkForm.controls['pageNumber'].value;
+    const pageNumber = this.bookId;
     const pageDescription = this.createBookMarkForm.controls['pageDescription'].value;
 
-    if (pageNumber == "") {
+    if (pageNumber.toString() == "") {
       this.presentAlert("Empty Feild found", "Page Number is required.");
     } else if (pageDescription == "") {
       this.presentAlert("Empty Feilds Found.", "Page Description is required.");

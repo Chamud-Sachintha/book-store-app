@@ -75,6 +75,7 @@ export class ReadingViewComponent  implements OnInit {
   }
 
   getBookMarkListByBookIdAndClientId() {
+    this.bookMarkList = [];
     this.bookMarkInfo.token = sessionStorage.getItem("authToken");
     this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
     this.bookMarkInfo.bookId = localStorage.getItem("mainBookId");
@@ -84,7 +85,6 @@ export class ReadingViewComponent  implements OnInit {
       console.log(dataList.data[0])
       if (resp.code === 1) {
         dataList.data[0].body.forEach((eachBookmark: BookMark) => {
-          this.bookMarkList = [];
           this.bookMarkList.push(eachBookmark);
         })
       }

@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3 me-1" id="bookmarkSection">
+  <div class="row mt-1 ms-3 me-1" id="bookmarkSection">
     <div class="col-2" style="display: none;" id="goUp" (click)="onClickHideBookMarkSection()">
       <ion-icon name="chevron-up" style="font-size: 25px;"></ion-icon>
     </div>
@@ -24,7 +24,7 @@
       <ion-icon name="bookmarks" style="font-size: 25px;"></ion-icon>
     </div>
     <div class="col-1" style="text-align: right;" id="open-modal" (click)="openCreateBookmarkModal()">
-      <ion-icon name="bookmark" style="font-size: 25px;"></ion-icon>
+      <ion-icon name="bookmark" style="font-size: 25px; margin-left: -8px;"></ion-icon>
     </div>
     <div class="col-2" style="text-align: right;" (click)="onClickApplyFullScreen()" id="fullScreenIcon"
       style="display: block;">
@@ -73,7 +73,7 @@
           </div>
           <div class="row mt-3 ms-3 me-3">
             <textarea name="" id="" cols="30" rows="5" class="form-control"
-              formControlName="pageDescription"></textarea>
+              formControlName="pageDescription" placeholder="Enter page number and a short description here"></textarea>
           </div>
           <div class="row mt-3 ms-3 me-3" style="align-items: center;">
             <button class="next-btn" type="submit">Save Bookmark</button>

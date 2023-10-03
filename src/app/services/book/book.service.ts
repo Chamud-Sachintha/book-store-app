@@ -69,4 +69,9 @@ export class BookService {
     const path = environment.appUrl + "bookmark-list";
     return this.http.post(path, bookmarkInfo);
   }
+
+  removeBookmarkById(requestModel: BookMark) {
+    const path = environment.appUrl + "remove-bookmark";
+    return this.http.post(path, requestModel);
+  }
 }

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300&family=Open+Sans:wght@300&family=Poppins:wght@200&display=swap');
+
 
 .book-title {
     font-family: 'Poppins';
@@ -13,6 +15,11 @@
 
 .chapter-count {
     margin-right: 15px;
+}
+
+.u-r {
+    font-family: 'Noto Sans Sinhala', sans-serif;
+    font-weight: bolder;
 }
 
 .book-author {

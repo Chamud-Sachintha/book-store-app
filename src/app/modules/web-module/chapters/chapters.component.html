@@ -23,23 +23,32 @@
     <div class="col-12">
       <p class="cart-title">{{ this.bookInfo.bookName }}</p>
       <p class="items-quantity">{{ this.chapterList.length }} Chapters</p>
-      <div style="border: 1px solid #000000;"></div>
+      <div style="border: 1px solid #000000; margin-bottom: 8px;"></div>
     </div>
   </div>
 
-  <div class="row mt-3 ms-4 me-4" *ngFor="let eachChapter of this.chapterList; ">
+  <div class="row mt-1 ms-3 me-4" *ngFor="let eachChapter of this.chapterList; ">
     <div class="col-12" (click)="onClickBookChapter(eachChapter.id)">
       <div class="row">
-        <div class="col-12" style="height: auto; border-radius: 30px; border: 1px solid rgb(172, 172, 240); box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+        <!-- <div class="col-12" style="height: auto; border-radius: 30px; border: 1px solid rgb(172, 172, 240); box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
           <div class="row mt-1">
             <div class="col-7" style="margin-left: 5px; background-color: #d9d9d9; height: auto; border-radius: 30px; margin-bottom: 0.3rem;">
               <p style="font-size: 20px; margin-top: 18px; margin-left: 10px; font-weight: 800px;">{{ eachChapter.chapter }}</p>
             </div>
             <div class="col-3 ms-5 d-flex flex-row-reverse" style="align-items: center; margin-top: -5px;">
-              <!-- <p class="ms-3 mt-3">{{ eachChapter.chapter }}</p> -->
-              <!-- <ion-icon name="arrow-forward-outline" style="margin-top: 12px;" size="large"></ion-icon> -->
               <ion-icon name="arrow-forward-circle" style="font-size:80px; color: #d9d9d9; position: absolute;" (click)="onClickBackBtn()"></ion-icon>
             </div>
+          </div>
+        </div> -->
+
+        <div class="col-12">
+          <div class="row mt-1">
+            <div class="col-12" style="margin-left: 5px; background-color: #d9d9d9; height: auto; border-radius: 30px; margin-bottom: 0.3rem; border: 2px solid darkgray;">
+              <p style="font-size: 20px; margin-top: 18px; margin-left: 10px; font-weight: 800px;">{{ eachChapter.chapter }}</p>
+            </div>
+            <!-- <div class="col-3 ms-5 d-flex flex-row-reverse" style="align-items: center; margin-top: -5px;">
+              <ion-icon name="arrow-forward-circle" style="font-size:80px; color: #d9d9d9; position: absolute;" (click)="onClickBackBtn()"></ion-icon>
+            </div> -->
           </div>
         </div>
       </div>

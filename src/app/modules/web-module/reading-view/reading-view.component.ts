@@ -53,6 +53,22 @@ export class ReadingViewComponent  implements OnInit {
     this.getChapterInfoById();
   }
 
+  onClickRemoveBookMark(bookmarkId: string) {
+    this.bookMarkInfo = new BookMark();
+    this.bookMarkInfo.token = sessionStorage.getItem("authToken");
+    this.bookMarkInfo.bookmarkId = bookmarkId;
+
+    this.bookService.removeBookmarkById(this.bookMarkInfo).subscribe((resp: any) => {
+
+      if (resp.code === 1) {
+        this.presentAlert("Remove Bookmark", "BookMark Removed Successfully.");
+        this.setOpen(false);
+      }
+    }, (err) => {
+      this.presentAlert("Remove Bookmark", err.message);
+    })
+  }
+
   openCreateBookmarkModal() {
     this.createBookMarkForm.controls['pageNumber'].setValue(this.chapterInfo.chapter);
   }
@@ -101,11 +117,6 @@ export class ReadingViewComponent  implements OnInit {
     }, (err) => {
       console.log(err.message)
     })
-  }
-
-  getMinorChapterInfoById(chapterId: string) {
-
-    
   }
 
   initCreateBookMarksInfoForm() {

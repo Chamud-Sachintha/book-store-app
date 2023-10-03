@@ -4,4 +4,5 @@ export class BookMark {
     pageNumber!: number;
     pageDescription!: string;
     clientId!: any;
+    chapterName!: string;
 }

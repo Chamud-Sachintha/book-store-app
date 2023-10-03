@@ -85,12 +85,27 @@ export class ReadingViewComponent  implements OnInit {
       console.log(dataList.data[0])
       if (resp.code === 1) {
         dataList.data[0].body.forEach((eachBookmark: BookMark) => {
-          this.bookMarkList.push(eachBookmark);
+
+          this.requestBody.token = sessionStorage.getItem("authToken");
+          this.requestBody.chapterId = eachBookmark.pageNumber;
+
+          this.bookService.getChapterInfoById(this.requestBody).subscribe((info) => {
+            const chapterInfo = JSON.parse(JSON.stringify(info));
+
+            eachBookmark.chapterName = chapterInfo.data[0].chapterName;
+
+            this.bookMarkList.push(eachBookmark);
+          })
         })
       }
     }, (err) => {
       console.log(err.message)
     })
+  }
+
+  getMinorChapterInfoById(chapterId: string) {
+
+    
   }
 
   initCreateBookMarksInfoForm() {

@@ -41,6 +41,7 @@ export class ValidateOtpComponent  implements OnInit {
 
       this.authService.validateOTP(this.requestModel).subscribe((resp: any) => {
         if (resp.code === 1) {
+          sessionStorage.setItem("otpCode", otpCode);
           this.router.navigate(['change-pw']);
         }
       }, (err) => {

@@ -7,6 +7,7 @@ import { CartItem } from 'src/app/models/Cart/cart-item';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { Order } from 'src/app/models/Order/order';
 import { OrderService } from 'src/app/services/order/order.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -45,7 +46,9 @@ export class CartComponent  implements OnInit {
       const dataList = JSON.parse(JSON.stringify(resp));
 
       if (resp.code === 1) {
-        this.presentAlert("Place New Order", "Order is Placed Successfully.");
+        this.presentAlert("", "Order Placed Successfully.");
+      } else {
+        this.presentAlert("", "Please Add Book/s to Cart.");
       }
     }, (err) => {
       this.presentAlert("Place New Order", err.message);
@@ -61,9 +64,12 @@ export class CartComponent  implements OnInit {
 
       if (resp.code === 1) {
         dataList.data[0].body.forEach((el: Book) => {
+          const coverImage = environment.imageServer + "public/public/CoverImages/" + el.bookCover;
+          el.bookCover = coverImage;
+          
           this.allCartItemsList.push(el);
         });
-
+        console.log(this.allCartItemsList)
         this.cartId = dataList.data[0].cartId;
         this.cartAmount = dataList.data[0].cartAmount;
       }
@@ -79,7 +85,7 @@ export class CartComponent  implements OnInit {
 
     this.cartService.removeItemFromCartById(this.cart).subscribe((resp: any) => {
       if (resp.code === 1) {
-        this.presentAlert("Remove Item From Cart", "Item Removed Successfully.")
+        this.presentAlert("", "Removed from Cart Successfully.")
         location.reload();
       }
     }, (err) => {

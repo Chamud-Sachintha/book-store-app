@@ -41,10 +41,6 @@ export class ReadingViewComponent  implements OnInit {
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
               , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
               , private analyticService: AnalyticsService) { 
-
-    this.userEmail = sessionStorage.getItem("emailAddress");
-    this.analyticService.setUser(this.userEmail);
-    this.analyticService.setScreenName(this.router.url);
   }
 
   ngOnInit() {
@@ -61,7 +57,7 @@ export class ReadingViewComponent  implements OnInit {
     this.bookService.removeBookmarkById(this.bookMarkInfo).subscribe((resp: any) => {
 
       if (resp.code === 1) {
-        this.presentAlert("Remove Bookmark", "BookMark Removed Successfully.");
+        this.presentAlert("", "Bookmark Deleted Successfully.");
         this.setOpen(false);
       }
     }, (err) => {
@@ -141,6 +137,10 @@ export class ReadingViewComponent  implements OnInit {
         this.bookInfo.bookName = dataList.data[0].bookName;
         this.chapterInfo.chapter = dataList.data[0].chapterName;
         this.pdfByteArr = dataList.data[0].pdfPath;
+
+        this.userEmail = sessionStorage.getItem("emailAddress");
+        this.analyticService.setUser(this.userEmail);
+        this.analyticService.setScreenName(this.chapterInfo.chapter);
 
         const requestBody = {
           pdfName: this.pdfByteArr
@@ -240,9 +240,9 @@ export class ReadingViewComponent  implements OnInit {
     const pageDescription = this.createBookMarkForm.controls['pageDescription'].value;
 
     if (pageNumber.toString() == "") {
-      this.presentAlert("Empty Feild found", "Page Number is required.");
+      this.presentAlert("Empty Field Detected", "Page Number is required.");
     } else if (pageDescription == "") {
-      this.presentAlert("Empty Feilds Found.", "Page Description is required.");
+      this.presentAlert("Empty Field Detected.", "Page Description is Required.");
     } else {
       this.bookMarkInfo.token = sessionStorage.getItem("authToken");
       this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
@@ -252,7 +252,7 @@ export class ReadingViewComponent  implements OnInit {
 
       this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("Add Bookmark", "Bookmartk Adding Successsfully.");
+          this.presentAlert("", "Bookmark Saved Successfully.");
         }
       }, (err) => {
           this.presentAlert("Add Bookmark", err.message);

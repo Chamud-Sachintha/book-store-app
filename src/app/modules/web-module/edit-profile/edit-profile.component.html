@@ -20,8 +20,11 @@
   </div>
 
   <div class="row mt-5">
-    <div class="col-12 text-center">
-      <img width="96" height="96" src="https://img.icons8.com/color/96/circled-user-male-skin-type-7--v1.png" alt="circled-user-male-skin-type-7--v1"/>
+    <div class="col-12 text-center" *ngIf="this.gender == 'male'">
+      <img width="96" height="96" src="../../../../assets/images/male.png" alt="circled-user-male-skin-type-7--v1"/>
+    </div>
+    <div class="col-12 text-center" *ngIf="this.gender == 'female'">
+      <img width="96" height="96" src="../../../../assets/images/female.png" alt="circled-user-male-skin-type-7--v1"/>
     </div>
     <div class="col-12 text-center">
       <p class="name">{{ this.profileInfo.firstName }} {{ this.profileInfo.lastName }}</p>

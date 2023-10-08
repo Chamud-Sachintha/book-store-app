@@ -55,7 +55,7 @@ export class InsideBookComponent  implements OnInit {
       const dataList = JSON.parse(JSON.stringify(resp));
 
       if (resp.code === 1) {
-        this.presentAlert("Buy Book", "Successfully Baught Book.");
+        this.presentAlert("", "Book Purchased Successfully");
 
         this.router.navigate(['/my-books']);
       }
@@ -69,7 +69,7 @@ export class InsideBookComponent  implements OnInit {
     this.requestModel.token = sessionStorage.getItem("authToken");
 
     const loading = await this.loadingCtrl.create({
-      message: 'Wait for the loading details...',
+      message: ' Please wait a moment.',
       translucent: true
     });
 
@@ -120,7 +120,7 @@ export class InsideBookComponent  implements OnInit {
 
     this.cartService.addItemsToCart(this.cartItem).subscribe((resp: any) => {
       if (resp.code === 1) {
-        this.presentAlert("Add Item to Cart", "Book Successfully Added to Cart.");
+        this.presentAlert("", "Added to Cart Successfully.");
       } else {
         this.presentAlert("Add Item to Cart", resp.message);
       }
@@ -132,22 +132,28 @@ export class InsideBookComponent  implements OnInit {
   onSubmitClientReview() {
     const rating = this.ratingForm.controls['rating'].value;
     const feedback = this.ratingForm.controls['feedback'].value;
-    
-    this.clientReview.token = sessionStorage.getItem("authToken");
-    this.clientReview.clientId = sessionStorage.getItem("clientId");
-    this.clientReview.bookId = this.bookId;
-    this.clientReview.rating = rating;
-    this.clientReview.feedback = feedback;
 
-    this.bookService.submitClientReviewForBook(this.clientReview).subscribe((resp: any) => {
-      const dataList = JSON.parse(JSON.stringify(resp));
+    if (rating == "") {
+      this.presentAlert("Unable to Submit Review", "Provide Star Rating & Feedback");
+    } else if (feedback == "") {
+      this.presentAlert("Unable to Submit Review", "Provide Star Rating & Feedback");
+    } else {
+      this.clientReview.token = sessionStorage.getItem("authToken");
+      this.clientReview.clientId = sessionStorage.getItem("clientId");
+      this.clientReview.bookId = this.bookId;
+      this.clientReview.rating = rating;
+      this.clientReview.feedback = feedback;
 
-      if (resp.code === 1) {
-        this.presentAlert("Submit Client Review", "Successfully Added a Review");
-      }
-    }, (err) => {
-      this.presentAlert("Submit Client Review", err);
-    })
+      this.bookService.submitClientReviewForBook(this.clientReview).subscribe((resp: any) => {
+        const dataList = JSON.parse(JSON.stringify(resp));
+
+        if (resp.code === 1) {
+          this.presentAlert("Review Submitted Successfully", "Thank you !!!");
+        }
+      }, (err) => {
+        this.presentAlert("Submit Client Review", err);
+      })
+    }
   }
 
   async presentAlert(subHeader: string, alertMessage: string) {

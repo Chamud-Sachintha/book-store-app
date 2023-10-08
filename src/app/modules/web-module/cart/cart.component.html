@@ -58,13 +58,13 @@
       <div class="card" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
         <div class="row">
           <div class="col-5">
-            <img src="../../../../assets/book-covers/0 trig cover design-min.jpg" alt="">
+            <img [src]="eachCartItem.bookCover" alt="">
           </div>
           <div class="col-7">
             <p class="book-title mt-4">{{ eachCartItem.bookName }}</p>
-            <p style="margin-top: -15px;">Dulith Perera</p>
+            <p style="margin-top: -15px;">{{ eachCartItem.authorName }}</p>
 
-            <p class="chapter-count">LKR . {{ eachCartItem.bookPrice }}</p>
+            <p class="chapter-count">LKR {{ eachCartItem.bookPrice }}</p>
 
             <button type="button" class="btn btn-danger btn-sm" style="width: 100px; border-radius: 20px; color: white; border: none; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" (click)="onClickRemoveItemFromCart(eachCartItem.bookId)">Remove</button>
           </div>
@@ -113,7 +113,7 @@
           <p class="cart-item-title">Sub Total</p>
         </div>
         <div class="col-6">
-          <p class="cart-item-title" style="text-align: right;">LKR. {{ this.cartAmount }} .00</p>
+          <p class="cart-item-title" style="text-align: right;">LKR {{ this.cartAmount }} .00</p>
         </div>
       </div>
     </div>

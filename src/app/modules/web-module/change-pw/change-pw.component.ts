@@ -35,12 +35,14 @@ export class ChangePwComponent  implements OnInit {
     const newPassword = this.changePwForm.controls['newPassword'].value;
     const confPass = this.changePwForm.controls['confPassword'].value;
 
-    if (newPassword == "") {
-      this.presentAlert("Empty Feilds Found", "Password is Required.")
+    if (newPassword == "" && confPass == "") {
+      this.presentAlert("Empty Fields Detected", "Please FILL BOTH Fields.")
+    } else if (newPassword == "") {
+      this.presentAlert("Empty Fields Detected", "New Password is Required .")
     } else if (confPass == "") {
-      this.presentAlert("Empty Feilds Found", "Password Confirm is Required.")
+      this.presentAlert("Empty Fields Detected", "Password Confirmation Required.")
     } else if (newPassword != confPass) {
-      this.presentAlert("Empty Feilds Found", "Password Doesn't Matched.")
+      this.presentAlert("Empty Fields Detected", "Password Fields Don’t Match.")
     } else {
       this.forgotPwModel.authCode = sessionStorage.getItem("otpCode");
       this.forgotPwModel.newPassword = newPassword;
@@ -48,7 +50,7 @@ export class ChangePwComponent  implements OnInit {
       this.authService.changePw(this.forgotPwModel).subscribe((resp: any) => {
 
         if (resp.code === 1) {
-          this.presentAlert("Change Password", "Password Changed Successfully.");
+          this.presentAlert("Password Updated Successfully.", "Sign in Using New Password.");
 
           this.router.navigate(['auth']);
         }

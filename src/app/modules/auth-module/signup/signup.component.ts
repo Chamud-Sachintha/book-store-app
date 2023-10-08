@@ -19,6 +19,7 @@ export class SignupComponent  implements OnInit {
   clientRegisterForm!: FormGroup;
   client = new Client();
   userEmailRegEx = new RegExp("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}");
+  mobileNumberRegEx = new RegExp("");
 
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private authService: AuthService
               , private location: Location, private platform: Platform, private router: Router) { 
@@ -30,10 +31,6 @@ export class SignupComponent  implements OnInit {
 
   ngOnInit() {
     this.initClientRegisterForm();
-
-    // CapacitorApp.addListener('backButton', ({canGoBack}) => {
-    //   this.location.back();
-    // })
   }
 
   initClientRegisterForm() {
@@ -54,17 +51,17 @@ export class SignupComponent  implements OnInit {
     const confPassword = this.clientRegisterForm.controls['confPassword'].value;
 
     if (!this.userEmailRegEx.test(emailAddress)) {
-      this.presentAlert("Invalid Input Format", "Invalid Email Format.");
+      this.presentAlert("Invalid Input Format", "Enter Valid Email Address.");
     } else if (firstName === "") {
-      this.presentAlert("Empty Feilds Founded.", "First Name is Required.")
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
     } else if (lastName === "") {
-      this.presentAlert("Empty Feilds Founded.", "Last Name is Required.")
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
     } else if (emailAddress === "") {
-      this.presentAlert("Empty Feilds Founded.", "Email Address is Required.")
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
     } else if (password === "") {
-      this.presentAlert("Empty Feilds Founded.", "Password is Required.");
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
     } else if (password !== confPassword) {
-      this.presentAlert("Password Confirmation Error", "Password is Not Matched.");
+      this.presentAlert("Unable to Create Password", "Password Fields Don’t Match.");
     } else {
       this.client.firstName = firstName;
       this.client.lastName = lastName;
@@ -74,7 +71,7 @@ export class SignupComponent  implements OnInit {
       this.authService.registerNewClient(this.client).subscribe((resp: any) => {
         console.log(resp.code)
         if (resp.code === 1) {
-          this.presentAlert("User Registation", "User Registration Successfully.");
+          this.presentAlert("Profile Created Successfully", "Please Sign in to Your Account.");
 
           this.router.navigate(['/auth/login']);
         } else {

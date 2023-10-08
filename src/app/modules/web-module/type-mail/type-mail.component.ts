@@ -34,17 +34,17 @@ export class TypeMailComponent  implements OnInit {
     const emailAddress = this.sendOTPForm.controls['emailAddress'].value;
 
     if (emailAddress == "") {
-      this.presentAlert("Empty Feilds Founded", "Email Address is required.");
+      this.presentAlert("Empty Field Detected", "Email Address is Required.");
     } else {
       this.requestModel.emailAddress = emailAddress;
 
       this.authService.sendOTP(this.requestModel).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("Send OTP to Mail", "Successfully Sent the OTP");
+          this.presentAlert("OTP Sent Successfully", "Please Check Inbox For Code.");
           sessionStorage.setItem("otpMail", emailAddress);
           this.router.navigate(['validate-otp']);
         } else {
-          this.presentAlert("Send OTP to Mail", resp.message);
+          this.presentAlert("Unable to Send OTP", "No Account Detected For Email");
         }
       }, (err) => {
         this.presentAlert("Send OTP to Mail", err.message);

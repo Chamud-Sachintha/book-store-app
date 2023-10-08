@@ -43,9 +43,11 @@ export class ValidateOtpComponent  implements OnInit {
         if (resp.code === 1) {
           sessionStorage.setItem("otpCode", otpCode);
           this.router.navigate(['change-pw']);
+        } else {
+          this.presentAlert("OTP Validation Failed", "Please Retry With Correct Code");
         }
       }, (err) => {
-        this.presentAlert("Validate OTP Code", err.message);
+        this.presentAlert("OTP Validation Failed", err.message);
       })
     }
   }

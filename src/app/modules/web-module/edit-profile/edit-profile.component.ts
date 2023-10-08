@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,13 +12,14 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, ReactiveFormsModule]
+  imports: [IonicModule, FormsModule, ReactiveFormsModule, CommonModule]
 })
 export class EditProfileComponent implements OnInit {
 
   editprofileForm!: FormGroup;
   profileInfo = new Profile();
   requestModel = new Request();
+  gender: any;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private profileService: ProfileService
     , private alertController: AlertController, private navCtrl: NavController) { }
@@ -35,6 +37,17 @@ export class EditProfileComponent implements OnInit {
     this.navCtrl.back();
   }
 
+  isValidNumber(str: any) {
+
+    const txtPrefix = str.substring(0, 2);
+
+    if (isNaN(str) && txtPrefix == "07") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   onSubmitEditProfileForm() {
     const firstName = this.editprofileForm.controls['firstName'].value;
     const lastName = this.editprofileForm.controls['lastName'].value;
@@ -47,12 +60,28 @@ export class EditProfileComponent implements OnInit {
     const grade = this.editprofileForm.controls['grade'].value;
     const district = this.editprofileForm.controls['district'].value;
 
-    if (firstName == "") {
+    if (firstName == "" || lastName == "" || age == "" || sex == "" || nicNumber == "" || mobileNumber == "" || schoolName == "" || grade == "" || district == "") {
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
+    } if (firstName == "") {
       this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
     } else if (lastName == "") {
       this.presentAlert("Empty Feilds Founed.", "Last Name is Required.")
     } else if (mobileNumber == "") {
       this.presentAlert("Empty Feilds Founed.", "Mobile Number is Required.")
+    } else if (!this.isValidNumber(mobileNumber)) {
+      this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+    } else if (nicNumber == "") {
+      this.presentAlert("Empty Feilds Founed.", "NIC Number is Required.")
+    } else if (schoolName == "") {
+      this.presentAlert("Empty Feilds Founed.", "School Name is Required.")
+    } else if (age == "") {
+      this.presentAlert("Empty Feilds Founed.", "Age is Required.")
+    } else if (sex == "") {
+      this.presentAlert("Empty Feilds Founed.", "Gender is Required.")
+    } else if (grade == "") {
+      this.presentAlert("Empty Feilds Founed.", "Grade is Required.")
+    } else if (district == "") {
+      this.presentAlert("Empty Feilds Founed.", "District is Required.")
     } else {
       this.profileInfo.firstName = firstName;
       this.profileInfo.lastName = lastName;
@@ -66,7 +95,7 @@ export class EditProfileComponent implements OnInit {
           //location.reload();
         }
       }, (err) => {
-        this.presentAlert("Update Profile Informatioms", err.message);
+        this.presentAlert("Profile Updated Successfully", err.message);
       })
 
       this.profileInfo.clientId = sessionStorage.getItem("clientId");
@@ -82,7 +111,18 @@ export class EditProfileComponent implements OnInit {
         const dataList = JSON.parse(JSON.stringify(resp));
 
         if (resp.code === 1) {
-          this.presentAlert("Update Profile Informatioms", "user data are safe in our DB and will not be shared with any third parties.");
+          this.editprofileForm.controls['firstName'].setValue("");
+          this.editprofileForm.controls['lastName'].setValue("");
+      
+          this.editprofileForm.controls['age'].setValue("");
+          this.editprofileForm.controls['sex'].setValue("");
+          this.editprofileForm.controls['nicNumber'].setValue("");
+          this.editprofileForm.controls['mobileNumber'].setValue("");
+          this.editprofileForm.controls['schoolName'].setValue("");
+          this.editprofileForm.controls['grade'].setValue("");
+          this.editprofileForm.controls['district'].setValue("");
+
+          this.presentAlert("Profile Updated Successfully", "Thank you !!!");
           this.router.navigate(['my-books']);
         }
       }, (err) => {
@@ -146,6 +186,7 @@ export class EditProfileComponent implements OnInit {
       if (resp.code === 1) {
         this.editprofileForm.controls['age'].setValue(dataList.data[0].age)
         this.editprofileForm.controls['sex'].setValue(dataList.data[0].gender)
+        this.gender = dataList.data[0].gender;
         this.editprofileForm.controls['mobileNumber'].setValue(dataList.data[0].mobileNumber)
         this.editprofileForm.controls['nicNumber'].setValue(dataList.data[0].nicNumber)
         this.editprofileForm.controls['schoolName'].setValue(dataList.data[0].schoolName)

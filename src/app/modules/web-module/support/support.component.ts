@@ -56,10 +56,12 @@ export class SupportComponent  implements OnInit {
     const title = this.clientSupportForm.controls['title'].value;
     const message = this.clientSupportForm.controls['message'].value;
 
-    if (title == "") {
-      this.presentAlert("Empty Feilds Founded.", "Title is required.");
+    if (title == "" && message == "") {
+      this.presentAlert("Empty Fields Detected", "Please FILL BOTH Field")
+    } else if (title == "") {
+      this.presentAlert("Empty Fields Detected.", "Title is Required.");
     } else if (message == "") {
-      this.presentAlert("Empty Feilds Founded.", "Message is required.");
+      this.presentAlert("Empty Fields Detected.", "Message is Required.");
     } else {
       this.supportMessage.emailAddress = sessionStorage.getItem("emailAddress");
       this.supportMessage.title = title;
@@ -68,7 +70,7 @@ export class SupportComponent  implements OnInit {
 
       this.supportService.addClientSupportmessage(this.supportMessage).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("Client Support Message", "Client Support Message Added Successfully.");
+          this.presentAlert("User Support Request Submitted Successfully ", "Expect Response via Email.");
 
           this.clientSupportForm.controls['title'].setValue('');
           this.clientSupportForm.controls['message'].setValue('');
@@ -78,6 +80,7 @@ export class SupportComponent  implements OnInit {
       })
     }
   }
+  
 
   async presentAlert(subHeader: string, alertMessage: string) {
     const alert = await this.alertController.create({

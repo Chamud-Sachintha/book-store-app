@@ -107,10 +107,10 @@
                 <div class="col-12 ms-2">
                   <div class="row">
                     <div class="col-8">
-                      <p class="book-title mt-2">Chapter No: {{ eachBookMark.chapterName }}</p>
+                      <p class="book-title mt-2">Chapter: {{ eachBookMark.chapterName }}</p>
                     </div>
                     <div class="col-4 mt-2">
-                      <ion-icon name="close-circle" style="font-size: 30px; float: right; margin-right: 14px;" (click)="onClickRemoveBookMark(eachBookMark.bookmarkId)"></ion-icon>
+                      <ion-icon name="trash" style="font-size: 30px; float: right; margin-right: 14px;" (click)="onClickRemoveBookMark(eachBookMark.bookmarkId)"></ion-icon>
                     </div>
                   </div>
                   <p style="margin-top: -10px;">{{ eachBookMark.pageDescription }}</p>

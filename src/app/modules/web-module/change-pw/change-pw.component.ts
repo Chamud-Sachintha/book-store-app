@@ -38,11 +38,11 @@ export class ChangePwComponent  implements OnInit {
     if (newPassword == "" && confPass == "") {
       this.presentAlert("Empty Fields Detected", "Please FILL BOTH Fields.")
     } else if (newPassword == "") {
-      this.presentAlert("Empty Fields Detected", "New Password is Required .")
+      this.presentAlert("Empty Field Detected", "New Password is Required .")
     } else if (confPass == "") {
-      this.presentAlert("Empty Fields Detected", "Password Confirmation Required.")
+      this.presentAlert("Empty Field Detected", "Password Confirmation Required.")
     } else if (newPassword != confPass) {
-      this.presentAlert("Empty Fields Detected", "Password Fields Don’t Match.")
+      this.presentAlert("Unable to Create Password", "Password Fields Don’t Match.")
     } else {
       this.forgotPwModel.authCode = sessionStorage.getItem("otpCode");
       this.forgotPwModel.newPassword = newPassword;

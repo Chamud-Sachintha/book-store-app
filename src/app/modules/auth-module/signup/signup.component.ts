@@ -74,11 +74,11 @@ export class SignupComponent  implements OnInit {
           this.presentAlert("Profile Created Successfully", "Please Sign in to Your Account.");
 
           this.router.navigate(['/auth/login']);
-        } else {
-          this.presentAlert("User Registation", resp.message);
+        } else if (resp.code === 3) {
+          this.presentAlert("Account Detected For Email", "Please Sign in to Your Account");
         }
       }, (err) => {
-        this.presentAlert("User Registation", err);
+        this.presentAlert("Unable to Sign in", "Please Check Your Connection");
       })
     }
   }

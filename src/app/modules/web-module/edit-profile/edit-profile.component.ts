@@ -41,7 +41,7 @@ export class EditProfileComponent implements OnInit {
 
     const txtPrefix = str.substring(0, 2);
 
-    if (isNaN(str) && txtPrefix == "07") {
+    if ((!isNaN(str)) && (txtPrefix == "07")) {
       return true;
     } else {
       return false;
@@ -62,27 +62,31 @@ export class EditProfileComponent implements OnInit {
 
     if (firstName == "" || lastName == "" || age == "" || sex == "" || nicNumber == "" || mobileNumber == "" || schoolName == "" || grade == "" || district == "") {
       this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
-    } if (firstName == "") {
-      this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
-    } else if (lastName == "") {
-      this.presentAlert("Empty Feilds Founed.", "Last Name is Required.")
-    } else if (mobileNumber == "") {
-      this.presentAlert("Empty Feilds Founed.", "Mobile Number is Required.")
-    } else if (!this.isValidNumber(mobileNumber)) {
-      this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
-    } else if (nicNumber == "") {
-      this.presentAlert("Empty Feilds Founed.", "NIC Number is Required.")
-    } else if (schoolName == "") {
-      this.presentAlert("Empty Feilds Founed.", "School Name is Required.")
-    } else if (age == "") {
-      this.presentAlert("Empty Feilds Founed.", "Age is Required.")
-    } else if (sex == "") {
-      this.presentAlert("Empty Feilds Founed.", "Gender is Required.")
-    } else if (grade == "") {
-      this.presentAlert("Empty Feilds Founed.", "Grade is Required.")
-    } else if (district == "") {
-      this.presentAlert("Empty Feilds Founed.", "District is Required.")
+    // } if (firstName == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
+    // } else if (lastName == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "Last Name is Required.")
+    // } else if (mobileNumber == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "Mobile Number is Required.")
+    // } else if (!this.isValidNumber(mobileNumber)) {
+    //   this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+    // } else if (nicNumber == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "NIC Number is Required.")
+    // } else if (schoolName == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "School Name is Required.")
+    // } else if (age == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "Age is Required.")
+    // } else if (sex == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "Gender is Required.")
+    // } else if (grade == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "Grade is Required.")
+    // } else if (district == "") {
+    //   this.presentAlert("Empty Feilds Founed.", "District is Required.")
     } else {
+
+      if (!this.isValidNumber(mobileNumber)) {
+        this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+      }
       this.profileInfo.firstName = firstName;
       this.profileInfo.lastName = lastName;
       this.profileInfo.mobileNumber = mobileNumber;

@@ -66,14 +66,8 @@
           <div class="ion-padding" slot="content">
             <form [formGroup]="this.ratingForm" (submit)="onSubmitClientReview()">
               <div class="row">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-md-3 col-lg-3 col-sm-2"></div>
-                    <div class="col-md-6 col-lg-6 col-sm-8">
-                      <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-sm-2"></div>
-                  </div>
+                <div class="col-12" style="display: flex; align-items: center; justify-content: center;">
+                  <ngx-star-rating formControlName="rating" [id]="'rating'"></ngx-star-rating>
                 </div>
                 <div class="col-12 mt-3">
                   <textarea name="" class="form-control text-inout" placeholder="Type Your Feedback" cols="30" rows="5"
@@ -93,47 +87,47 @@
     </div>
   </div>
 
-  <div class="row mt-3 ms-3 me-3">
+  <div class="row mt-5 ms-3 me-3">
     <div class="col-12">
       <p class="u-r">User Reviews …</p>
     </div>
     <div class="col-12" style="max-height: 200px;">
       <div *ngFor="let eachFeedback of this.feedBackList" class="card mb-3"
         style="box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;">
-        <div class="row">
+        <div class="row mt-2">
           <div class="col-12 ms-2">
-            <p class="book-title mt-2">{{ eachFeedback.feedback }}</p>
-            <p style="margin-top: -10px;">{{ eachFeedback.firstName }} {{ eachFeedback.lastName }}</p>
-
             <div class="row">
               <div class="col-6" *ngIf="eachFeedback.rating == 1">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
               </div>
               <div class="col-6" *ngIf="eachFeedback.rating == 2">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
               </div>
               <div class="col-6" *ngIf="eachFeedback.rating == 3">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
               </div>
               <div class="col-6" *ngIf="eachFeedback.rating == 4">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
               </div>
               <div class="col-6" *ngIf="eachFeedback.rating == 5">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
-                <img src="../../../../assets/icon/star.png" style="width: 25px; height: 25px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
+                <img src="../../../../assets/icon/star.png" style="width: 20px; height: 20px;" alt="">
               </div>
               <div class="col-6">
                 <p class="chapter-count" style="float: right;">{{ eachFeedback.time | date: "MMM dd, yyyy" }}</p>
               </div>
+
+              <p class="book-title">{{ eachFeedback.feedback }}</p>
+              <p style="margin-top: -10px;">{{ eachFeedback.firstName }} {{ eachFeedback.lastName }}</p>
             </div>
           </div>
         </div>

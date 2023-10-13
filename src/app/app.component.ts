@@ -16,6 +16,7 @@ import { AuthService } from './services/auth/auth.service';
 
 export class AppComponent implements OnInit {
 
+  toastDisplayCount = 0;
   requestBody = new Request();
 
   constructor(private platform: Platform, private location: Location, private toastController: ToastController, private authService: AuthService) {
@@ -58,8 +59,15 @@ export class AppComponent implements OnInit {
         document.addEventListener('backbutton', function (event) {
           event.preventDefault();
           event.stopPropagation();
-          
-          _this.presentToast('bottom', "Please Go Back Through App")
+
+          if (_this.toastDisplayCount == 0) {
+            _this.presentToast('bottom', "Please Go Back Through App")
+            _this.toastDisplayCount += 1;
+          } else {
+            setTimeout(() => {
+              _this.presentToast('bottom', "Please Go Back Through App")
+            }, 2000);
+          }
         }, false);
       });
     });
@@ -70,7 +78,7 @@ export class AppComponent implements OnInit {
       message: message,
       duration: 1500,
       position: position,
-      cssClass: 'custom-toast'
+      cssClass: 'custom-toast',
     });
 
     await toast.present();

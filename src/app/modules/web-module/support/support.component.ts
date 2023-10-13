@@ -57,11 +57,11 @@ export class SupportComponent  implements OnInit {
     const message = this.clientSupportForm.controls['message'].value;
 
     if (title == "" && message == "") {
-      this.presentAlert("Empty Fields Detected", "Please FILL BOTH Field")
+      this.presentAlert("Empty Fields Detected", "Please FILL BOTH Fields")
     } else if (title == "") {
-      this.presentAlert("Empty Fields Detected.", "Title is Required.");
+      this.presentAlert("Empty Field Detected.", "Title is Required.");
     } else if (message == "") {
-      this.presentAlert("Empty Fields Detected.", "Message is Required.");
+      this.presentAlert("Empty Field Detected.", "Message is Required.");
     } else {
       this.supportMessage.emailAddress = sessionStorage.getItem("emailAddress");
       this.supportMessage.title = title;

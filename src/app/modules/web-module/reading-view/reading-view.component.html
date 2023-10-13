@@ -91,10 +91,10 @@
     <ng-template>
       <div class="block-lg">
         <div class="row mt-2 ms-2 me-2">
-          <div class="col-6">
+          <div class="col-8">
             <p class="book-title mt-2">Your Bookmark List</p>
           </div>
-          <div class="col-6 mt-1" style="text-align: right;">
+          <div class="col-4 mt-1" style="text-align: right;">
             <ion-icon name="arrow-back-circle" style="font-size: 30px;" (click)="onClickCancelBookmarkListModal()"></ion-icon>
           </div>
           <hr style="background-color: #000000;">
@@ -106,10 +106,10 @@
               <div class="row">
                 <div class="col-12 ms-2">
                   <div class="row">
-                    <div class="col-8">
-                      <p class="book-title mt-2">Chapter: {{ eachBookMark.chapterName }}</p>
+                    <div class="col-10">
+                      <p class="book-title mt-2">Chapter &nbsp; : &nbsp; {{ eachBookMark.chapterName }}</p>
                     </div>
-                    <div class="col-4 mt-2">
+                    <div class="col-2 mt-2">
                       <ion-icon name="trash" style="font-size: 30px; float: right; margin-right: 14px;" (click)="onClickRemoveBookMark(eachBookMark.bookmarkId)"></ion-icon>
                     </div>
                   </div>

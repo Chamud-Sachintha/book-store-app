@@ -225,6 +225,11 @@ export class SigninComponent  implements OnInit {
   }
 
   onSubmitClientLoginForm() {
+
+    if (!navigator.onLine) {
+      this.presentAlert("Unable to Sign in", "Please Check Your Connection");
+    }
+
     const userName = this.clientLoginForm.controls['userName'].value;
     const password = this.clientLoginForm.controls['password'].value;
 

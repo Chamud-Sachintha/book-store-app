@@ -34,7 +34,7 @@ export class ValidateOtpComponent  implements OnInit {
     const otpCode = this.validateOTPForm.controls['otpCode'].value;
 
     if (otpCode == "") {
-      this.presentAlert("Empty Feild Found", "OTP is Required.");
+      this.presentAlert("Empty Feild Found", "OTP is Required");
     } else {
       this.requestModel.emailAddress = sessionStorage.getItem("otpMail");
       this.requestModel.authCode = otpCode;

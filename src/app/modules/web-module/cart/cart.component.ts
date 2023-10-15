@@ -46,9 +46,9 @@ export class CartComponent  implements OnInit {
       const dataList = JSON.parse(JSON.stringify(resp));
 
       if (resp.code === 1) {
-        this.presentAlert("", "Order Placed Successfully.");
+        this.presentAlert("", "Order Placed Successfully");
       } else {
-        this.presentAlert("", "Please Add Book/s to Cart.");
+        this.presentAlert("", "Please Add Book/s to Cart");
       }
     }, (err) => {
       this.presentAlert("Place New Order", err.message);
@@ -85,7 +85,7 @@ export class CartComponent  implements OnInit {
 
     this.cartService.removeItemFromCartById(this.cart).subscribe((resp: any) => {
       if (resp.code === 1) {
-        this.presentAlert("", "Removed from Cart Successfully.")
+        this.presentAlert("", "Removed from Cart Successfully")
         location.reload();
       }
     }, (err) => {

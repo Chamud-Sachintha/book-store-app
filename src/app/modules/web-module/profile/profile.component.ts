@@ -1,7 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule, NavController } from '@ionic/angular';
 import { Profile } from 'src/app/models/Profile/profile';
+import { Request } from 'src/app/models/Request/request';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
@@ -9,11 +11,13 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, CommonModule]
 })
 export class ProfileComponent  implements OnInit {
 
+  requestModel = new Request();
   profileInfo = new Profile();
+  gender: any;
 
   constructor(private router: Router, private profileService: ProfileService, private navCtrl: NavController) { }
 
@@ -37,6 +41,18 @@ export class ProfileComponent  implements OnInit {
         this.profileInfo.lastName = dataList.data[0].lastName;
         this.profileInfo.email = dataList.data[0].emailAddress;
       }
+
+      this.requestModel.token = sessionStorage.getItem("authToken");
+      this.requestModel.clientId = sessionStorage.getItem("clientId");
+
+      this.profileService.getAditionalProfileInfo(this.requestModel).subscribe((info: any) => {
+
+        const infoList = JSON.parse(JSON.stringify(info));
+
+        if (info.code === 1) {
+          this.gender = infoList.data[0].gender;
+        }
+      });
     }, (err) => {
 
     })

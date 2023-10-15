@@ -47,6 +47,9 @@ export class ReadingViewComponent  implements OnInit {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
     this.initCreateBookMarksInfoForm();
     this.getChapterInfoById();
+
+    const myTemplate = document.getElementById("myTemplate");
+    myTemplate?.scrollIntoView();
   }
 
   onClickRemoveBookMark(bookmarkId: string) {
@@ -57,7 +60,7 @@ export class ReadingViewComponent  implements OnInit {
     this.bookService.removeBookmarkById(this.bookMarkInfo).subscribe((resp: any) => {
 
       if (resp.code === 1) {
-        this.presentAlert("", "Bookmark Deleted Successfully.");
+        this.presentAlert("", "Bookmark Deleted Successfully");
         this.setOpen(false);
       }
     }, (err) => {
@@ -105,6 +108,9 @@ export class ReadingViewComponent  implements OnInit {
             const chapterInfo = JSON.parse(JSON.stringify(info));
 
             eachBookmark.chapterName = chapterInfo.data[0].chapterName;
+
+            const createdDateNew = parseInt(eachBookmark.createdDate) * 1000;
+            eachBookmark.createdDate = createdDateNew.toString();
 
             this.bookMarkList.push(eachBookmark);
           })
@@ -240,9 +246,9 @@ export class ReadingViewComponent  implements OnInit {
     const pageDescription = this.createBookMarkForm.controls['pageDescription'].value;
 
     if (pageNumber.toString() == "") {
-      this.presentAlert("Empty Field Detected", "Page Number is required.");
+      this.presentAlert("Empty Field Detected", "Page Number is required");
     } else if (pageDescription == "") {
-      this.presentAlert("Empty Field Detected.", "Page Description is Required.");
+      this.presentAlert("Empty Field Detected.", "Page Description is Required");
     } else {
       this.bookMarkInfo.token = sessionStorage.getItem("authToken");
       this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
@@ -252,7 +258,7 @@ export class ReadingViewComponent  implements OnInit {
 
       this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("", "Bookmark Saved Successfully.");
+          this.presentAlert("", "Bookmark Saved Successfully");
         }
       }, (err) => {
           this.presentAlert("Add Bookmark", err.message);

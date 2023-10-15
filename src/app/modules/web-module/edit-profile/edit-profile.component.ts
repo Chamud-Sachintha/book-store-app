@@ -41,7 +41,7 @@ export class EditProfileComponent implements OnInit {
 
     const txtPrefix = str.substring(0, 2);
 
-    if ((!isNaN(str)) && (txtPrefix == "07")) {
+    if ((!isNaN(str)) && (txtPrefix == "07") && (str.length == 10)) {
       return true;
     } else {
       return false;
@@ -61,77 +61,78 @@ export class EditProfileComponent implements OnInit {
     const district = this.editprofileForm.controls['district'].value;
 
     if (firstName == "" || lastName == "" || age == "" || sex == "" || nicNumber == "" || mobileNumber == "" || schoolName == "" || grade == "" || district == "") {
-      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields.")
-    // } if (firstName == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
-    // } else if (lastName == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "Last Name is Required.")
-    // } else if (mobileNumber == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "Mobile Number is Required.")
-    // } else if (!this.isValidNumber(mobileNumber)) {
-    //   this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
-    // } else if (nicNumber == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "NIC Number is Required.")
-    // } else if (schoolName == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "School Name is Required.")
-    // } else if (age == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "Age is Required.")
-    // } else if (sex == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "Gender is Required.")
-    // } else if (grade == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "Grade is Required.")
-    // } else if (district == "") {
-    //   this.presentAlert("Empty Feilds Founed.", "District is Required.")
+      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields")
+      // } if (firstName == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
+      // } else if (lastName == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "Last Name is Required.")
+      // } else if (mobileNumber == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "Mobile Number is Required.")
+      // } else if (!this.isValidNumber(mobileNumber)) {
+      //   this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+      // } else if (nicNumber == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "NIC Number is Required.")
+      // } else if (schoolName == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "School Name is Required.")
+      // } else if (age == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "Age is Required.")
+      // } else if (sex == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "Gender is Required.")
+      // } else if (grade == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "Grade is Required.")
+      // } else if (district == "") {
+      //   this.presentAlert("Empty Feilds Founed.", "District is Required.")
     } else {
 
       if (!this.isValidNumber(mobileNumber)) {
         this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+      } else {
+        this.profileInfo.firstName = firstName;
+        this.profileInfo.lastName = lastName;
+        this.profileInfo.mobileNumber = mobileNumber;
+        this.profileInfo.email = sessionStorage.getItem("emailAddress");
+        this.profileInfo.token = sessionStorage.getItem("authToken");
+
+        this.profileService.updateProfileInfo(this.profileInfo).subscribe((resp: any) => {
+          if (resp.code === 1) {
+
+            //location.reload();
+          }
+        }, (err) => {
+          this.presentAlert("Profile Updated Successfully", err.message);
+        })
+
+        this.profileInfo.clientId = sessionStorage.getItem("clientId");
+        this.profileInfo.age = age;
+        this.profileInfo.gender = sex;
+        this.profileInfo.nicNumber = nicNumber;
+        this.profileInfo.mobileNumber = mobileNumber;
+        this.profileInfo.schoolName = schoolName;
+        this.profileInfo.grade = grade;
+        this.profileInfo.district = district;
+
+        this.profileService.saveProfileAditionalInfo(this.profileInfo).subscribe((resp: any) => {
+          const dataList = JSON.parse(JSON.stringify(resp));
+
+          if (resp.code === 1) {
+            this.editprofileForm.controls['firstName'].setValue("");
+            this.editprofileForm.controls['lastName'].setValue("");
+
+            this.editprofileForm.controls['age'].setValue("");
+            this.editprofileForm.controls['sex'].setValue("");
+            this.editprofileForm.controls['nicNumber'].setValue("");
+            this.editprofileForm.controls['mobileNumber'].setValue("");
+            this.editprofileForm.controls['schoolName'].setValue("");
+            this.editprofileForm.controls['grade'].setValue("");
+            this.editprofileForm.controls['district'].setValue("");
+
+            this.presentAlert("Profile Updated Successfully", "Thank you !!!");
+            this.router.navigate(['my-books']);
+          }
+        }, (err) => {
+
+        })
       }
-      this.profileInfo.firstName = firstName;
-      this.profileInfo.lastName = lastName;
-      this.profileInfo.mobileNumber = mobileNumber;
-      this.profileInfo.email = sessionStorage.getItem("emailAddress");
-      this.profileInfo.token = sessionStorage.getItem("authToken");
-
-      this.profileService.updateProfileInfo(this.profileInfo).subscribe((resp: any) => {
-        if (resp.code === 1) {
-
-          //location.reload();
-        }
-      }, (err) => {
-        this.presentAlert("Profile Updated Successfully", err.message);
-      })
-
-      this.profileInfo.clientId = sessionStorage.getItem("clientId");
-      this.profileInfo.age = age;
-      this.profileInfo.gender = sex;
-      this.profileInfo.nicNumber = nicNumber;
-      this.profileInfo.mobileNumber = mobileNumber;
-      this.profileInfo.schoolName = schoolName;
-      this.profileInfo.grade = grade;
-      this.profileInfo.district = district;
-
-      this.profileService.saveProfileAditionalInfo(this.profileInfo).subscribe((resp: any) => {
-        const dataList = JSON.parse(JSON.stringify(resp));
-
-        if (resp.code === 1) {
-          this.editprofileForm.controls['firstName'].setValue("");
-          this.editprofileForm.controls['lastName'].setValue("");
-      
-          this.editprofileForm.controls['age'].setValue("");
-          this.editprofileForm.controls['sex'].setValue("");
-          this.editprofileForm.controls['nicNumber'].setValue("");
-          this.editprofileForm.controls['mobileNumber'].setValue("");
-          this.editprofileForm.controls['schoolName'].setValue("");
-          this.editprofileForm.controls['grade'].setValue("");
-          this.editprofileForm.controls['district'].setValue("");
-
-          this.presentAlert("Profile Updated Successfully", "Thank you !!!");
-          this.router.navigate(['my-books']);
-        }
-      }, (err) => {
-
-      })
     }
   }
 

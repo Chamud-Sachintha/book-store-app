@@ -17,7 +17,7 @@ const config: CapacitorConfig = {
       forceCodeForRefreshToken: true
     },
     SplashScreen: {
-      launchAutoHide: false
+      // launchAutoHide: false
     }
   },
 };

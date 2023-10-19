@@ -37,6 +37,7 @@ export class ReadingViewComponent  implements OnInit {
   createBookMarkForm!: FormGroup;
   bookMarkList: BookMark[] = [];
   userEmail!: any;
+  zoomableContent: any;
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
               , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
@@ -50,6 +51,45 @@ export class ReadingViewComponent  implements OnInit {
 
     const myTemplate = document.getElementById("myTemplate");
     myTemplate?.scrollIntoView();
+
+    this.zoomableContent = document.getElementById('pdf');
+    let initialTouchDistance = 0;
+    let initialScale = 1;
+
+    this.zoomableContent.addEventListener('touchstart', (event: any) => {
+      if (event.touches.length === 2) {
+        // Calculate the initial distance between the two fingers.
+        initialTouchDistance = Math.hypot(
+          event.touches[0].pageX - event.touches[1].pageX,
+          event.touches[0].pageY - event.touches[1].pageY
+        );
+    
+        // Store the initial scale.
+        initialScale = this.zoomableContent.getBoundingClientRect().width / this.zoomableContent.offsetWidth;
+      }
+    });
+    
+    this.zoomableContent.addEventListener('touchmove', (event: any) => {
+      if (event.touches.length === 2) {
+        // Calculate the current distance between the two fingers.
+        const currentTouchDistance = Math.hypot(
+          event.touches[0].pageX - event.touches[1].pageX,
+          event.touches[0].pageY - event.touches[1].pageY
+        );
+    
+        // Calculate the scale factor based on the initial and current distances.
+        const scaleFactor = currentTouchDistance / initialTouchDistance;
+    
+        // Update the scale of the content.
+        this.zoomableContent.style.transform = `scale(${initialScale * scaleFactor})`;
+      }
+    });
+    
+    this.zoomableContent.addEventListener('touchend', () => {
+      // Clear the initial values.
+      initialTouchDistance = 0;
+      initialScale = 1;
+    });
   }
 
   onClickRemoveBookMark(bookmarkId: string) {

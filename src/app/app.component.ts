@@ -16,7 +16,7 @@ import { AuthService } from './services/auth/auth.service';
 
 export class AppComponent implements OnInit {
 
-  toastDisplayCount = 0;
+  isToastAppear = false;
   requestBody = new Request();
 
   constructor(private platform: Platform, private location: Location, private toastController: ToastController, private authService: AuthService) {
@@ -60,27 +60,27 @@ export class AppComponent implements OnInit {
           event.preventDefault();
           event.stopPropagation();
 
-          if (_this.toastDisplayCount == 0) {
+          if (!_this.isToastAppear) {
             _this.presentToast('bottom', "Please Go Back Through App")
-            _this.toastDisplayCount += 1;
-          } else {
-            setTimeout(() => {
-              _this.presentToast('bottom', "Please Go Back Through App")
-            }, 2000);
           }
+          
         }, false);
       });
     });
   }
 
   async presentToast(position: 'top' | 'middle' | 'bottom', message: string) {
+    this.isToastAppear = true;
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,
       position: position,
       cssClass: 'custom-toast',
+    }).then(toast => {
+      toast.present();
+      return toast.onDidDismiss();
+    }).then(() => {
+      this,this.isToastAppear = false;
     });
-
-    await toast.present();
   }
 }

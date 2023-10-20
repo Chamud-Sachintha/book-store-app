@@ -38,6 +38,7 @@ export class ReadingViewComponent  implements OnInit {
   bookMarkList: BookMark[] = [];
   userEmail!: any;
   zoomableContent: any;
+  pdfZoomScale = 0.5;
 
   constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
               , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
@@ -81,7 +82,13 @@ export class ReadingViewComponent  implements OnInit {
         const scaleFactor = currentTouchDistance / initialTouchDistance;
     
         // Update the scale of the content.
-        this.zoomableContent.style.transform = `scale(${initialScale * scaleFactor})`;
+        // this.zoomableContent.style.transform = `scale(${initialScale * scaleFactor})`;
+
+        if (initialTouchDistance > currentTouchDistance) {
+          this.pdfZoomScale -= 0.5;
+        } else {
+          this.pdfZoomScale += 0.5;
+        }
       }
     });
     
@@ -89,6 +96,7 @@ export class ReadingViewComponent  implements OnInit {
       // Clear the initial values.
       initialTouchDistance = 0;
       initialScale = 1;
+      // this.pdfZoomScale = 0.5
     });
   }
 

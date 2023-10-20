@@ -1,6 +1,4 @@
-ion-toast.custom-toast {
-    --background: #f4f4fa;
-    --box-shadow: 0;
-    --color: #4b4a50;
-    text-align: center;
-  }
+.custom-toast {
+  box-shadow: none;
+  text-align: center;
+}

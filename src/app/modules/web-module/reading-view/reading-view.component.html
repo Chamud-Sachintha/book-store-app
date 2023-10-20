@@ -44,7 +44,7 @@
 
   <div class="pdf-container mt-2" style="overflow-y: hidden;">
     <pdf-viewer [src]="src" [original-size]="false" [show-all]="true"
-      class="pdf-viewer" id="pdf"></pdf-viewer>
+      class="pdf-viewer" id="pdf" [zoom]="this.pdfZoomScale" [original-size]="true"></pdf-viewer>
     <!-- <ngx-extended-pdf-viewer [(src)]="src"> </ngx-extended-pdf-viewer> -->
   </div>
 

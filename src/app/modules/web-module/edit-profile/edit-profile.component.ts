@@ -61,7 +61,7 @@ export class EditProfileComponent implements OnInit {
     const district = this.editprofileForm.controls['district'].value;
 
     if (firstName == "" || lastName == "" || age == "" || sex == "" || nicNumber == "" || mobileNumber == "" || schoolName == "" || grade == "" || district == "") {
-      this.presentAlert("Empty Field/s Detected.", "Please FILL ALL Listed Fields")
+      this.presentAlert("Empty Field/s Detected", "Please FILL ALL Listed Fields")
       // } if (firstName == "") {
       //   this.presentAlert("Empty Feilds Founed.", "First Name is Required.")
       // } else if (lastName == "") {
@@ -85,7 +85,7 @@ export class EditProfileComponent implements OnInit {
     } else {
 
       if (!this.isValidNumber(mobileNumber)) {
-        this.presentAlert("Invalid Input Format.", "Enter Valid Mobile Number.")
+        this.presentAlert("Invalid Input Format", "Enter Valid Mobile Number")
       } else {
         this.profileInfo.firstName = firstName;
         this.profileInfo.lastName = lastName;

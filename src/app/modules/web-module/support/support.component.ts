@@ -59,9 +59,9 @@ export class SupportComponent  implements OnInit {
     if (title == "" && message == "") {
       this.presentAlert("Empty Fields Detected", "Please FILL BOTH Fields")
     } else if (title == "") {
-      this.presentAlert("Empty Field Detected.", "Title is Required.");
+      this.presentAlert("Empty Field Detected", "Title is Required");
     } else if (message == "") {
-      this.presentAlert("Empty Field Detected.", "Message is Required.");
+      this.presentAlert("Empty Field Detected", "Message is Required");
     } else {
       this.supportMessage.emailAddress = sessionStorage.getItem("emailAddress");
       this.supportMessage.title = title;
@@ -70,7 +70,7 @@ export class SupportComponent  implements OnInit {
 
       this.supportService.addClientSupportmessage(this.supportMessage).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("User Support Request Submitted Successfully ", "Expect Response via Email.");
+          this.presentAlert("User Support Request Submitted Successfully ", "Expect Response via Email");
 
           this.clientSupportForm.controls['title'].setValue('');
           this.clientSupportForm.controls['message'].setValue('');

@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
       message: message,
       duration: 1500,
       position: position,
-      cssClass: 'custom-toast',
+      cssClass: 'custom-toast', 
     }).then(toast => {
       toast.present();
       return toast.onDidDismiss();

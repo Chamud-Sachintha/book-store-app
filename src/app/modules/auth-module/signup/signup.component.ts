@@ -51,7 +51,7 @@ export class SignupComponent  implements OnInit {
     const confPassword = this.clientRegisterForm.controls['confPassword'].value;
 
     if (!this.userEmailRegEx.test(emailAddress)) {
-      this.presentAlert("Invalid Input Format", "Enter Valid Email Address.");
+      this.presentAlert("Invalid Input Format", "Enter Valid Email Address");
     } else if (firstName === "") {
       this.presentAlert("Empty Field/s Detected", "Please FILL ALL Listed Fields")
     } else if (lastName === "") {

@@ -234,7 +234,7 @@ export class SigninComponent  implements OnInit {
     const password = this.clientLoginForm.controls['password'].value;
 
     if (userName === "" || password === "") {
-      this.presentAlert("Empty Field/s Detected.", "Please FILL BOTH Fields.");
+      this.presentAlert("Empty Field/s Detected", "Please FILL BOTH Fields");
     } else if (!this.userEmailRegEx.test(userName)) {
       this.presentAlert("Invalid Input Format", "Enter Valid Email Address.");
     } else {

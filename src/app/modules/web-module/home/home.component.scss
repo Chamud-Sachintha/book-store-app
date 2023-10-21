@@ -12,6 +12,10 @@
     margin-top: 100px;
 }
 
+::ng-deep .slide-to-confirm-wrapper {
+    background: linear-gradient(90deg, rgb(181, 181, 181) 0%, black 0%) !important;
+}
+
 .bg_text {
 
     // margin-top: 30px;

@@ -36,6 +36,17 @@ export class HomeComponent  implements OnInit {
 
   ngOnInit() {
     this.startAnimation();
+
+    let t = document.getElementById("slide-to-confirm-wrapper");
+    if (t != null) {
+      console.log(t.style);
+      t.removeAttribute("style")
+      // t.style.cssText = null;
+      // t.style.background = "";
+      // t.style.backgroundImage = "";
+
+      console.log(t.style)
+    }
   }
 
   startAnimation() {

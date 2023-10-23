@@ -22,7 +22,7 @@ ngx-star-rating .ngx-star {
 }
 
 .u-r {
-    font-family: 'Noto Sans Sinhala', sans-serif;
+    // font-family: 'Poppins';
     font-weight: bolder;
 }
 
@@ -82,6 +82,10 @@ ngx-star-rating .ngx-star {
     border: 1px solid #000000;
 
     // padding-top: 10px;
+}
+
+.u-r-txt {
+    font-weight: bolder;
 }
 
 .buy-now-btn {

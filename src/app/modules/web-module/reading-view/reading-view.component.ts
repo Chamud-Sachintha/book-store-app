@@ -296,7 +296,7 @@ export class ReadingViewComponent  implements OnInit {
     if (pageNumber.toString() == "") {
       this.presentAlert("Empty Field Detected", "Page Number is required");
     } else if (pageDescription == "") {
-      this.presentAlert("Empty Field Detected.", "Page Description is Required");
+      this.presentAlert("Empty Field Detected", "Page Description is Required");
     } else {
       this.bookMarkInfo.token = sessionStorage.getItem("authToken");
       this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");

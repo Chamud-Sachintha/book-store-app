@@ -69,7 +69,7 @@ export class InsideBookComponent  implements OnInit {
     this.requestModel.token = sessionStorage.getItem("authToken");
 
     const loading = await this.loadingCtrl.create({
-      message: ' Please wait a moment.',
+      message: ' Please wait a moment',
       translucent: true
     });
 
@@ -122,7 +122,7 @@ export class InsideBookComponent  implements OnInit {
       if (resp.code === 1) {
         this.presentAlert("", "Added to Cart Successfully");
       } else {
-        this.presentAlert("Add Item to Cart", resp.message);
+        this.presentAlert("Add Item to Cart", "Book Already Added to Cart");
       }
     }, (err) => {
       this.presentAlert("Add to Cart", err.message);

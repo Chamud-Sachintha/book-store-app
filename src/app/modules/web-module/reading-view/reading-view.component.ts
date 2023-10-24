@@ -11,7 +11,13 @@ import { BookService } from 'src/app/services/book/book.service';
 import { Book } from 'src/app/models/Book/book';
 import { environment } from 'src/environments/environment';
 import { BookMark } from 'src/app/models/BookMarks/book-mark';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
@@ -19,9 +25,15 @@ import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
   templateUrl: './reading-view.component.html',
   styleUrls: ['./reading-view.component.scss'],
   standalone: true,
-  imports: [IonicModule, PdfViewerModule, FormsModule, ReactiveFormsModule, CommonModule]
+  imports: [
+    IonicModule,
+    PdfViewerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
 })
-export class ReadingViewComponent  implements OnInit {
+export class ReadingViewComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
 
   chapterInfo = new Chapter();
@@ -29,28 +41,36 @@ export class ReadingViewComponent  implements OnInit {
   bookMarkInfo = new BookMark();
   bookInfo = new Book();
   src!: any;
-  pdfByteArr: string = "";
+  pdfByteArr: string = '';
   pageNumberType: number = 1;
   isModalOpen = false;
   isFullScreenModeOn = false;
   bookId!: number;
   createBookMarkForm!: FormGroup;
   bookMarkList: BookMark[] = [];
+  sortedBookmarkList: BookMark[] = [];
   userEmail!: any;
   zoomableContent: any;
   pdfZoomScale = 0.5;
 
-  constructor(private router: Router, private activateRoute: ActivatedRoute, private location: Location
-              , private bookService: BookService, private formBuilder: FormBuilder, private alertController: AlertController
-              , private analyticService: AnalyticsService) { 
-  }
+  constructor(
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+    private location: Location,
+    private bookService: BookService,
+    private formBuilder: FormBuilder,
+    private alertController: AlertController,
+    private analyticService: AnalyticsService
+  ) {}
 
   ngOnInit() {
-    this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
+    this.activateRoute.params.subscribe(
+      (params: Params) => (this.bookId = params['bookId'])
+    );
     this.initCreateBookMarksInfoForm();
     this.getChapterInfoById();
 
-    const myTemplate = document.getElementById("myTemplate");
+    const myTemplate = document.getElementById('myTemplate');
     myTemplate?.scrollIntoView();
 
     this.zoomableContent = document.getElementById('pdf');
@@ -64,12 +84,14 @@ export class ReadingViewComponent  implements OnInit {
           event.touches[0].pageX - event.touches[1].pageX,
           event.touches[0].pageY - event.touches[1].pageY
         );
-    
+
         // Store the initial scale.
-        initialScale = this.zoomableContent.getBoundingClientRect().width / this.zoomableContent.offsetWidth;
+        initialScale =
+          this.zoomableContent.getBoundingClientRect().width /
+          this.zoomableContent.offsetWidth;
       }
     });
-    
+
     this.zoomableContent.addEventListener('touchmove', (event: any) => {
       if (event.touches.length === 2) {
         // Calculate the current distance between the two fingers.
@@ -77,10 +99,10 @@ export class ReadingViewComponent  implements OnInit {
           event.touches[0].pageX - event.touches[1].pageX,
           event.touches[0].pageY - event.touches[1].pageY
         );
-    
+
         // Calculate the scale factor based on the initial and current distances.
         const scaleFactor = currentTouchDistance / initialTouchDistance;
-    
+
         // Update the scale of the content.
         // this.zoomableContent.style.transform = `scale(${initialScale * scaleFactor})`;
 
@@ -91,7 +113,7 @@ export class ReadingViewComponent  implements OnInit {
         }
       }
     });
-    
+
     this.zoomableContent.addEventListener('touchend', () => {
       // Clear the initial values.
       initialTouchDistance = 0;
@@ -102,22 +124,26 @@ export class ReadingViewComponent  implements OnInit {
 
   onClickRemoveBookMark(bookmarkId: string) {
     this.bookMarkInfo = new BookMark();
-    this.bookMarkInfo.token = sessionStorage.getItem("authToken");
+    this.bookMarkInfo.token = sessionStorage.getItem('authToken');
     this.bookMarkInfo.bookmarkId = bookmarkId;
 
-    this.bookService.removeBookmarkById(this.bookMarkInfo).subscribe((resp: any) => {
-
-      if (resp.code === 1) {
-        this.presentAlert("", "Bookmark Deleted Successfully");
-        this.setOpen(false);
+    this.bookService.removeBookmarkById(this.bookMarkInfo).subscribe(
+      (resp: any) => {
+        if (resp.code === 1) {
+          this.presentAlert('', 'Bookmark Deleted Successfully');
+          this.setOpen(false);
+        }
+      },
+      (err) => {
+        this.presentAlert('Remove Bookmark', err.message);
       }
-    }, (err) => {
-      this.presentAlert("Remove Bookmark", err.message);
-    })
+    );
   }
 
   openCreateBookmarkModal() {
-    this.createBookMarkForm.controls['pageNumber'].setValue(this.chapterInfo.chapter);
+    this.createBookMarkForm.controls['pageNumber'].setValue(
+      this.chapterInfo.chapter
+    );
   }
 
   onClickApplyBookmarkBtn(pageNumber: number) {
@@ -139,148 +165,209 @@ export class ReadingViewComponent  implements OnInit {
 
   getBookMarkListByBookIdAndClientId() {
     this.bookMarkList = [];
-    this.bookMarkInfo.token = sessionStorage.getItem("authToken");
-    this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
-    this.bookMarkInfo.bookId = localStorage.getItem("mainBookId");
+    this.bookMarkInfo.token = sessionStorage.getItem('authToken');
+    this.bookMarkInfo.clientId = sessionStorage.getItem('clientId');
+    this.bookMarkInfo.bookId = localStorage.getItem('mainBookId');
 
-    this.bookService.getBookMarkListByBookIdAndClinetId(this.bookMarkInfo).subscribe((resp: any) => {
-      const dataList = JSON.parse(JSON.stringify(resp));
-      console.log(dataList.data[0])
-      if (resp.code === 1) {
-        dataList.data[0].body.forEach((eachBookmark: BookMark) => {
+    this.bookService
+      .getBookMarkListByBookIdAndClinetId(this.bookMarkInfo)
+      .subscribe(
+        (resp: any) => {
+          const dataList = JSON.parse(JSON.stringify(resp));
+          console.log(dataList.data[0].body);
+          if (resp.code === 1) {
+            dataList.data[0].body.forEach((eachBookmark: BookMark) => {
+              this.requestBody.token = sessionStorage.getItem('authToken');
+              this.requestBody.chapterId = eachBookmark.pageNumber;
 
-          this.requestBody.token = sessionStorage.getItem("authToken");
-          this.requestBody.chapterId = eachBookmark.pageNumber;
+              this.bookMarkList.push(eachBookmark)
 
-          this.bookService.getChapterInfoById(this.requestBody).subscribe((info) => {
-            const chapterInfo = JSON.parse(JSON.stringify(info));
+            //   this.bookService
+            //     .getChapterInfoById(this.requestBody)
+            //     .subscribe((info) => {
+            //       const chapterInfo = JSON.parse(JSON.stringify(info));
 
-            eachBookmark.chapterName = chapterInfo.data[0].chapterName;
+            //       eachBookmark.chapterName = chapterInfo.data[0].chapterName;
 
-            const createdDateNew = parseInt(eachBookmark.createdDate) * 1000;
-            eachBookmark.createdDate = createdDateNew.toString();
+            //       const createdDateNew =
+            //         parseInt(eachBookmark.createdDate) * 1000;
+            //       eachBookmark.createdDate = createdDateNew.toString();
 
-            this.bookMarkList.push(eachBookmark);
-          })
-        })
+            //       this.bookMarkList.push(eachBookmark);
+            //     });
+            });
+
+            // this.bookMarkList = dataList.data[0].body.sort(
+            //   (a: BookMark, b: BookMark) =>
+            //     Number(b.bookmarkId) - Number(a.bookmarkId)
+            // );            
+          }
+        },
+        (err) => {
+          console.log(err.message);
+        }
+      );
+  }
+
+  bblSort(arr: BookMark[]) {
+    console.log(arr.length)
+    console.log(arr)
+    for (var i = 0; i < arr.length; i++) {
+      // Last i elements are already in place
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        console.log(arr[j].bookmarkId)
+        // Checking if the item at present iteration
+        // is greater than the next iteration
+        if (arr[j].bookmarkId > arr[j + 1].bookmarkId) {
+          // If the condition is true
+          // then swap them
+          var temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+        }
       }
-    }, (err) => {
-      console.log(err.message)
-    })
+    }
+
+    // Print the sorted array
+    console.log(arr);
   }
 
   initCreateBookMarksInfoForm() {
     this.createBookMarkForm = this.formBuilder.group({
       pageNumber: ['', Validators.required],
-      pageDescription: ['', Validators.required]
-    })
+      pageDescription: ['', Validators.required],
+    });
   }
 
   onClickBackBtn() {
-    this.router.navigate(['chapters', localStorage.getItem("mainBookId")]);
+    this.router.navigate(['chapters', localStorage.getItem('mainBookId')]);
   }
 
   getChapterInfoById() {
-    this.requestBody.token = sessionStorage.getItem("authToken");
+    this.requestBody.token = sessionStorage.getItem('authToken');
     this.requestBody.chapterId = this.bookId;
 
-    this.bookService.getChapterInfoById(this.requestBody).subscribe((resp: any) => {
-      const dataList = JSON.parse(JSON.stringify(resp));
+    this.bookService.getChapterInfoById(this.requestBody).subscribe(
+      (resp: any) => {
+        const dataList = JSON.parse(JSON.stringify(resp));
 
-      if (resp.code === 1) {
-        this.bookInfo.bookName = dataList.data[0].bookName;
-        this.chapterInfo.chapter = dataList.data[0].chapterName;
-        this.pdfByteArr = dataList.data[0].pdfPath;
+        if (resp.code === 1) {
+          this.bookInfo.bookName = dataList.data[0].bookName;
+          this.chapterInfo.chapter = dataList.data[0].chapterName;
+          this.pdfByteArr = dataList.data[0].pdfPath;
 
-        this.userEmail = sessionStorage.getItem("emailAddress");
-        this.analyticService.setUser(this.userEmail);
-        this.analyticService.setScreenName(this.chapterInfo.chapter);
+          this.userEmail = sessionStorage.getItem('emailAddress');
+          this.analyticService.setUser(this.userEmail);
+          this.analyticService.setScreenName(this.chapterInfo.chapter);
 
-        const requestBody = {
-          pdfName: this.pdfByteArr
+          const requestBody = {
+            pdfName: this.pdfByteArr,
+          };
+
+          this.bookService.getPDFContent(requestBody).subscribe(
+            (pdf) => {
+              this.src = pdf;
+            },
+            (err) => {
+              console.log(err.message);
+            }
+          );
         }
-
-        this.bookService.getPDFContent(requestBody).subscribe((pdf) => {
-          this.src = pdf;
-        }, (err) => {
-          console.log(err.message)
-        })
+      },
+      (err) => {
+        console.log('ffff' + err.message);
       }
-    }, (err) => {
-      console.log('ffff' + err.message)
-    })
+    );
   }
 
   onClickApplyFullScreen() {
     let elementImg: HTMLImageElement;
-    const g = document.getElementById("testRTY");
-    const e = document.getElementById("testPPP");
-    const i = document.getElementById("testYYU");
-    const pdf = document.getElementById("pdf");
-    const icon = document.getElementById("fullScreenIcon");
-    const goUpBtn = document.getElementById("goUp");
-    let exitIcon = document.getElementById("exitIcon");
+    const g = document.getElementById('testRTY');
+    const e = document.getElementById('testPPP');
+    const i = document.getElementById('testYYU');
+    const pdf = document.getElementById('pdf');
+    const icon = document.getElementById('fullScreenIcon');
+    const goUpBtn = document.getElementById('goUp');
+    let exitIcon = document.getElementById('exitIcon');
 
-    const spaceDivSection = document.getElementById("spaceDiv");
+    const spaceDivSection = document.getElementById('spaceDiv');
 
-    if (e != null && i != null && pdf != null && icon != null && exitIcon != null && goUpBtn != null && spaceDivSection != null) {
+    if (
+      e != null &&
+      i != null &&
+      pdf != null &&
+      icon != null &&
+      exitIcon != null &&
+      goUpBtn != null &&
+      spaceDivSection != null
+    ) {
       // g.style.display = 'none';
       e.style.display = 'none';
       i.style.display = 'none';
-      pdf.style.height = "100vh";
+      pdf.style.height = '100vh';
 
-      icon.style.display = "none";
-      exitIcon.style.display = "";
+      icon.style.display = 'none';
+      exitIcon.style.display = '';
 
-      goUpBtn.style.display = "";
-      spaceDivSection.classList.remove("col-4");
-      spaceDivSection.classList.add("col-2");
+      goUpBtn.style.display = '';
+      spaceDivSection.classList.remove('col-4');
+      spaceDivSection.classList.add('col-2');
     }
   }
 
   onClickHideBookMarkSection() {
-    const getBookMarkSection = document.getElementById("bookmarkSection");
-    const getBookmarkDownSection = document.getElementById("bookmarkSectionDown");
+    const getBookMarkSection = document.getElementById('bookmarkSection');
+    const getBookmarkDownSection = document.getElementById(
+      'bookmarkSectionDown'
+    );
 
     if (getBookMarkSection != null && getBookmarkDownSection != null) {
-      getBookMarkSection.style.display = "none";
-      getBookmarkDownSection.style.display = "";
+      getBookMarkSection.style.display = 'none';
+      getBookmarkDownSection.style.display = '';
     }
   }
 
   onClickDownBookmarkSection() {
-    const getBookMarkSection = document.getElementById("bookmarkSection");
-    const getBookmarkDownSection = document.getElementById("bookmarkSectionDown");
+    const getBookMarkSection = document.getElementById('bookmarkSection');
+    const getBookmarkDownSection = document.getElementById(
+      'bookmarkSectionDown'
+    );
 
     if (getBookMarkSection != null && getBookmarkDownSection != null) {
-      getBookMarkSection.style.display = "";
-      getBookmarkDownSection.style.display = "none";
+      getBookMarkSection.style.display = '';
+      getBookmarkDownSection.style.display = 'none';
     }
   }
 
   onClickExitFullScreen() {
     let elementImg: HTMLImageElement;
-    const g = document.getElementById("testRTY");
-    const e = document.getElementById("testPPP");
-    const i = document.getElementById("testYYU");
-    const pdf = document.getElementById("pdf");
-    const icon = document.getElementById("fullScreenIcon");
-    let exitIcon = document.getElementById("exitIcon");
+    const g = document.getElementById('testRTY');
+    const e = document.getElementById('testPPP');
+    const i = document.getElementById('testYYU');
+    const pdf = document.getElementById('pdf');
+    const icon = document.getElementById('fullScreenIcon');
+    let exitIcon = document.getElementById('exitIcon');
 
-    if (e != null && i != null && pdf != null && icon != null && exitIcon != null) {
+    if (
+      e != null &&
+      i != null &&
+      pdf != null &&
+      icon != null &&
+      exitIcon != null
+    ) {
       // g.style.display = '';
       e.style.display = '';
       i.style.display = '';
-      pdf.style.height = "";
+      pdf.style.height = '';
 
-      icon.style.display = "";
-      exitIcon.style.display = "none";
+      icon.style.display = '';
+      exitIcon.style.display = 'none';
     }
   }
 
   onClickApplyBookmark(pageNumber: number) {
     this.pageNumberType = pageNumber;
-    this.modalClose()
+    this.modalClose();
   }
 
   modalClose() {
@@ -288,29 +375,32 @@ export class ReadingViewComponent  implements OnInit {
   }
 
   onSubmitSaveBookMarkInfo() {
-    
     // const pageNumber = this.createBookMarkForm.controls['pageNumber'].value;
     const pageNumber = this.bookId;
-    const pageDescription = this.createBookMarkForm.controls['pageDescription'].value;
+    const pageDescription =
+      this.createBookMarkForm.controls['pageDescription'].value;
 
-    if (pageNumber.toString() == "") {
-      this.presentAlert("Empty Field Detected", "Page Number is required");
-    } else if (pageDescription == "") {
-      this.presentAlert("Empty Field Detected", "Page Description is Required");
+    if (pageNumber.toString() == '') {
+      this.presentAlert('Empty Field Detected', 'Page Number is required');
+    } else if (pageDescription == '') {
+      this.presentAlert('Empty Field Detected', 'Page Description is Required');
     } else {
-      this.bookMarkInfo.token = sessionStorage.getItem("authToken");
-      this.bookMarkInfo.clientId = sessionStorage.getItem("clientId");
-      this.bookMarkInfo.bookId = localStorage.getItem("mainBookId");
+      this.bookMarkInfo.token = sessionStorage.getItem('authToken');
+      this.bookMarkInfo.clientId = sessionStorage.getItem('clientId');
+      this.bookMarkInfo.bookId = localStorage.getItem('mainBookId');
       this.bookMarkInfo.pageNumber = pageNumber;
       this.bookMarkInfo.pageDescription = pageDescription;
 
-      this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe((resp: any) => {
-        if (resp.code === 1) {
-          this.presentAlert("", "Bookmark Saved Successfully");
+      this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe(
+        (resp: any) => {
+          if (resp.code === 1) {
+            this.presentAlert('', 'Bookmark Saved Successfully');
+          }
+        },
+        (err) => {
+          this.presentAlert('Add Bookmark', err.message);
         }
-      }, (err) => {
-          this.presentAlert("Add Bookmark", err.message);
-      })
+      );
     }
   }
 
@@ -330,15 +420,14 @@ export class ReadingViewComponent  implements OnInit {
   }
 
   changePageNumber(pageNumber: any) {
-    this.pageNumberType = pageNumber
+    this.pageNumberType = pageNumber;
   }
 
   onClickProfileSection() {
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/profile']);
   }
 
   onClickCartPage() {
-    this.router.navigate(['/cart'])
+    this.router.navigate(['/cart']);
   }
-
 }

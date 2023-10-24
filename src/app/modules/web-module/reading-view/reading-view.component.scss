@@ -44,7 +44,11 @@
     // justify-content: center;
   }
   
-ion-modal {
+ion-modal.s {
+    --height: 50%;
+}
+
+ion-modal.l {
     --height: 100%;
 }
 

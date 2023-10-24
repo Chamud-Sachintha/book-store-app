@@ -63,7 +63,7 @@
 
   <!-- model will starts here -->
 
-  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="md">
+  <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" class="md s">
     <ng-template>
       <form action="" [formGroup]="this.createBookMarkForm" (ngSubmit)="onSubmitSaveBookMarkInfo()">
         <div class="block-md">
@@ -87,7 +87,7 @@
 
   <!-- all bookmark list modal begin here -->
 
-  <ion-modal [isOpen]="isModalOpen">
+  <ion-modal [isOpen]="isModalOpen" class="l">
     <ng-template id="myTemplate">
       <div class="block-lg">
         <div class="row mt-2 ms-2 me-2">

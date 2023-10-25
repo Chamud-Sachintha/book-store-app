@@ -73,6 +73,16 @@ export class ReadingViewComponent implements OnInit {
     const myTemplate = document.getElementById('myTemplate');
     myTemplate?.scrollIntoView();
 
+    screen.orientation.addEventListener("change", (e: any) =>  {
+        // Do something on change
+        // landscape-primary
+        if (e.target.type == "landscape-primary") {
+          this.pdfZoomScale = 1;
+        } else {
+          this.pdfZoomScale = 0.5;
+        }
+    });
+
     this.zoomableContent = document.getElementById('pdf');
     let initialTouchDistance = 0;
     let initialScale = 1;

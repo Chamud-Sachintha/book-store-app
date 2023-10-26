@@ -226,14 +226,12 @@ export class SigninComponent  implements OnInit {
 
   onSubmitClientLoginForm() {
 
-    if (!navigator.onLine) {
-      this.presentAlert("Unable to Sign in", "Please Check Your Connection");
-    }
-
     const userName = this.clientLoginForm.controls['userName'].value;
     const password = this.clientLoginForm.controls['password'].value;
 
-    if (userName === "" || password === "") {
+    if (!navigator.onLine) {
+      this.presentAlert("Unable to Sign in", "Please Check Your Connection");
+    } else if (userName === "" || password === "") {
       this.presentAlert("Empty Field/s Detected", "Please FILL BOTH Fields");
     } else if (!this.userEmailRegEx.test(userName)) {
       this.presentAlert("Invalid Input Format", "Enter Valid Email Address.");

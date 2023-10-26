@@ -122,7 +122,7 @@ export class InsideBookComponent  implements OnInit {
       if (resp.code === 1) {
         this.presentAlert("", "Added to Cart Successfully");
       } else {
-        this.presentAlert("Add Item to Cart", "Book Already Added to Cart");
+        this.presentAlert("", "Book Already Added to Cart");
       }
     }, (err) => {
       this.presentAlert("Add to Cart", err.message);

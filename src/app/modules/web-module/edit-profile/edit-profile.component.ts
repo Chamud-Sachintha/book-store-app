@@ -48,6 +48,14 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
+  isValidAge(age: any) {
+    if (!(isNaN(age))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   onSubmitEditProfileForm() {
     const firstName = this.editprofileForm.controls['firstName'].value;
     const lastName = this.editprofileForm.controls['lastName'].value;
@@ -86,6 +94,8 @@ export class EditProfileComponent implements OnInit {
 
       if (!this.isValidNumber(mobileNumber)) {
         this.presentAlert("Invalid Input Format", "Enter Valid Mobile Number")
+      } else if (!this.isValidAge(age)) {
+        this.presentAlert("Invalid Input Format", "Enter Valid Age");
       } else {
         this.profileInfo.firstName = firstName;
         this.profileInfo.lastName = lastName;

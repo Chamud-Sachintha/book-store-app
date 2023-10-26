@@ -190,6 +190,9 @@ export class ReadingViewComponent implements OnInit {
               this.requestBody.token = sessionStorage.getItem('authToken');
               this.requestBody.chapterId = eachBookmark.pageNumber;
 
+              const createdDateNew =parseInt(eachBookmark.createdDate) * 1000;
+              eachBookmark.createdDate = createdDateNew.toString();
+
               this.bookMarkList.push(eachBookmark)
 
             //   this.bookService

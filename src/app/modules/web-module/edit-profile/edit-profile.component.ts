@@ -137,7 +137,7 @@ export class EditProfileComponent implements OnInit {
             this.editprofileForm.controls['district'].setValue("");
 
             this.presentAlert("Profile Updated Successfully", "Thank you !!!");
-            this.router.navigate(['my-books']);
+            this.router.navigate(['book', 2]);
           }
         }, (err) => {
 

@@ -52,7 +52,7 @@ export class BookListComponent  implements OnInit {
       getTabBar.style.display = "";
     }
 
-    this.analyticService.setScreenName(this.router.url);
+    this.analyticService.setScreenName("Books Page");
   }
 
   ngOnInit() {

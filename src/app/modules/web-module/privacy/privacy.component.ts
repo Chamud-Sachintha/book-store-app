@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule, NavController } from '@ionic/angular';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-privacy',
@@ -12,7 +13,9 @@ import { IonicModule, NavController } from '@ionic/angular';
 export class PrivacyComponent  implements OnInit {
 
 
-  constructor(private router: Router, private navCtrl: NavController) { }
+  constructor(private router: Router, private navCtrl: NavController, private analyticsService: AnalyticsService) { 
+    this.analyticsService.setScreenName("Privacy Policy Page");
+  }
 
   ngOnInit() {}
 

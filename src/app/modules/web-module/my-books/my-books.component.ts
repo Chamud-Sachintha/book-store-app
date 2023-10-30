@@ -7,6 +7,7 @@ import { Request } from 'src/app/models/Request/request';
 import { BookService } from 'src/app/services/book/book.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { environment } from 'src/environments/environment';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-my-books',
@@ -22,7 +23,10 @@ export class MyBooksComponent  implements OnInit {
   requestBody = new Request();
 
   constructor(private router: Router, private bookService: BookService, private platform: Platform, private navCtrl: NavController
-            , private toastController: ToastController, private profileService: ProfileService) { }
+            , private toastController: ToastController, private profileService: ProfileService, private analyticsService: AnalyticsService) { 
+
+      this.analyticsService.setScreenName("Book List Page");
+  }
 
   ngOnInit() {
     this.getMyPaidBookList();

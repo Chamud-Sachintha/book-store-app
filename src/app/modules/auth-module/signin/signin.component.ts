@@ -60,6 +60,7 @@ export class SigninComponent  implements OnInit {
     }
 
     // this.analyticsService.initFB();
+    this.analyticsService.setScreenName("Loin Page");
   }
 
   ngOnInit() {

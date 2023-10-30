@@ -11,6 +11,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { CartItem } from 'src/app/models/Cart/cart-item';
 import { Request } from 'src/app/models/Request/request';
 import { OrderService } from 'src/app/services/order/order.service';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-inside-book',
@@ -36,7 +37,9 @@ export class InsideBookComponent  implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private bookService: BookService
               , private alertController: AlertController, private cartService: CartService, private navCtrl: NavController
               , private loadingCtrl: LoadingController
-              , private orderService: OrderService) { }
+              , private orderService: OrderService
+              , private analyticsService: AnalyticsService) {
+  }
 
   ngOnInit() {
     this.activateRoute.params.subscribe((params: Params) => this.bookId = params['bookId']);
@@ -44,6 +47,8 @@ export class InsideBookComponent  implements OnInit {
     this.getBookdetailsByBookId();
     this.checkBookAlreadyBuyOrNot();
     this.getAllClientReviews();
+
+    this.analyticsService.setScreenName(this.bookInfo.categoryName);
   }
 
   onClickBuyBookBtn() {

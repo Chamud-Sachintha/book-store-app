@@ -6,6 +6,7 @@ import { SupportMessage } from 'src/app/models/Support/support-message';
 import { SupportService } from 'src/app/services/support/support.service';
 import { Request } from 'src/app/models/Request/request';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 @Component({
   selector: 'app-support',
@@ -21,8 +22,10 @@ export class SupportComponent  implements OnInit {
   requestBody = new Request();
 
   constructor(private router: Router, private formBuilder: FormBuilder, private alertController: AlertController
-            , private supportService: SupportService, private navCtrl: NavController, private profileService: ProfileService) { 
+            , private supportService: SupportService, private navCtrl: NavController, private profileService: ProfileService
+            , private analyticsService: AnalyticsService) { 
     this.checkProfileIsFilled();
+    this.analyticsService.setScreenName("Info Page");
   }
 
   ngOnInit() {

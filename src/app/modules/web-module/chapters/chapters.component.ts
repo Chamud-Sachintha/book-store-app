@@ -5,6 +5,7 @@ import { IonicModule, NavController, Platform } from '@ionic/angular';
 import { Book } from 'src/app/models/Book/book';
 import { Chapter } from 'src/app/models/Chapter/chapter';
 import { Request } from 'src/app/models/Request/request';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { BookService } from 'src/app/services/book/book.service';
 
 @Component({
@@ -22,7 +23,9 @@ export class ChaptersComponent  implements OnInit {
   bookInfo = new Book();
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bookService: BookService, 
-    private platform: Platform, private navCtrl: NavController) { 
+    private platform: Platform, private navCtrl: NavController, private analyticsService: AnalyticsService) { 
+
+      this.analyticsService.setScreenName("Chapters Page");
   }
 
   ngOnInit() {

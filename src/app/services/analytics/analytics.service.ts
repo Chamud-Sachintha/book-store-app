@@ -13,7 +13,7 @@ export class AnalyticsService {
   analyticsEnabled = true;
 
   constructor(private router: Router) { 
-    this.setScreenName(this.router.url);
+    // this.setScreenName(this.router.url);
   }
 
   initFB() {

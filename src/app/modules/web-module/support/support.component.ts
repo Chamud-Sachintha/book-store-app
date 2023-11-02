@@ -33,7 +33,7 @@ export class SupportComponent  implements OnInit {
   }
 
   onClickWaBtn() {
-    window.open('https://wa.me/+94742873712?text=Hi%20%21%20Please%20let%20us%20know%20how%20we%20can%C2%A0help%C2%A0you');
+    window.open('https://wa.me/+94742873712?text=Hi%20%21%21%21%20%0APlease%20let%20us%20know%20how%20we%20can%C2%A0help%C2%A0you');
   }
 
   checkProfileIsFilled() {

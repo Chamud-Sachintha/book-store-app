@@ -51,7 +51,7 @@ export class ReadingViewComponent implements OnInit {
   sortedBookmarkList: BookMark[] = [];
   userEmail!: any;
   zoomableContent: any;
-  pdfZoomScale = 0.5;
+  pdfZoomScale = 1;
 
   constructor(
     private router: Router,
@@ -73,15 +73,13 @@ export class ReadingViewComponent implements OnInit {
     const myTemplate = document.getElementById('myTemplate');
     myTemplate?.scrollIntoView();
 
-    screen.orientation.addEventListener("change", (e: any) =>  {
-        // Do something on change
-        // landscape-primary
-        if (e.target.type == "landscape-primary") {
-          this.pdfZoomScale = 1;
-        } else {
-          this.pdfZoomScale = 0.5;
-        }
-    });
+    // screen.orientation.addEventListener("change", (e: any) =>  {
+    //     if (e.target.type == "landscape-primary") {
+    //       this.pdfZoomScale = 1;
+    //     } else {
+    //       this.pdfZoomScale = 1;
+    //     }
+    // });
 
     this.zoomableContent = document.getElementById('pdf');
     let initialTouchDistance = 0;
@@ -116,7 +114,7 @@ export class ReadingViewComponent implements OnInit {
         // Update the scale of the content.
         // this.zoomableContent.style.transform = `scale(${initialScale * scaleFactor})`;
 
-        if (initialTouchDistance > currentTouchDistance) {
+        if (initialTouchDistance > currentTouchDistance && (this.pdfZoomScale > 1)) {
           this.pdfZoomScale -= 0.5;
         } else {
           this.pdfZoomScale += 0.5;

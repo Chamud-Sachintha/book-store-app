@@ -63,6 +63,8 @@ export class InsideBookComponent  implements OnInit {
         this.presentAlert("", "Book Purchased Successfully");
 
         this.router.navigate(['/my-books']);
+      } else if (resp.code === 3) {
+        this.presentAlert("", resp.message);
       }
     }, (err) => {
       this.presentAlert("Buy Book", err.message);

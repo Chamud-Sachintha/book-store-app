@@ -44,7 +44,7 @@ export class ReadingViewComponent implements OnInit {
   pdfByteArr: string = '';
   pageNumberType: number = 1;
   isModalOpen = false;
-  isFullScreenModeOn = false;
+    isFullScreenModeOn = false;
   bookId!: number;
   createBookMarkForm!: FormGroup;
   bookMarkList: BookMark[] = [];
@@ -64,6 +64,13 @@ export class ReadingViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload') 
+      location.reload() 
+    } else {
+      localStorage.removeItem('foo') 
+    }
+    
     this.activateRoute.params.subscribe(
       (params: Params) => (this.bookId = params['bookId'])
     );
@@ -149,7 +156,7 @@ export class ReadingViewComponent implements OnInit {
   }
 
   openCreateBookmarkModal() {
-    this.createBookMarkForm.controls['pageNumber'].setValue(
+        this.createBookMarkForm.controls['pageNumber'].setValue(
       this.chapterInfo.chapter
     );
   }
@@ -406,6 +413,8 @@ export class ReadingViewComponent implements OnInit {
         (resp: any) => {
           if (resp.code === 1) {
             this.presentAlert('', 'Bookmark Saved Successfully');
+
+            this.modal.dismiss();
           }
         },
         (err) => {

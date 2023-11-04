@@ -30,6 +30,13 @@ export class CartComponent  implements OnInit {
   }
 
   ngOnInit() {
+    // if (!localStorage.getItem('foo')) { 
+    //   localStorage.setItem('foo', 'no reload') 
+    //   location.reload() 
+    // } else {
+    //   localStorage.removeItem('foo') 
+    // }
+
     this.getAllCartItems();
   }
 
@@ -47,6 +54,8 @@ export class CartComponent  implements OnInit {
 
       if (resp.code === 1) {
         this.presentAlert("", "Order Placed Successfully");
+        this.allCartItemsList = [];
+        
         this.router.navigate(['/my-books']);
       } else {
         this.presentAlert("", "Please Add Book/s to Cart");

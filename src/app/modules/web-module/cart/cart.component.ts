@@ -55,6 +55,7 @@ export class CartComponent  implements OnInit {
       if (resp.code === 1) {
         this.presentAlert("", "Order Placed Successfully");
         this.allCartItemsList = [];
+        this.cartAmount = 0;
         
         this.router.navigate(['/my-books']);
       } else {

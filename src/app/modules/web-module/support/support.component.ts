@@ -73,10 +73,10 @@ export class SupportComponent  implements OnInit {
 
       this.supportService.addClientSupportmessage(this.supportMessage).subscribe((resp: any) => {
         if (resp.code === 1) {
-          this.presentAlert("User Support Request Submitted Successfully ", "Expect Response via Email");
-
           this.clientSupportForm.controls['title'].setValue('');
           this.clientSupportForm.controls['message'].setValue('');
+          
+          this.presentAlert("User Support Request Submitted Successfully ", "Expect Response via Email");
         }
       }, (err) => {
         this.presentAlert("Client Support Message", err.message);

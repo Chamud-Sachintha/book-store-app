@@ -412,6 +412,7 @@ export class ReadingViewComponent implements OnInit {
       this.bookService.createBookMarkInfo(this.bookMarkInfo).subscribe(
         (resp: any) => {
           if (resp.code === 1) {
+            this.createBookMarkForm.controls['pageDescription'].setValue("");
             this.presentAlert('', 'Bookmark Saved Successfully');
 
             this.modal.dismiss();

@@ -12,6 +12,7 @@ import { CartItem } from 'src/app/models/Cart/cart-item';
 import { Request } from 'src/app/models/Request/request';
 import { OrderService } from 'src/app/services/order/order.service';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { StarRatingComponent } from 'ng-starrating';
 
 @Component({
   selector: 'app-inside-book',
@@ -156,6 +157,9 @@ export class InsideBookComponent  implements OnInit {
 
         if (resp.code === 1) {
           this.presentAlert("Review Submitted Successfully", "Thank you !!!");
+
+          this.ratingForm.controls['rating'].setValue("");
+          this.ratingForm.controls['feedback'].setValue("");
         }
       }, (err) => {
         this.presentAlert("Submit Client Review", err);

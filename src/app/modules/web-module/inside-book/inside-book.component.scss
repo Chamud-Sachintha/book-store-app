@@ -105,3 +105,11 @@ ngx-star-rating .ngx-star {
 input.star:checked ~ label.star:before {
     color: pink !important;
 }
+
+label.star {
+    font-size: 10px !important;
+}
+
+#star-rating label.star {
+    font-size: 10px !important;
+}

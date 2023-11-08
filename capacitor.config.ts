@@ -9,7 +9,7 @@ const config: CapacitorConfig = {
   },
   plugins: {
     PrivacyScreen: {
-      enable: false,
+      enable: true,
     },
     GoogleAuth: {
       scopes: ["profile", "email"],

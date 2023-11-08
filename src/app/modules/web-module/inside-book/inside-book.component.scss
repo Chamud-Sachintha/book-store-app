@@ -110,6 +110,13 @@ label.star {
     font-size: 10px !important;
 }
 
-#star-rating label.star {
-    font-size: 10px !important;
+@media only screen 
+and (max-width : 366px) {
+    #star-rating {
+        ::ng-deep {
+            .star {
+                font-size: 28px !important;
+            }
+        }
+    }
 }

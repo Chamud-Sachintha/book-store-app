@@ -13,7 +13,7 @@ const config: CapacitorConfig = {
     },
     GoogleAuth: {
       scopes: ["profile", "email"],
-      serverClientId: "350318496277-4949cv9612r4pk6ethuuit2hbr8poj1v.apps.googleusercontent.com",
+      serverClientId: "169973751650-040tu26o25sn2uekc93cp4vs361471i9.apps.googleusercontent.com",
       forceCodeForRefreshToken: true
     },
     SplashScreen: {

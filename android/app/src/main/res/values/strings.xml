@@ -4,7 +4,7 @@
     <string name="title_activity_main">book-store-app</string>
     <string name="package_name">lk.dpuremaths.app</string>
     <string name="custom_url_scheme">lk.dpuremaths.app</string>
-    <string name="server_client_id">350318496277-4949cv9612r4pk6ethuuit2hbr8poj1v.apps.googleusercontent.com</string>
+    <string name="server_client_id">169973751650-040tu26o25sn2uekc93cp4vs361471i9.apps.googleusercontent.com</string>
     <string name="facebook_app_id">997371431487868</string>
     <string name="facebook_client_token">f593e2f8f208590070e662c0a3e3f01b</string>
     <string name="fb_login_protocol_scheme">997371431487868</string>
